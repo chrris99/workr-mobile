@@ -57,5 +57,9 @@ export const fonts: Record<TextType, FontStyle> = {
   'body-L-bold': {
     ...fontSize['body-L'],
     fontFamily: fontFamily['bold']
+  },
+  'heading-XS-semibold': {
+    ...fontSize['heading-XS'],
+    fontFamily: fontFamily['semibold']
   }
 };

@@ -1,7 +1,8 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Text from "../../design-system/typography/Text";
 import { TextType } from "../../design-system/typography/fonts";
 import { Color } from "../../design-system/colors/colors";
+import { spacing } from "../../design-system/spacing/spacing";
 
 interface HeaderProps {
   title: string;
@@ -12,12 +13,12 @@ interface HeaderProps {
   subtitleColor?: Color;
 }
 
-const Header = (props: HeaderProps) => {
+export const Header = (props: HeaderProps) => {
   return (
-    <View>
+    <View style={styles.headerContainer}>
       <Text
         type={props.titleStyle ?? "heading-XS-semibold"}
-        color={props.titleColor}
+        color={props.titleColor ?? "gray-900"}
       >
         {props.title}
       </Text>
@@ -30,3 +31,9 @@ const Header = (props: HeaderProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    gap: spacing['spacing-2']
+  }
+})

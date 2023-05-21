@@ -11,6 +11,8 @@ import Text from "../../design-system/typography/Text";
 import { Color, colors } from "../../design-system/colors/colors";
 import { spacing } from "../../design-system/spacing/spacing";
 
+// TODO: Create text button type
+
 type ButtonType = "solid" | "outline";
 
 interface BaseButtonProps extends TouchableOpacityProps {
