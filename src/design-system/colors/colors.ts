@@ -1,6 +1,6 @@
 export type Color = `${ColorName}-${Contrast}` | 'white';
 
-type ColorName = 'primary' | 'secondary' | 'gray';
+type ColorName = 'primary' | 'secondary' | 'gray' | 'error';
 type Contrast = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 
 const primary: Record<Contrast, string> = {
@@ -39,6 +39,18 @@ const gray: Record<Contrast, string> = {
   900: '#101828'
 };
 
+const error: Record<Contrast, string> = {
+  100: "#FEE4E2",
+  200: "#FECDCA",
+  300: "#FDA29B",
+  400: "#F97066",
+  500: "#F04438",
+  600: "#D92D20",
+  700: "#B42318",
+  800: "#912018",
+  900: "#7A271A"
+}
+
 export const colors: Record<Color, string> = {
   'white': '#FFFFFF',
   'primary-100': primary[100],
@@ -68,4 +80,13 @@ export const colors: Record<Color, string> = {
   'gray-700': gray[700],
   'gray-800': gray[800],
   'gray-900': gray[900],
+  "error-100": error[100],
+  "error-200": error[200],
+  "error-300": error[300],
+  "error-400": error[400],
+  "error-500": error[500],
+  "error-600": error[600],
+  "error-700": error[700],
+  "error-800": error[800],
+  "error-900": error[900]
 };
