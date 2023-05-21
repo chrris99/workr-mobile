@@ -34,6 +34,6 @@ export const Header = (props: HeaderProps) => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    gap: spacing['spacing-2']
-  }
-})
+    gap: spacing["spacing-2"],
+  },
+});

@@ -38,9 +38,9 @@ export const fontSize: Record<FontSize, FontSizeStyle> = {
     lineHeight: 34
   },
   "heading-M": {
-    fontSize: 0,
-    lineHeight: 0,
-    letterSpacing: undefined
+    fontSize: 36,
+    lineHeight: 44,
+    letterSpacing: -0.02
   },
   "heading-L": {
     fontSize: 0,

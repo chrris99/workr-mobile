@@ -10,14 +10,14 @@ import {
 import Text from "../../design-system/typography/Text";
 import { Color, colors } from "../../design-system/colors/colors";
 import { spacing } from "../../design-system/spacing/spacing";
+import { TextType } from "../../design-system/typography/fonts";
 
-// TODO: Create text button type
-
-type ButtonType = "solid" | "outline";
+type ButtonType = "solid" | "outline" | "text";
 
 interface BaseButtonProps extends TouchableOpacityProps {
   title: string;
   type: ButtonType;
+  textStyle?: TextType;
   icon?: JSX.Element;
 }
 
@@ -32,11 +32,23 @@ interface OutlineButtonProps extends BaseButtonProps {
   textColor?: Color;
 }
 
-type ButtonProps = SolidButtonProps | OutlineButtonProps;
+interface TextButtonProps extends BaseButtonProps {
+  type: "text";
+  textColor?: Color;
+}
+
+type ButtonProps = SolidButtonProps | OutlineButtonProps | TextButtonProps;
 
 function getButtonStyle(props: ButtonProps): StyleProp<ViewStyle> {
+  const baseButtonStyle = {
+    borderRadius: 8,
+    paddingVertical: spacing["spacing-2.5"],
+    paddingHorizontal: spacing["spacing-4"],
+  };
+
   if (props.type === "solid") {
     return {
+      ...baseButtonStyle,
       backgroundColor: props.backgroundColor
         ? colors[props.backgroundColor]
         : colors["primary-700"],
@@ -45,6 +57,7 @@ function getButtonStyle(props: ButtonProps): StyleProp<ViewStyle> {
 
   if (props.type === "outline") {
     return {
+      ...baseButtonStyle,
       backgroundColor: colors["white"],
       borderWidth: 1,
       borderColor: colors["gray-300"],
@@ -56,15 +69,11 @@ export const Button = (props: ButtonProps) => {
   const buttonStyle = getButtonStyle(props);
 
   return (
-    <TouchableOpacity
-      {...props}
-      activeOpacity={0.9}
-      style={[styles.button, buttonStyle]}
-    >
+    <TouchableOpacity {...props} activeOpacity={0.9} style={buttonStyle}>
       <View style={styles.container}>
         {props.icon && props.icon}
         <Text
-          type={"body-M-semibold"}
+          type={props.textStyle ? props.textStyle : "body-M-semibold"}
           color={
             props.textColor
               ? props.textColor
@@ -87,9 +96,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: spacing["spacing-3"],
   },
-  button: {
-    borderRadius: 8,
-    paddingVertical: spacing["spacing-2.5"],
-    paddingHorizontal: spacing["spacing-4"],
-  },
+  button: {},
 });

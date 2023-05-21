@@ -61,5 +61,13 @@ export const fonts: Record<TextType, FontStyle> = {
   'heading-XS-semibold': {
     ...fontSize['heading-XS'],
     fontFamily: fontFamily['semibold']
+  },
+  'heading-S-semibold': {
+    ...fontSize['heading-S'],
+    fontFamily: fontFamily['semibold']
+  },
+  'heading-M-semibold': {
+    ...fontSize['heading-M'],
+    fontFamily: fontFamily['semibold']
   }
 };
