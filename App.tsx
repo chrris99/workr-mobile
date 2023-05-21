@@ -4,7 +4,6 @@ import { CLERK_PUBLISHABLE_KEY } from "@env";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import SignUpScreen from "./src/screens/SignUpScreen";
 
-
 import { Button } from "./src/components/base/Button";
 import { Input } from "./src/components/base/Input";
 import {
@@ -16,8 +15,14 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
+import WelcomeScreen from "./src/screens/WelcomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import RootStackNavigator from "./src/navigation/RootStackNavigator";
+import { createStackNavigator } from "@react-navigation/stack";
 
 SplashScreen.preventAutoHideAsync();
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,14 +41,14 @@ export default function App() {
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
       <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
-        <SafeAreaView>
+        <NavigationContainer>
           <SignedIn>
             <Text>You are Signed in</Text>
           </SignedIn>
           <SignedOut>
-            <SignUpScreen />
+            <RootStackNavigator />
           </SignedOut>
-        </SafeAreaView>
+        </NavigationContainer>
       </ClerkProvider>
     </SafeAreaProvider>
   );

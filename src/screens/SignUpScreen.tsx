@@ -12,15 +12,26 @@ import Google from "../../assets/icons/google.svg";
 import Text from "../design-system/typography/Text";
 import { Header } from "../components/base/Header";
 import { Divider } from "../design-system/spacing/Divider";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
+import { SignUpScreenNavigationProps } from "../navigation/RootStackNavigator";
 
 export default function SignUpScreen() {
+  const insets = useSafeAreaInsets();
+  const navigation = useNavigation<SignUpScreenNavigationProps>();
+
   const { isLoaded, signUp, setActive } = useSignUp();
 
   const [emailAddress, setEmailAddress] = useState<string>("");
-  const [emailAddressError, setEmailAddressError] = useState<string | undefined>(undefined);
+  const [emailAddressError, setEmailAddressError] = useState<
+    string | undefined
+  >(undefined);
   const [password, setPassword] = useState<string>("");
-  const [passwordError, setPasswordError] = useState<string | undefined>(undefined);
-  const [pendingVerification, setPendingVerification] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState<string | undefined>(
+    undefined
+  );
+  const [pendingVerification, setPendingVerification] =
+    useState<boolean>(false);
   const [code, setCode] = useState<string>("");
   const [codeError, setCodeError] = useState<string | undefined>(undefined);
 
@@ -69,7 +80,7 @@ export default function SignUpScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <Header title="Sign Up" subtitle="Welcome to Workr" />
       {!pendingVerification && (
         <>
@@ -98,9 +109,12 @@ export default function SignUpScreen() {
               />
             </View>
             <View style={styles.forgotPasswordContainer}>
-              <Text type="body-S-semibold" color="primary-700">
-                Forgot password?
-              </Text>
+              <Button
+                title="Forgot password?"
+                type="text"
+                textStyle="body-S-semibold"
+                textColor="primary-700"
+              />
             </View>
 
             <View style={styles.buttonGroup}>
@@ -120,7 +134,16 @@ export default function SignUpScreen() {
               />
             </View>
           </View>
-          <Text>Already have an account? Sign In</Text>
+          <View style={{ flexDirection: "row", gap: spacing["spacing-1"] }}>
+            <Text>Already have an account?</Text>
+            <Button
+              title="Sign In"
+              type="text"
+              textStyle="body-S-semibold"
+              textColor="primary-700"
+              onPress={() => navigation.replace("SignIn")}
+            />
+          </View>
         </>
       )}
       {pendingVerification && (
