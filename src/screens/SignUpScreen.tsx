@@ -16,13 +16,13 @@ import { Divider } from "../design-system/spacing/Divider";
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
 
-  const [emailAddress, setEmailAddress] = useState("");
-  const [emailAddressError, setEmailAddressError] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [pendingVerification, setPendingVerification] = useState(false);
-  const [code, setCode] = useState("");
-  const [codeError, setCodeError] = useState("");
+  const [emailAddress, setEmailAddress] = useState<string>("");
+  const [emailAddressError, setEmailAddressError] = useState<string | undefined>(undefined);
+  const [password, setPassword] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string | undefined>(undefined);
+  const [pendingVerification, setPendingVerification] = useState<boolean>(false);
+  const [code, setCode] = useState<string>("");
+  const [codeError, setCodeError] = useState<string | undefined>(undefined);
 
   const onSignUpPress = async () => {
     if (!isLoaded) {
@@ -39,10 +39,15 @@ export default function SignUpScreen() {
 
       setPendingVerification(true);
     } catch (err: any) {
+      console.error(JSON.stringify(err, null, 2));
       if (err.clerkError) {
         const errors = err.errors as ClerkError[];
-        console.error(JSON.stringify(err, null, 2));
-        errors.forEach((error) => {});
+        errors.forEach((error) => {
+          if (error.meta.paramName === "email_address")
+            setEmailAddressError(error.longMessage);
+          if (error.meta.paramName === "password")
+            setPasswordError(error.longMessage);
+        });
       }
     }
   };
@@ -72,21 +77,26 @@ export default function SignUpScreen() {
             <View style={styles.inputContainer}>
               <Input
                 label="Email"
+                autoComplete="email"
                 autoCapitalize="none"
                 value={emailAddress}
                 placeholder="Enter your email"
                 onChangeText={(email) => setEmailAddress(email)}
+                error={emailAddressError}
+                setError={setEmailAddressError}
               />
 
               <Input
                 label="Password"
+                autoComplete="password-new"
                 value={password}
                 placeholder="Password..."
                 secureTextEntry={true}
                 onChangeText={(password) => setPassword(password)}
+                error={passwordError}
+                setError={setPasswordError}
               />
             </View>
-
             <View style={styles.forgotPasswordContainer}>
               <Text type="body-S-semibold" color="primary-700">
                 Forgot password?
@@ -120,6 +130,8 @@ export default function SignUpScreen() {
               value={code}
               placeholder="Code..."
               onChangeText={(code) => setCode(code)}
+              error={codeError}
+              setError={setCodeError}
             />
           </View>
           <Button title="Verify Email" type="solid" onPress={onPressVerify} />
