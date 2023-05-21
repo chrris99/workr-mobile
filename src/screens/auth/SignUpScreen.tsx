@@ -1,22 +1,22 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
-import { Input } from "../components/base/Input";
-import { Button } from "../components/base/Button";
+import { Input } from "../../components/base/Input";
+import { Button } from "../../components/base/Button";
 import { useState } from "react";
-import { ClerkError } from "../models/clerkError";
-import { spacing } from "../design-system/spacing/spacing";
+import { ClerkError } from "../../models/clerkError";
+import { spacing } from "../../design-system/spacing/spacing";
 
 import Apple from "../../assets/icons/apple.svg";
 import Google from "../../assets/icons/google.svg";
-import Text from "../design-system/typography/Text";
-import { Header } from "../components/base/Header";
-import { Divider } from "../design-system/spacing/Divider";
+import Text from "../../design-system/typography/Text";
+import { Header } from "../../components/base/Header";
+import { Divider } from "../../design-system/spacing/Divider";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import { SignUpScreenNavigationProps } from "../navigation/RootStackNavigator";
+import { SignUpScreenNavigationProps } from "../../navigation/RootStackNavigator";
 
-export default function SignUpScreen() {
+const SignUpScreen = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<SignUpScreenNavigationProps>();
 
@@ -81,7 +81,10 @@ export default function SignUpScreen() {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Header title="Sign Up" subtitle="Welcome to Workr" />
+      <Header
+        title="Welcome to Workr"
+        subtitle="Are you ready to start working out?"
+      />
       {!pendingVerification && (
         <>
           <View style={styles.signUpContainer}>
@@ -162,7 +165,7 @@ export default function SignUpScreen() {
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -182,3 +185,5 @@ const styles = StyleSheet.create({
     gap: spacing["spacing-4"],
   },
 });
+
+export default SignUpScreen;

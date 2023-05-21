@@ -2,7 +2,7 @@ import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import { StyleSheet, Text, View } from "react-native";
 import { CLERK_PUBLISHABLE_KEY } from "@env";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import SignUpScreen from "./src/screens/SignUpScreen";
+import SignUpScreen from "./src/screens/auth/SignUpScreen";
 
 import { Button } from "./src/components/base/Button";
 import { Input } from "./src/components/base/Input";
@@ -15,10 +15,11 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
-import WelcomeScreen from "./src/screens/WelcomeScreen";
+import WelcomeScreen from "./src/screens/auth/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStackNavigator from "./src/navigation/RootStackNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
+import RootTabNavigator from "./src/navigation/RootTabNavigator";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -43,7 +44,7 @@ export default function App() {
       <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
         <NavigationContainer>
           <SignedIn>
-            <Text>You are Signed in</Text>
+            <RootTabNavigator />
           </SignedIn>
           <SignedOut>
             <RootStackNavigator />

@@ -2,8 +2,9 @@ import {
   StackNavigationProp,
   createStackNavigator,
 } from "@react-navigation/stack";
-import WelcomeScreen from "../screens/WelcomeScreen";
-import SignUpScreen from "../screens/SignUpScreen";
+import WelcomeScreen from "../screens/auth/WelcomeScreen";
+import SignUpScreen from "../screens/auth/SignUpScreen";
+import { Button } from "../components/base/Button";
 
 type RootStackParamList = {
   Welcome: undefined;
