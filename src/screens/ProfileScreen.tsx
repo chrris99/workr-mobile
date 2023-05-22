@@ -20,7 +20,6 @@ const ProfileScreen = () => {
       ]}
     >
       <View style={styles.profileHeaderContainer}>
-        {/** TODO: Make profile icon bigger */}
         <Avatar size="2XL" />
         <View style={styles.nameContainer}>
           <Text type="heading-S-semibold">Christian</Text>

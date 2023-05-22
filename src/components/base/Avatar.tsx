@@ -28,8 +28,8 @@ const avatarSize: Record<AvatarSize, ViewStyle> = {
     height: spacing["spacing-14"],
   },
   "2XL": {
-    width: spacing["spacing-16"],
-    height: spacing["spacing-16"],
+    width: spacing["spacing-24"],
+    height: spacing["spacing-24"],
   },
 };
 
@@ -39,7 +39,7 @@ const iconSize: Record<AvatarSize, number> = {
   M: spacing["spacing-6"],
   L: spacing["spacing-7"],
   XL: spacing["spacing-8"],
-  "2XL": spacing["spacing-8"],
+  "2XL": spacing["spacing-10"],
 };
 
 interface AvatarProps {
@@ -53,7 +53,7 @@ export const Avatar = ({ type, size }: AvatarProps) => {
       <User
         width={iconSize[size ? size : "M"]}
         height={iconSize[size ? size : "M"]}
-        strokeWidth={2}
+        strokeWidth={1.5}
         color={colors["primary-700"]}
       />
     </View>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   avatar: {
     borderRadius: 200,
     backgroundColor: colors["primary-100"],
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: colors['primary-700'],
     alignItems: "center",
     justifyContent: "center",
