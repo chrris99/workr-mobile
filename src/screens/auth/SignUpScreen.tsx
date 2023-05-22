@@ -7,8 +7,8 @@ import { useState } from "react";
 import { ClerkError } from "../../models/clerkError";
 import { spacing } from "../../design-system/spacing/spacing";
 
-import Apple from "../../assets/icons/apple.svg";
-import Google from "../../assets/icons/google.svg";
+import Apple from "../../../assets/icons/apple.svg"
+import Google from "../../../assets/icons/google.svg";
 import Text from "../../design-system/typography/Text";
 import { Header } from "../../components/base/Header";
 import { Divider } from "../../design-system/spacing/Divider";

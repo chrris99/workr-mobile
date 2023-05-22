@@ -22,7 +22,7 @@ const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../../assets/welcome.jpg")}
+        source={require("../../../assets/welcome.jpg")}
         resizeMode="cover"
         style={styles.backgroundImage}
       >
