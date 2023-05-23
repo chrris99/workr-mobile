@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import Text from "../design-system/typography/Text";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { Avatar } from "../components/base/Avatar";
 import { SettingsList } from "../components/profile/SettingsList";
 import { spacing } from "../design-system/spacing/spacing";
@@ -10,6 +10,11 @@ import { Button } from "../components/base/Button";
 const ProfileScreen = () => {
   const insets = useSafeAreaInsets();
   const { user } = useUser();
+  const { isLoaded, signOut } = useAuth();
+
+  if (!isLoaded) {
+    return null;
+  }
 
   return (
     <View
@@ -28,7 +33,7 @@ const ProfileScreen = () => {
         </View>
       </View>
       <SettingsList />
-      <Button title="Sign Out" type="solid" />
+      <Button title="Sign Out" type="solid" onPress={() => signOut()} />
     </View>
   );
 };
@@ -39,11 +44,11 @@ const styles = StyleSheet.create({
   },
   profileHeaderContainer: {
     alignItems: "center",
-    gap: spacing['spacing-5'],
+    gap: spacing["spacing-5"],
     paddingVertical: spacing["spacing-12"],
   },
   nameContainer: {
-    alignItems: 'center'
+    alignItems: "center",
   },
   settingsContainer: {
     borderRadius: 8,

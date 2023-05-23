@@ -20,6 +20,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import RootStackNavigator from "./src/navigation/RootStackNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
 import RootTabNavigator from "./src/navigation/RootTabNavigator";
+import { tokenCache } from "./src/services/tokenCache";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,7 +42,10 @@ export default function App() {
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
-      <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+      <ClerkProvider
+        publishableKey={CLERK_PUBLISHABLE_KEY}
+        tokenCache={tokenCache}
+      >
         <NavigationContainer>
           <SignedIn>
             <RootTabNavigator />
