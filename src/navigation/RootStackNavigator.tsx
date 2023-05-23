@@ -5,6 +5,7 @@ import {
 import WelcomeScreen from "../screens/auth/WelcomeScreen";
 import SignUpScreen from "../screens/auth/SignUpScreen";
 import { Button } from "../components/base/Button";
+import SignInScreen from "../screens/auth/SignInScreen";
 
 type RootStackParamList = {
   Welcome: undefined;
@@ -41,7 +42,7 @@ const RootStackNavigator = () => {
           title: 'Sign Up'
         }}
       />
-      <RootStack.Screen name="SignIn" component={SignUpScreen} options={{
+      <RootStack.Screen name="SignIn" component={SignInScreen} options={{
         title: 'Sign In'
       }}/>
     </RootStack.Navigator>

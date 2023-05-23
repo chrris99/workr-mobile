@@ -5,6 +5,7 @@ import { useUser } from "@clerk/clerk-expo";
 import { Avatar } from "../components/base/Avatar";
 import { SettingsList } from "../components/profile/SettingsList";
 import { spacing } from "../design-system/spacing/spacing";
+import { Button } from "../components/base/Button";
 
 const ProfileScreen = () => {
   const insets = useSafeAreaInsets();
@@ -27,6 +28,7 @@ const ProfileScreen = () => {
         </View>
       </View>
       <SettingsList />
+      <Button title="Sign Out" type="solid" />
     </View>
   );
 };

@@ -6,6 +6,7 @@ import UserIcon from "../../../assets/icons/user.svg";
 import SettingsIcon from "../../../assets/icons/settings.svg";
 import BellIcon from "../../../assets/icons/bell.svg";
 import { spacing } from "../../design-system/spacing/spacing";
+import { colors } from "../../design-system/colors/colors";
 
 export const SettingsList = () => {
   const settings: SettignsItemProps[] = [
@@ -23,6 +24,16 @@ export const SettingsList = () => {
           <SettingsItem title={item.title} icon={item.icon} />
         )}
         ItemSeparatorComponent={() => <View style={styles.separator}></View>}
+        ListHeaderComponent={() => (
+          <View
+            style={{
+              borderTopRightRadius: 8,
+              borderTopLeftRadius: 8,
+              backgroundColor: colors["gray-300"],
+              height: spacing["spacing-4"],
+            }}
+          ></View>
+        )}
       />
     </View>
   );
