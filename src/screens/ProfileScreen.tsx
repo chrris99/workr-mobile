@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import Text from "../design-system/typography/Text";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAuth, useUser } from "@clerk/clerk-expo";
@@ -10,11 +10,26 @@ import { Button } from "../components/base/Button";
 const ProfileScreen = () => {
   const insets = useSafeAreaInsets();
   const { user } = useUser();
-  const { isLoaded, signOut } = useAuth();
+  const { isLoaded, getToken, signOut } = useAuth();
 
   if (!isLoaded) {
     return null;
   }
+
+  const sendRequest = async () => {
+    const token = await getToken({ template: "user_default" });
+    console.log(token);
+    fetch("http://localhost:5117/api/exercise", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({})
+    })
+      .then(async (res) => console.log(await res.json()))
+      .catch((err) => console.error(err));
+  };
 
   return (
     <View
@@ -26,13 +41,20 @@ const ProfileScreen = () => {
       ]}
     >
       <View style={styles.profileHeaderContainer}>
-        <Avatar size="2XL" />
+        <Image source={{ uri: user?.profileImageUrl }} />
         <View style={styles.nameContainer}>
           <Text type="heading-S-semibold">Christian</Text>
           <Text>{user?.primaryEmailAddress?.emailAddress}</Text>
         </View>
       </View>
       <SettingsList />
+      <Button
+        title="Send Request"
+        type="solid"
+        onPress={async () => {
+          sendRequest();
+        }}
+      />
       <Button title="Sign Out" type="solid" onPress={() => signOut()} />
     </View>
   );
