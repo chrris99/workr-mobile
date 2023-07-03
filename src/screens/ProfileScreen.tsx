@@ -2,10 +2,10 @@ import { Image, StyleSheet, View } from "react-native";
 import Text from "../design-system/typography/Text";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAuth, useUser } from "@clerk/clerk-expo";
-import { Avatar } from "../components/base/Avatar";
 import { SettingsList } from "../components/profile/SettingsList";
 import { spacing } from "../design-system/spacing/spacing";
 import { Button } from "../components/base/Button";
+import { tokenTemplate } from "../constants/tokenTemplate";
 
 const ProfileScreen = () => {
   const insets = useSafeAreaInsets();
@@ -17,7 +17,7 @@ const ProfileScreen = () => {
   }
 
   const sendRequest = async () => {
-    const token = await getToken({ template: "user_default" });
+    const token = await getToken(tokenTemplate.default);
     console.log(token);
     fetch("http://localhost:5117/api/exercise", {
       method: "POST",
@@ -25,7 +25,7 @@ const ProfileScreen = () => {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({})
+      body: JSON.stringify({}),
     })
       .then(async (res) => console.log(await res.json()))
       .catch((err) => console.error(err));
