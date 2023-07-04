@@ -8,11 +8,12 @@ import BottomSheet, {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
-import { Input } from "../components/base/Input";
 import { CreateExerciseForm } from "../components/exercise/CreateExerciseForm";
 import { Exercise } from "../models/exercise";
 import { getExercises } from "../services/exerciseService";
 import { useAuth } from "@clerk/clerk-expo";
+import { ExerciseCard } from "../components/exercise/ExerciseCard";
+import { ExerciseTable } from "../components/exercise/ExerciseTable";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -34,11 +35,8 @@ const ExerciseScreen = () => {
     getToken().then((token) => {
       if (token)
         getExercises(token)
-          .then((exercises) => {
-            console.log(exercises)
-            console.log(exercises.body);
-            setExercises(exercises.body);
-          })
+          .then((res) => res.json())
+          .then((exercises) => setExercises(exercises))
           .catch((err) => console.error(err));
     });
   }, []);
@@ -46,12 +44,8 @@ const ExerciseScreen = () => {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.exerciseList}>
-        <FlatList
-          data={exercises}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
-        />
+        <ExerciseTable exercises={exercises} />
       </View>
-      <Input placeholder="Hello" />
       <Button title="Add Exercise" type="solid" onPress={openModal} />
       <BottomSheetModal
         ref={bottomSheetRef}
