@@ -35,11 +35,11 @@ const ExerciseScreen = () => {
   }, []);
 
   const onExerciseCreated = (newExercise: Exercise) => {
-    bottomSheetRef.current?.dismiss()
-    console.log(newExercise)
-    setExercises((exercises) => [...exercises, newExercise])
-    console.log(exercises.map(exercise => exercise.name))
-  }
+    bottomSheetRef.current?.dismiss();
+    console.log(newExercise);
+    setExercises((exercises) => [...exercises, newExercise]);
+    console.log(exercises.map((exercise) => exercise.name));
+  };
 
   useEffect(() => {
     getToken().then((token) => {
@@ -60,7 +60,9 @@ const ExerciseScreen = () => {
       </View>
       <ExerciseTable exercises={exercises} />
 
-      <Button title="Add Exercise" type="solid" onPress={openModal} />
+      <View style={styles.addButton}>
+        <Button title="Add Exercise" type="solid" onPress={openModal} />
+      </View>
       <BottomSheetModal
         ref={bottomSheetRef}
         index={1}
@@ -81,11 +83,15 @@ const styles = StyleSheet.create({
   },
   heading: {
     textAlign: "center",
+    paddingBottom: spacing["spacing-4"],
   },
   filter: {
     paddingVertical: spacing["spacing-8"],
   },
   exerciseList: {
+    paddingBottom: spacing["spacing-5"],
+  },
+  addButton: {
     paddingBottom: spacing["spacing-5"],
   },
 });
