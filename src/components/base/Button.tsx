@@ -15,7 +15,7 @@ import { TextType } from "../../design-system/typography/fonts";
 type ButtonType = "solid" | "outline" | "text";
 
 interface BaseButtonProps extends TouchableOpacityProps {
-  title: string;
+  title?: string;
   type: ButtonType;
   textStyle?: TextType;
   icon?: JSX.Element;

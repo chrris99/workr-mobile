@@ -8,11 +8,13 @@ import { createExercise } from "../../services/exerciseService";
 import { useState } from "react";
 import { Muscle } from "../../types/muscle";
 import { tokenTemplate } from "../../constants/tokenTemplate";
+import { Exercise } from "../../models/exercise";
 
 interface CreateExerciseFormProps {
-  onSubmit: () => void;
+  onSuccess?: (newExercise: Exercise) => void;
 }
-export const CreateExerciseForm = () => {
+
+export const CreateExerciseForm = ({ onSuccess }: CreateExerciseFormProps) => {
   const { getToken } = useAuth();
 
   const [name, setName] = useState<string>("");
@@ -38,8 +40,8 @@ export const CreateExerciseForm = () => {
         },
         (await getToken(tokenTemplate.default)) ?? ""
       )
-        .then(async (res) => {
-          console.log(await res.json())
+        .then(async (exercise) => {
+          if (onSuccess) onSuccess(exercise);
         })
         .catch((err) => console.error(err));
     }

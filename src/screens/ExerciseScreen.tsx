@@ -14,6 +14,9 @@ import { getExercises } from "../services/exerciseService";
 import { useAuth } from "@clerk/clerk-expo";
 import { ExerciseCard } from "../components/exercise/ExerciseCard";
 import { ExerciseTable } from "../components/exercise/ExerciseTable";
+import { Input } from "../components/base/Input";
+import { colors } from "../design-system/colors/colors";
+import { set } from "react-native-reanimated";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -21,7 +24,7 @@ const ExerciseScreen = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
-  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
+  const snapPoints = useMemo(() => ["25%", "50%"], []);
 
   const openModal = useCallback(() => {
     bottomSheetRef.current?.present();
@@ -31,11 +34,17 @@ const ExerciseScreen = () => {
     console.log("handleSheetChanges", index);
   }, []);
 
+  const onExerciseCreated = (newExercise: Exercise) => {
+    bottomSheetRef.current?.dismiss()
+    console.log(newExercise)
+    setExercises((exercises) => [...exercises, newExercise])
+    console.log(exercises.map(exercise => exercise.name))
+  }
+
   useEffect(() => {
     getToken().then((token) => {
       if (token)
         getExercises(token)
-          .then((res) => res.json())
           .then((exercises) => setExercises(exercises))
           .catch((err) => console.error(err));
     });
@@ -43,17 +52,22 @@ const ExerciseScreen = () => {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <View style={styles.exerciseList}>
-        <ExerciseTable exercises={exercises} />
+      <View style={styles.filter}>
+        <Text type={"body-M-semibold"} style={styles.heading}>
+          Your Exercises
+        </Text>
+        <Input placeholder="Search" />
       </View>
+      <ExerciseTable exercises={exercises} />
+
       <Button title="Add Exercise" type="solid" onPress={openModal} />
       <BottomSheetModal
         ref={bottomSheetRef}
-        index={2}
+        index={1}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}
       >
-        <CreateExerciseForm />
+        <CreateExerciseForm onSuccess={onExerciseCreated} />
       </BottomSheetModal>
     </View>
   );
@@ -62,6 +76,14 @@ const ExerciseScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: spacing["spacing-4"],
+    backgroundColor: colors["white"],
+  },
+  heading: {
+    textAlign: "center",
+  },
+  filter: {
+    paddingVertical: spacing["spacing-8"],
   },
   exerciseList: {
     paddingBottom: spacing["spacing-5"],

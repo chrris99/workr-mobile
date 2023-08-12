@@ -1,31 +1,33 @@
-import { API_BASE_URI } from "@env";
-import { Exercise } from "../models/exercise";
+import { CreateExerciseRequest, Exercise, ExerciseResponse } from "../models/exercise";
+import axios from "axios";
 
-export const getExerciseById = async (id: string) => {};
+const BASE_URI = 'http://localhost:5117/api/exercise'
 
-export const getExercises = async (token: string) => {
-  const res = fetch(`${API_BASE_URI}/exercise`, {
-    method: "GET",
+export const getExerciseById = async (id: string, token: string) => {
+  return axios.get<ExerciseResponse>(`${BASE_URI}/{id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
     }
-  })
-
-  return res;
+  }).then((res) => res.data)
 };
 
-export const createExercise = async (exercise: Exercise, token: string) => {
-  const res = fetch(`${API_BASE_URI}/exercise`, {
-    method: "POST",
+export const getExercises = async (token: string) => {
+  return axios.get<ExerciseResponse[]>(BASE_URI, {
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(exercise),
-  })
+      "Content-Type": "application/json"
+    }
+  }).then((res) => res.data)
+};
 
-  return res;
+export const createExercise = async (exercise: CreateExerciseRequest, token: string) => {
+  return axios.post<ExerciseResponse>(BASE_URI, exercise, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  }).then((res) => res.data)
 };
 
 export const deleteExercise = async (id: string) => {};

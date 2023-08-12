@@ -1,11 +1,6 @@
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
-import { StyleSheet, Text, View } from "react-native";
 import { CLERK_PUBLISHABLE_KEY } from "@env";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import SignUpScreen from "./src/screens/auth/SignUpScreen";
-
-import { Button } from "./src/components/base/Button";
-import { Input } from "./src/components/base/Input";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   useFonts,
   Poppins_400Regular,
@@ -15,17 +10,13 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
-import WelcomeScreen from "./src/screens/auth/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStackNavigator from "./src/navigation/RootStackNavigator";
-import { createStackNavigator } from "@react-navigation/stack";
 import RootTabNavigator from "./src/navigation/RootTabNavigator";
 import { tokenCache } from "./src/services/tokenCache";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 SplashScreen.preventAutoHideAsync();
-
-const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
