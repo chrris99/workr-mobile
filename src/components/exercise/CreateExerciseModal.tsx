@@ -10,11 +10,11 @@ import { Muscle } from "../../types/muscle";
 import { tokenTemplate } from "../../constants/tokenTemplate";
 import { Exercise } from "../../models/exercise";
 
-interface CreateExerciseFormProps {
+interface CreateExerciseModalProps {
   onSuccess?: (newExercise: Exercise) => void;
 }
 
-export const CreateExerciseForm = ({ onSuccess }: CreateExerciseFormProps) => {
+export const CreateExerciseModal = ({ onSuccess }: CreateExerciseModalProps) => {
   const { getToken } = useAuth();
 
   const [name, setName] = useState<string>("");

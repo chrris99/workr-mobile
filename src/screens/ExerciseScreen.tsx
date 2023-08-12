@@ -5,10 +5,11 @@ import { spacing } from "../design-system/spacing/spacing";
 import { Button } from "../components/base/Button";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import BottomSheet, {
+  BottomSheetBackdrop,
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
-import { CreateExerciseForm } from "../components/exercise/CreateExerciseForm";
+import { CreateExerciseModal } from "../components/exercise/CreateExerciseModal";
 import { Exercise } from "../models/exercise";
 import { getExercises } from "../services/exerciseService";
 import { useAuth } from "@clerk/clerk-expo";
@@ -17,6 +18,7 @@ import { ExerciseTable } from "../components/exercise/ExerciseTable";
 import { Input } from "../components/base/Input";
 import { colors } from "../design-system/colors/colors";
 import { set } from "react-native-reanimated";
+import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -30,9 +32,17 @@ const ExerciseScreen = () => {
     bottomSheetRef.current?.present();
   }, []);
 
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
-  }, []);
+
+  const renderBackdrop = useCallback(
+    props => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={1}
+      />
+    ),
+    []
+  );
 
   const onExerciseCreated = (newExercise: Exercise) => {
     bottomSheetRef.current?.dismiss();
@@ -63,13 +73,8 @@ const ExerciseScreen = () => {
       <View style={styles.addButton}>
         <Button title="Add Exercise" type="solid" onPress={openModal} />
       </View>
-      <BottomSheetModal
-        ref={bottomSheetRef}
-        index={1}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}
-      >
-        <CreateExerciseForm onSuccess={onExerciseCreated} />
+      <BottomSheetModal ref={bottomSheetRef} index={1} snapPoints={snapPoints} backdropComponent={renderBackdrop}>
+        <CreateExerciseModal onSuccess={onExerciseCreated} />
       </BottomSheetModal>
     </View>
   );
