@@ -1,27 +1,41 @@
-import { Animated, Modal, ModalProps, StyleSheet, View } from "react-native";
+import {
+  BottomSheetBackdrop,
+  BottomSheetModal,
+  BottomSheetModalProps,
+} from "@gorhom/bottom-sheet";
+import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
+import { ForwardedRef, RefObject, forwardRef, useCallback, useMemo } from "react";
+import { StyleSheet } from "react-native";
 
-interface BottomModalProps extends ModalProps {}
+type BottomModalProps = Pick<BottomSheetModalProps, "index" | "children">;
 
-const BottomModal = (props: BottomModalProps) => {
-  return (
-    <Modal animationType="fade" transparent>
-      <View style={styles.overlay}>
-        <Animated.View style={styles.container}>{props.children}</Animated.View>
-      </View>
-    </Modal>
-  );
-};
+export const BottomModal = forwardRef(
+  (
+    { children }: BottomModalProps,
+    ref: ForwardedRef<BottomSheetModal>
+  ) => {
+    const snapPoints = useMemo(() => ["25%", "50%"], []);
+    
+    const renderBackdropComponent = useCallback(
+      (props: BottomSheetDefaultBackdropProps) => (
+        <BottomSheetBackdrop
+          {...props}
+          disappearsOnIndex={-1}
+          appearsOnIndex={1}
+        />
+      ),
+      []
+    );
 
-const styles = StyleSheet.create({
-  overlay: {
-    backgroundColor: "rgba(0,0,0,0.2)",
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-  container: {
-    backgroundColor: 'white',
-    paddingTop: 12,
-    borderTopRightRadius: 12,
-    borderTopLeftRadius: 12
-  },
-});
+    return (
+      <BottomSheetModal
+        ref={ref}
+        index={1}
+        snapPoints={snapPoints}
+        backdropComponent={renderBackdropComponent}
+      >
+        {children}
+      </BottomSheetModal>
+    );
+  }
+);
