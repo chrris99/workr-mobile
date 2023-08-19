@@ -71,7 +71,6 @@ export const Button = (props: ButtonProps) => {
   return (
     <TouchableOpacity {...props} activeOpacity={0.9} style={buttonStyle}>
       <View style={styles.container}>
-        {props.icon && props.icon}
         <Text
           type={props.textStyle ? props.textStyle : "body-M-semibold"}
           color={
@@ -84,6 +83,7 @@ export const Button = (props: ButtonProps) => {
         >
           {props.title}
         </Text>
+        {props.icon && props.icon}
       </View>
     </TouchableOpacity>
   );

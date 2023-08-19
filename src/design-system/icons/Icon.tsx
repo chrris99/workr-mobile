@@ -1,7 +1,7 @@
 import { Color, colors } from "../colors/colors";
 import { IconName, icons } from "./icons";
 
-type IconSize = "M";
+type IconSize = "S" | "M";
 
 interface IconProps {
   name: IconName;
@@ -11,6 +11,7 @@ interface IconProps {
 }
 
 const iconSize: Record<IconSize, number> = {
+  S: 20,
   M: 24,
 };
 
@@ -24,7 +25,7 @@ export const Icon = ({
   return (
     <SvgIcon
       width={iconSize[size]}
-      height={24}
+      height={iconSize[size]}
       strokeWidth={strokeWidth}
       color={colors[color]}
     />

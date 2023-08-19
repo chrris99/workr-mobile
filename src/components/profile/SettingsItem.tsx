@@ -3,37 +3,42 @@ import Text from "../../design-system/typography/Text";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { colors } from "../../design-system/colors/colors";
 import { spacing } from "../../design-system/spacing/spacing";
+import { IconName } from "../../design-system/icons/icons";
+import { Icon } from "../../design-system/icons/Icon";
+import { Button } from "../base/Button";
 
 export interface SettignsItemProps {
   title: string;
-  icon?: JSX.Element;
+  iconName: IconName;
   onPress?: () => void;
 }
 
-export const SettingsItem = ({ title, icon, onPress }: SettignsItemProps) => {
+export const SettingsItem = ({
+  title,
+  iconName,
+  onPress,
+}: SettignsItemProps) => {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.7}>
       <View style={styles.titleContainer}>
-        {icon && icon}
-        <Text type="body-M-semibold">{title}</Text>
+        {iconName && <Icon name={iconName} />}
+        <Text type="body-S-medium">{title}</Text>
       </View>
-      {icon && icon}
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
     borderRadius: 8,
-    borderColor: colors["gray-300"],
     paddingHorizontal: spacing["spacing-4"],
     paddingVertical: spacing["spacing-3"],
     flexDirection: "row",
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
   titleContainer: {
-    flexDirection: 'row',
-    gap: spacing['spacing-4']
-  }
+    flexDirection: "row",
+    gap: spacing["spacing-4"],
+    alignItems: 'center'
+  },
 });
