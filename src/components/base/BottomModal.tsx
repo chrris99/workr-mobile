@@ -4,25 +4,17 @@ import {
   BottomSheetModalProps,
 } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
-import { ForwardedRef, RefObject, forwardRef, useCallback, useMemo } from "react";
-import { StyleSheet } from "react-native";
+import { ForwardedRef, forwardRef, useCallback, useMemo } from "react";
 
-type BottomModalProps = Pick<BottomSheetModalProps, "index" | "children">;
+type BottomModalProps = Pick<BottomSheetModalProps, "children">;
 
 export const BottomModal = forwardRef(
-  (
-    { children }: BottomModalProps,
-    ref: ForwardedRef<BottomSheetModal>
-  ) => {
-    const snapPoints = useMemo(() => ["25%", "50%"], []);
-    
+  ({ children }: BottomModalProps, ref: ForwardedRef<BottomSheetModal>) => {
+    const snapPoints = useMemo(() => ["10%", "50%", "75%"], []);
+
     const renderBackdropComponent = useCallback(
       (props: BottomSheetDefaultBackdropProps) => (
-        <BottomSheetBackdrop
-          {...props}
-          disappearsOnIndex={-1}
-          appearsOnIndex={1}
-        />
+        <BottomSheetBackdrop {...props} />
       ),
       []
     );
@@ -30,7 +22,7 @@ export const BottomModal = forwardRef(
     return (
       <BottomSheetModal
         ref={ref}
-        index={1}
+        index={2}
         snapPoints={snapPoints}
         backdropComponent={renderBackdropComponent}
       >
