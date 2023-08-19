@@ -1,4 +1,4 @@
-const muscles = [
+export const muscles = [
   "abductors",
   "abs",
   "adductors",
@@ -18,10 +18,10 @@ const muscles = [
   "shoulders",
   "traps",
   "triceps",
-];
+] as const;
 
 export type Muscle = typeof muscles[number]
 
-export function isOfType(value: string): value is Muscle {
-  return muscles.includes(value);
+export function isOfTypeMuscle(value: string): value is Muscle {
+  return muscles.includes(value as Muscle);
 }
