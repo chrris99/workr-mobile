@@ -34,13 +34,16 @@ export const Input = (props: InputProps) => {
         ]}
       >
         <View style={styles.contentContainer}>
-          {/**TODO: Fix Text input maxwidth */}
           <TextInput
             {...props}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             selectionColor={colors["primary-700"]}
-            style={[props.style, fonts[props.type || "body-M-regular"]]}
+            style={[
+              props.style,
+              fonts[props.type || "body-M-regular"],
+              { flex: 1 },
+            ]}
           />
           {props.error && (
             <Error
@@ -75,6 +78,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: spacing['spacing-2']
+    gap: spacing["spacing-2"],
   },
 });

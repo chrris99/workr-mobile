@@ -12,7 +12,7 @@ import { BottomModal } from "../base/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 interface CreateExerciseModalProps {
-  onSuccess?: (newExercise: Exercise) => void;
+  onSuccess?: (e: Exercise) => void;
 }
 
 export const CreateExerciseModal = forwardRef(
