@@ -8,7 +8,7 @@ import { createExercise } from "../../services/exerciseService";
 import { ForwardedRef, forwardRef, useState } from "react";
 import { tokenTemplate } from "../../constants/tokenTemplate";
 import { Exercise } from "../../models/exercise";
-import { BottomModal } from "../base/BottomModal";
+import { BottomModal } from "../base/modal/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
 import { ModalScreen } from "../base/modal/ModalScreen";

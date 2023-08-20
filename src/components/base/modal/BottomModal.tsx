@@ -6,7 +6,7 @@ import {
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import { ForwardedRef, forwardRef, useCallback, useMemo } from "react";
 import { StyleSheet } from "react-native";
-import { spacing } from "../../design-system/spacing/spacing";
+import { spacing } from "../../../design-system/spacing/spacing";
 
 type BottomModalProps = Pick<BottomSheetModalProps, "children">;
 
