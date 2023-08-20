@@ -37,7 +37,6 @@ export const DropdownInput = <
       <Dropdown<T>
         style={[styles.dropdown, borderColorStyle]}
         containerStyle={styles.dropdownContainer}
-        search
         data={data}
         renderItem={(item) => (
           <DropdownItem item={item} isSelected={item.value === selectedValue} />

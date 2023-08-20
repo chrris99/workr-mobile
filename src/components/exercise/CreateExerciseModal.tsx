@@ -80,7 +80,7 @@ export const CreateExerciseModal = forwardRef(
               label={"Target muscle group"}
               data={[...muscles].map((muscle) => ({
                 value: muscle,
-                label: muscle,
+                label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
               }))}
               selectedValue={targetMuscleGroup}
               setSelectedValue={setTargetMuscleGroup}
