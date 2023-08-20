@@ -12,7 +12,7 @@ import { useAuth } from "@clerk/clerk-expo";
 import { ExerciseTable } from "../components/exercise/ExerciseTable";
 import { Input } from "../components/base/Input";
 import { colors } from "../design-system/colors/colors";
-import { DropdownInput } from "../components/base/DropdownInput";
+import { DropdownInput } from "../components/base/dropdown/DropdownInput";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -49,14 +49,7 @@ const ExerciseScreen = () => {
         </Text>
         <Input placeholder="Search" />
       </View>
-      <DropdownInput
-        data={exercises.map((exercise) => ({
-          value: exercise.name,
-          label: exercise.name,
-        }))}
-        selectedValue={selectedExercise}
-        setSelectedValue={setSelectedExercise}
-      />
+
       <ExerciseTable exercises={exercises} />
 
       <View style={styles.addButton}>

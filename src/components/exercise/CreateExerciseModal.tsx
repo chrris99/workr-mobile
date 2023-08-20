@@ -10,8 +10,9 @@ import { tokenTemplate } from "../../constants/tokenTemplate";
 import { Exercise } from "../../models/exercise";
 import { BottomModal } from "../base/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { Muscle } from "../../types/muscle";
+import { Muscle, muscles } from "../../types/muscle";
 import { ModalScreen } from "../base/modal/ModalScreen";
+import { DropdownInput } from "../base/dropdown/DropdownInput";
 
 interface CreateExerciseModalProps {
   onSuccess?: (newExercise: Exercise) => void;
@@ -75,13 +76,14 @@ export const CreateExerciseModal = forwardRef(
               error={nameError}
               setError={setNameError}
             />
-            <Input
-              placeholder="Target muscle group"
-              label="Target muscle group"
-              value={targetMuscleGroup}
-              error={targetMuscleGroupError}
-              onChangeText={(muscle) => setTargetMuscleGroup(muscle)}
-              setError={setTargetMuscleGroupError}
+            <DropdownInput
+              label={"Target muscle group"}
+              data={[...muscles].map((muscle) => ({
+                value: muscle,
+                label: muscle,
+              }))}
+              selectedValue={targetMuscleGroup}
+              setSelectedValue={setTargetMuscleGroup}
             />
             <Input placeholder="Description" label="Description" />
           </View>
