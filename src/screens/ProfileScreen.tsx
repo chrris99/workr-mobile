@@ -34,7 +34,7 @@ const ProfileScreen = () => {
           {user?.firstName && (
             <Text type="heading-S-semibold">{user.firstName}</Text>
           )}
-
+          
           <Text>{user?.primaryEmailAddress?.emailAddress}</Text>
         </View>
       </View>

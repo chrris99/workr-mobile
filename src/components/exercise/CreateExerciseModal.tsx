@@ -10,18 +10,23 @@ import { tokenTemplate } from "../../constants/tokenTemplate";
 import { Exercise } from "../../models/exercise";
 import { BottomModal } from "../base/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { Muscle } from "../../types/muscle";
+import { ModalScreen } from "../base/modal/ModalScreen";
 
 interface CreateExerciseModalProps {
-  onSuccess?: (e: Exercise) => void;
+  onSuccess?: (newExercise: Exercise) => void;
 }
 
 export const CreateExerciseModal = forwardRef(
-  ({ onSuccess }: CreateExerciseModalProps, ref: ForwardedRef<BottomSheetModal>) => {
+  (
+    { onSuccess }: CreateExerciseModalProps,
+    ref: ForwardedRef<BottomSheetModal>
+  ) => {
     const { getToken } = useAuth();
 
     const [name, setName] = useState<string>("");
     const [nameError, setNameError] = useState<string | undefined>(undefined);
-    const [targetMuscleGroup, setTargetMuscleGroup] = useState<string | "">("");
+    const [targetMuscleGroup, setTargetMuscleGroup] = useState<Muscle | "">("");
     const [targetMuscleGroupError, setTargetMuscleGroupError] = useState<
       string | undefined
     >(undefined);
@@ -51,7 +56,7 @@ export const CreateExerciseModal = forwardRef(
 
     return (
       <BottomModal ref={ref}>
-        <View style={styles.container}>
+        <ModalScreen>
           <View style={styles.header}>
             <Text type="body-L-bold">Create new exercise</Text>
             <Button
@@ -80,7 +85,7 @@ export const CreateExerciseModal = forwardRef(
             />
             <Input placeholder="Description" label="Description" />
           </View>
-        </View>
+        </ModalScreen>
       </BottomModal>
     );
   }
@@ -88,7 +93,7 @@ export const CreateExerciseModal = forwardRef(
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: spacing["spacing-4"],
+    padding: spacing["spacing-8"],
     flex: 1,
   },
   header: {

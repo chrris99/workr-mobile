@@ -24,7 +24,7 @@ export const DropdownItem = <V extends DropdownValue>({
   };
   return (
     <View style={[styles.container, backgroudnColorStyle]}>
-      <Text type={"body-M-medium"}>{item.label}</Text>
+      <Text type={"body-M-regular"}>{item.label}</Text>
     </View>
   );
 };
