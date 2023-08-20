@@ -6,8 +6,14 @@ import {
 } from "@react-navigation/stack";
 import { CreateTemplateName } from "../components/workout/CreateTemplateName";
 import { CreateTemplateBlock } from "../components/workout/CreateTemplateBlock";
-import { NavigationContainer, RouteProp } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  RouteProp,
+  useNavigationContainerRef,
+  useNavigationState,
+} from "@react-navigation/native";
 import { useMemo } from "react";
+import Text from "../design-system/typography/Text";
 
 type NewWorkoutTemplateStackParamList = {
   Name: undefined;
@@ -33,7 +39,8 @@ export type BlockScreenRouteProp = RouteProp<
 
 const Stack = createStackNavigator<NewWorkoutTemplateStackParamList>();
 
-const NewWorkoutTemplateStackNavigator = () => {
+const TemplateStackNavigator = () => {
+  const navigationRef = useNavigationContainerRef();
   const screenOptions = useMemo<StackNavigationOptions>(
     () => ({
       ...TransitionPresets.SlideFromRightIOS,
@@ -47,8 +54,11 @@ const NewWorkoutTemplateStackNavigator = () => {
     []
   );
 
+  const state = navigationRef.getRootState();
+
   return (
-    <NavigationContainer independent>
+    <NavigationContainer ref={navigationRef} independent>
+      <Text>{state.routes.length}</Text>
       <Stack.Navigator initialRouteName="Name" screenOptions={screenOptions}>
         <Stack.Screen name="Name" component={CreateTemplateName} />
         <Stack.Screen name="Block" component={CreateTemplateBlock} />
@@ -57,4 +67,4 @@ const NewWorkoutTemplateStackNavigator = () => {
   );
 };
 
-export default NewWorkoutTemplateStackNavigator;
+export default TemplateStackNavigator;

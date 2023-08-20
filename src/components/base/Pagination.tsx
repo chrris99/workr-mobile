@@ -1,6 +1,6 @@
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import { spacing } from '../design-system/spacing/spacing';
-import { colors } from '../design-system/colors/colors';
+import { spacing } from '../../design-system/spacing/spacing';
+import { colors } from '../../design-system/colors/colors';
 
 interface PaginationIndicatorProps {
   isCompleted: boolean;

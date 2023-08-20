@@ -1,16 +1,18 @@
 import { View } from "react-native";
 import Text from "../../design-system/typography/Text";
-import { useNavigation } from "@react-navigation/native";
-import { NameScreenNavigationProps } from "../../navigation/NewWorkoutTemplateStackNavigator";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
+import { NameScreenNavigationProps } from "../../navigation/TemplateStackNavigator";
 import { Button } from "../base/Button";
-import { Pagination } from "../Pagination";
+import { Pagination } from "../base/Pagination";
 
 export const CreateTemplateName = () => {
   const { push } = useNavigation<NameScreenNavigationProps>();
+  const routesLength = useNavigationState(state => state.routes.length)
+
   return (
     <View>
-        <Pagination currentStep={1} steps={4}/>
-      <Text>Template</Text>
+      <Pagination currentStep={1} steps={4} />
+      
       <Button
         title="Navigate"
         type="solid"

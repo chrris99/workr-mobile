@@ -71,18 +71,20 @@ export const Button = (props: ButtonProps) => {
   return (
     <TouchableOpacity {...props} activeOpacity={0.9} style={buttonStyle}>
       <View style={styles.container}>
-        <Text
-          type={props.textStyle ? props.textStyle : "body-M-semibold"}
-          color={
-            props.textColor
-              ? props.textColor
-              : props.type === "solid"
-              ? "white"
-              : "gray-900"
-          }
-        >
-          {props.title}
-        </Text>
+        {props.title && (
+          <Text
+            type={props.textStyle ? props.textStyle : "body-M-semibold"}
+            color={
+              props.textColor
+                ? props.textColor
+                : props.type === "solid"
+                ? "white"
+                : "gray-900"
+            }
+          >
+            {props.title}
+          </Text>
+        )}
         {props.icon && props.icon}
       </View>
     </TouchableOpacity>
