@@ -84,6 +84,7 @@ export const CreateExerciseModal = forwardRef(
               }))}
               selectedValue={targetMuscleGroup}
               setSelectedValue={setTargetMuscleGroup}
+              placeholder="Select target muscle group"
             />
             <Input placeholder="Description" label="Description" />
           </View>

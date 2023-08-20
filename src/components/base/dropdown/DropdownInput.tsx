@@ -24,6 +24,7 @@ export const DropdownInput = <
   label,
   selectedValue,
   setSelectedValue,
+  placeholder
 }: DropdownInputProps<T, V>) => {
   const [isFocus, setIsFocus] = useState(false);
 
@@ -49,6 +50,7 @@ export const DropdownInput = <
           setIsFocus(false);
           setSelectedValue(item.value);
         }}
+        placeholder={placeholder ?? "Select item"}
       />
     </View>
   );
