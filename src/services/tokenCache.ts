@@ -1,4 +1,5 @@
 import * as SecureStore from "expo-secure-store";
+import {store} from "../store";
 
 export const tokenCache = {
   async getToken(key: string) {

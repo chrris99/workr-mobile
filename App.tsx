@@ -15,6 +15,8 @@ import RootStackNavigator from "./src/navigation/RootStackNavigator";
 import RootTabNavigator from "./src/navigation/RootTabNavigator";
 import { tokenCache } from "./src/services/tokenCache";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { Provider } from "react-redux";
+import { store } from "./src/store";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,21 +36,23 @@ export default function App() {
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
-      <ClerkProvider
-        publishableKey={CLERK_PUBLISHABLE_KEY}
-        tokenCache={tokenCache}
-      >
-        <BottomSheetModalProvider>
-          <NavigationContainer>
-            <SignedIn>
-              <RootTabNavigator />
-            </SignedIn>
-            <SignedOut>
-              <RootStackNavigator />
-            </SignedOut>
-          </NavigationContainer>
-        </BottomSheetModalProvider>
-      </ClerkProvider>
+      <Provider store={store}>
+        <ClerkProvider
+          publishableKey={CLERK_PUBLISHABLE_KEY}
+          tokenCache={tokenCache}
+        >
+          <BottomSheetModalProvider>
+            <NavigationContainer>
+              <SignedIn>
+                <RootTabNavigator />
+              </SignedIn>
+              <SignedOut>
+                <RootStackNavigator />
+              </SignedOut>
+            </NavigationContainer>
+          </BottomSheetModalProvider>
+        </ClerkProvider>
+      </Provider>
     </SafeAreaProvider>
   );
 }

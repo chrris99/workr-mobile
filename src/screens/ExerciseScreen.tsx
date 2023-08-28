@@ -13,32 +13,15 @@ import { ExerciseTable } from "../components/exercise/ExerciseTable";
 import { Input } from "../components/base/Input";
 import { colors } from "../design-system/colors/colors";
 import { DropdownInput } from "../components/base/dropdown/DropdownInput";
+import { useGetExercisesQuery } from "../api/api";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
-  const { getToken } = useAuth();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
-  const [exercises, setExercises] = useState<Exercise[]>([]);
-  const [selectedExercise, setSelectedExercise] = useState<string | null>(null);
+  const { data } = useGetExercisesQuery();
 
   const openModal = useCallback(() => {
     bottomSheetRef.current?.present();
-  }, []);
-
-  const onExerciseCreated = (newExercise: Exercise) => {
-    bottomSheetRef.current?.dismiss();
-    console.log(newExercise);
-    setExercises((exercises) => [...exercises, newExercise]);
-    console.log(exercises.map((exercise) => exercise.name));
-  };
-
-  useEffect(() => {
-    getToken().then((token) => {
-      if (token)
-        getExercises(token)
-          .then((exercises) => setExercises(exercises))
-          .catch((err) => console.error(err));
-    });
   }, []);
 
   return (
@@ -50,12 +33,12 @@ const ExerciseScreen = () => {
         <Input placeholder="Search" />
       </View>
 
-      <ExerciseTable exercises={exercises} />
+      {data && <ExerciseTable exercises={data} />}
 
       <View style={styles.addButton}>
         <Button title="Add Exercise" type="solid" onPress={openModal} />
       </View>
-      <CreateExerciseModal ref={bottomSheetRef} onSuccess={onExerciseCreated} />
+      <CreateExerciseModal ref={bottomSheetRef} onSuccess={() => bottomSheetRef.current?.dismiss()} />
     </View>
   );
 };

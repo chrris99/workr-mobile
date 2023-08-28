@@ -13,9 +13,10 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
 import { ModalScreen } from "../base/modal/ModalScreen";
 import { DropdownInput } from "../base/dropdown/DropdownInput";
+import { useAddExerciseMutation } from "../../api/api";
 
 interface CreateExerciseModalProps {
-  onSuccess?: (newExercise: Exercise) => void;
+  onSuccess: () => void;
 }
 
 export const CreateExerciseModal = forwardRef(
@@ -32,6 +33,8 @@ export const CreateExerciseModal = forwardRef(
       string | undefined
     >(undefined);
 
+    const [addExercise, res] = useAddExerciseMutation();
+
     const onSubmit = async () => {
       setNameError(undefined);
       setTargetMuscleGroupError(undefined);
@@ -41,17 +44,12 @@ export const CreateExerciseModal = forwardRef(
         setTargetMuscleGroupError("You must provided a target muscle group");
 
       if (!nameError && !targetMuscleGroupError) {
-        createExercise(
-          {
-            name,
-            targetMuscleGroup,
-          },
-          (await getToken(tokenTemplate.default)) ?? ""
-        )
-          .then(async (exercise) => {
-            if (onSuccess) onSuccess(exercise);
-          })
+        await addExercise({ name, targetMuscleGroup })
+          .unwrap()
+          .then((payload) => console.log(payload))
           .catch((err) => console.error(err));
+
+        onSuccess();
       }
     };
 
