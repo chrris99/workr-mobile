@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { CreateExerciseRequest, ExerciseResponse } from "../models/exercise";
+import { tokenCache } from "../services/tokenCache";
+import { Clerk } from "@clerk/clerk-expo";
 
 const BASE_URL = "http://localhost:5117/api/";
 
@@ -8,9 +10,8 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: async (headers) => {
-      const token = await window.Clerk?.session?.getToken();
+      const token = await Clerk.session?.getToken({template: 'user_default'})
       if (token) headers.append("Authorization", `Bearer ${token}`);
-      return headers;
     },
   }),
   tagTypes: ["Exercise"],
