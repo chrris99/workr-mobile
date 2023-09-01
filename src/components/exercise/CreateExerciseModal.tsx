@@ -3,11 +3,7 @@ import Text from "../../design-system/typography/Text";
 import { Input } from "../base/Input";
 import { spacing } from "../../design-system/spacing/spacing";
 import { Button } from "../base/Button";
-import { useAuth } from "@clerk/clerk-expo";
-import { createExercise } from "../../services/exerciseService";
 import { ForwardedRef, forwardRef, useState } from "react";
-import { tokenTemplate } from "../../constants/tokenTemplate";
-import { Exercise } from "../../models/exercise";
 import { BottomModal } from "../base/modal/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
@@ -23,9 +19,7 @@ export const CreateExerciseModal = forwardRef(
   (
     { onSuccess }: CreateExerciseModalProps,
     ref: ForwardedRef<BottomSheetModal>
-  ) => {
-    const { getToken } = useAuth();
-
+  ) => { 
     const [name, setName] = useState<string>("");
     const [nameError, setNameError] = useState<string | undefined>(undefined);
     const [targetMuscleGroup, setTargetMuscleGroup] = useState<Muscle | "">("");

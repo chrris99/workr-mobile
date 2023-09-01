@@ -7,12 +7,13 @@ interface ExerciseTableProps {
   exercises: Exercise[];
 }
 
-export const ExerciseTable = ({ exercises }: ExerciseTableProps) => {
+export const ExerciseList = ({ exercises }: ExerciseTableProps) => {
   return (
     <FlatList
       data={exercises}
       renderItem={({ item }) => <ExerciseCard exercise={item} />}
       ItemSeparatorComponent={() => <View style={styles.separator}></View>}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

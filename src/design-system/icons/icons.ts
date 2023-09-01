@@ -5,6 +5,7 @@ import Edit from "../../../assets/icons/edit.svg";
 import Home from "../../../assets/icons/home.svg";
 import Settings from "../../../assets/icons/settings.svg";
 import Target from "../../../assets/icons/target.svg";
+import Trash from "../../../assets/icons/trash.svg";
 import User from "../../../assets/icons/user.svg";
 import Weight from "../../../assets/icons/weight.svg";
 
@@ -16,6 +17,7 @@ export const icons = {
   Home,
   Settings,
   Target,
+  Trash,
   User,
   Weight,
 };

@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { CreateExerciseRequest, ExerciseResponse } from "../models/exercise";
+import { tokenCache } from "../services/tokenCache";
+import { Clerk } from "@clerk/clerk-expo";
 
 const BASE_URL = "http://localhost:5117/api/";
 
@@ -8,9 +10,8 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: async (headers) => {
-      const token = await window.Clerk?.session?.getToken();
+      const token = await Clerk.session?.getToken({ template: "user_default" });
       if (token) headers.append("Authorization", `Bearer ${token}`);
-      return headers;
     },
   }),
   tagTypes: ["Exercise"],
@@ -27,14 +28,25 @@ export const api = createApi({
     }),
     addExercise: builder.mutation<ExerciseResponse, CreateExerciseRequest>({
       query: (body) => ({
-        url: `exercise`,
+        url: "exercise",
         method: "POST",
         body,
       }),
       invalidatesTags: [{ type: "Exercise", id: "ALL" }],
     }),
+    deleteExercise: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `exercise/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, id) => [{ type: "Exercise", id }],
+    }),
   }),
 });
 
 // Export hooks, which are auto-generated based on the defined endpoints
-export const { useGetExercisesQuery, useAddExerciseMutation } = api;
+export const {
+  useGetExercisesQuery,
+  useAddExerciseMutation,
+  useDeleteExerciseMutation,
+} = api;
