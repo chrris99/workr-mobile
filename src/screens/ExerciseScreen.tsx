@@ -3,16 +3,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Text from "../design-system/typography/Text";
 import { spacing } from "../design-system/spacing/spacing";
 import { Button } from "../components/base/Button";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { CreateExerciseModal } from "../components/exercise/CreateExerciseModal";
-import { Exercise } from "../models/exercise";
-import { getExercises } from "../services/exerciseService";
-import { useAuth } from "@clerk/clerk-expo";
-import { ExerciseTable } from "../components/exercise/ExerciseTable";
+import { ExerciseList } from "../components/exercise/ExerciseList";
 import { Input } from "../components/base/Input";
 import { colors } from "../design-system/colors/colors";
-import { DropdownInput } from "../components/base/dropdown/DropdownInput";
 import { useGetExercisesQuery } from "../api/api";
 
 const ExerciseScreen = () => {
@@ -33,7 +29,7 @@ const ExerciseScreen = () => {
         <Input placeholder="Search" />
       </View>
 
-      {data && <ExerciseTable exercises={data} />}
+      {data && <ExerciseList exercises={data} />}
 
       <View style={styles.addButton}>
         <Button title="Add Exercise" type="solid" onPress={openModal} />

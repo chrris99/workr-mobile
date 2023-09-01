@@ -10,7 +10,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: async (headers) => {
-      const token = await Clerk.session?.getToken({template: 'user_default'})
+      const token = await Clerk.session?.getToken({ template: "user_default" });
       if (token) headers.append("Authorization", `Bearer ${token}`);
     },
   }),
@@ -28,14 +28,25 @@ export const api = createApi({
     }),
     addExercise: builder.mutation<ExerciseResponse, CreateExerciseRequest>({
       query: (body) => ({
-        url: `exercise`,
+        url: "exercise",
         method: "POST",
         body,
       }),
       invalidatesTags: [{ type: "Exercise", id: "ALL" }],
     }),
+    deleteExercise: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `exercise/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, id) => [{ type: "Exercise", id }],
+    }),
   }),
 });
 
 // Export hooks, which are auto-generated based on the defined endpoints
-export const { useGetExercisesQuery, useAddExerciseMutation } = api;
+export const {
+  useGetExercisesQuery,
+  useAddExerciseMutation,
+  useDeleteExerciseMutation,
+} = api;
