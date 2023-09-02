@@ -7,6 +7,7 @@ import { Swipeable } from "react-native-gesture-handler";
 import { Button } from "../base/Button";
 import { Icon } from "../../design-system/icons/Icon";
 import { useDeleteExerciseMutation } from "../../api/api";
+import Badge from "../base/Badge";
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -15,8 +16,8 @@ interface ExerciseCardProps {
 const AnimatedView = Animated.createAnimatedComponent(View);
 
 export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
-  const [deleteExercise]= useDeleteExerciseMutation()
-  
+  const [deleteExercise] = useDeleteExerciseMutation();
+
   const renderRightActions = (
     dragX: Animated.AnimatedInterpolation<number>
   ) => {
@@ -59,9 +60,9 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
           <Text type="body-L-semibold">{exercise.name}</Text>
         </View>
         <View style={styles.muscles}>
-          <Text type="body-M-medium" color="gray-500">
-            {exercise.forceType}
-          </Text>
+          {exercise.forceType && (
+            <Badge type="solid" text={exercise.forceType} />
+          )}
         </View>
       </View>
     </Swipeable>
@@ -71,10 +72,8 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
 const styles = StyleSheet.create({
   container: {
     padding: spacing["spacing-4"],
-    borderColor: colors["gray-200"],
-    borderWidth: 1,
     borderRadius: spacing["spacing-4"],
-    backgroundColor: colors["white"],
+    backgroundColor: colors["gray-50"],
     gap: spacing["spacing-4"],
   },
   actionContainer: {
