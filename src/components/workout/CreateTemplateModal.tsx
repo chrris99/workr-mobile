@@ -16,7 +16,11 @@ export const CreateTemplateModal = forwardRef(
       usePaginatedComponent([<Text>One</Text>, <Text>Two</Text>]);
 
     return (
-      <BottomModal ref={ref} title="Add plan">
+      <BottomModal
+        ref={ref}
+        title="Add plan"
+        subtitle="Create a new workout plan from your workout templates and exercises"
+      >
         <View style={styles.navigation}>
           <Button
             iconName="ArrowLeft"

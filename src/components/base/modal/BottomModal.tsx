@@ -23,7 +23,7 @@ export const BottomModal = forwardRef(
     ref: ForwardedRef<BottomSheetModal>
   ) => {
     const modalRef = useForwardRef<BottomSheetModal>(ref);
-    const snapPoints = useMemo(() => ["12%", "50%", "85%"], []);
+    const snapPoints = useMemo(() => ["15%", "60%", "85%"], []);
 
     const renderBackdropComponent = useCallback(
       (props: BottomSheetDefaultBackdropProps) => (
@@ -35,7 +35,7 @@ export const BottomModal = forwardRef(
     return (
       <BottomSheetModal
         ref={modalRef}
-        index={2}
+        index={1}
         snapPoints={snapPoints}
         backdropComponent={renderBackdropComponent}
         backgroundStyle={styles.background}

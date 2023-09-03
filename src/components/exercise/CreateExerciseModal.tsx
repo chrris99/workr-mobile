@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { Input } from "../base/Input";
 import { spacing } from "../../design-system/spacing/spacing";
-import { ForwardedRef, forwardRef, useState } from "react";
+import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { BottomModal } from "../base/modal/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
@@ -9,43 +9,44 @@ import { DropdownInput } from "../base/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
 import { Button } from "../../design-system/buttons/Button";
 import { useForwardRef } from "../../hooks/useForwardRef";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-interface CreateExerciseModalProps {
-  onSuccess: () => void;
-}
+type CreateExerciseFormValues = {
+  name: string;
+  targetMuscleGroup: Muscle;
+};
 
 export const CreateExerciseModal = forwardRef(
-  (
-    { onSuccess }: CreateExerciseModalProps,
-    ref: ForwardedRef<BottomSheetModal>
-  ) => {
+  (props, ref: ForwardedRef<BottomSheetModal>) => {
     const modalRef = useForwardRef<BottomSheetModal>(ref);
 
-    const [name, setName] = useState<string>("");
-    const [nameError, setNameError] = useState<string | undefined>(undefined);
-    const [targetMuscleGroup, setTargetMuscleGroup] = useState<Muscle | "">("");
-    const [targetMuscleGroupError, setTargetMuscleGroupError] = useState<
-      string | undefined
-    >(undefined);
+    const {
+      control,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm<CreateExerciseFormValues>({
+      defaultValues: {
+        name: "",
+        targetMuscleGroup: "abs",
+      },
+    });
 
     const [addExercise, res] = useAddExerciseMutation();
 
-    const onSubmit = async () => {
-      setNameError(undefined);
-      setTargetMuscleGroupError(undefined);
+    const onSubmit: SubmitHandler<CreateExerciseFormValues> = async (
+      data: CreateExerciseFormValues
+    ) => {
+      console.log(data);
+      await addExercise({
+        name: data.name,
+        targetMuscleGroup: data.targetMuscleGroup,
+      })
+        .unwrap()
+        .catch((err) => console.error(err));
 
-      if (name === "") setNameError("You must provide an exercise name");
-      if (targetMuscleGroup === "")
-        setTargetMuscleGroupError("You must provided a target muscle group");
-
-      if (!nameError && !targetMuscleGroupError) {
-        await addExercise({ name, targetMuscleGroup })
-          .unwrap()
-          .then((payload) => console.log(payload))
-          .catch((err) => console.error(err));
-
-        onSuccess();
-      }
+      modalRef.current.dismiss();
+      reset();
     };
 
     return (
@@ -56,28 +57,32 @@ export const CreateExerciseModal = forwardRef(
       >
         <View style={styles.form}>
           <Input
+            control={control}
+            rules={{
+              required: {
+                value: true,
+                message: "Exercise name is required",
+              },
+            }}
+            name={"name"}
+            error={errors.name}
             placeholder="Exercise name"
             label="Name"
-            value={name}
-            onChangeText={(name) => setName(name)}
-            error={nameError}
-            setError={setNameError}
           />
           <DropdownInput
+            control={control}
+            name={"targetMuscleGroup"}
             label={"Target muscle group"}
             data={[...muscles].map((muscle) => ({
               value: muscle,
               label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
             }))}
-            selectedValue={targetMuscleGroup}
-            setSelectedValue={setTargetMuscleGroup}
             placeholder="Select target muscle group"
           />
-          <Input placeholder="Description" label="Description" />
         </View>
         <Button
           text="Create exercise"
-          onPress={onSubmit}
+          onPress={handleSubmit(onSubmit)}
           type={"primary-solid-md"}
         />
       </BottomModal>
@@ -97,7 +102,3 @@ const styles = StyleSheet.create({
     paddingBottom: spacing["spacing-7"],
   },
 });
-function useForm(arg0: { defaultValues: { firstName: string; lastName: string; }; }): { control: any; handleSubmit: any; formState: { errors: any; }; } {
-  throw new Error("Function not implemented.");
-}
-

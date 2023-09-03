@@ -17,10 +17,13 @@ import { tokenCache } from "./src/services/tokenCache";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
+import { FormProvider, useForm } from "react-hook-form";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const methods = useForm();
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -41,16 +44,18 @@ export default function App() {
           publishableKey={CLERK_PUBLISHABLE_KEY}
           tokenCache={tokenCache}
         >
-          <BottomSheetModalProvider>
-            <NavigationContainer>
-              <SignedIn>
-                <RootTabNavigator />
-              </SignedIn>
-              <SignedOut>
-                <RootStackNavigator />
-              </SignedOut>
-            </NavigationContainer>
-          </BottomSheetModalProvider>
+          <FormProvider {...methods}>
+            <BottomSheetModalProvider>
+              <NavigationContainer>
+                <SignedIn>
+                  <RootTabNavigator />
+                </SignedIn>
+                <SignedOut>
+                  <RootStackNavigator />
+                </SignedOut>
+              </NavigationContainer>
+            </BottomSheetModalProvider>
+          </FormProvider>
         </ClerkProvider>
       </Provider>
     </SafeAreaProvider>
