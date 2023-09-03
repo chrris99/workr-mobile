@@ -1,55 +1,56 @@
-export type FontSize = `${'body' | 'heading'}-${Size}`;
+import { TextStyle, ViewStyle } from "react-native";
 
-type Size =  'XS' | 'S' | 'M' | 'L' | 'XL'
+export type FontSize = `${"body" | "heading"}-${Size}`;
 
-type FontSizeStyle = {
-  fontSize: number;
-  lineHeight: number;
-  letterSpacing?: number;
-};
+type Size = "XS" | "S" | "M" | "L" | "XL";
+
+type FontSizeStyle = Pick<
+  TextStyle,
+  "fontSize" | "lineHeight" | "letterSpacing"
+>;
 
 export const fontSize: Record<FontSize, FontSizeStyle> = {
-  'body-XS': {
+  "body-XS": {
     fontSize: 12,
-    lineHeight: 18
+    lineHeight: 18,
   },
-  'body-S': {
+  "body-S": {
     fontSize: 14,
-    lineHeight: 20
+    lineHeight: 20,
   },
-  'body-M': {
+  "body-M": {
     fontSize: 16,
-    lineHeight: 24
+    lineHeight: 24,
   },
-  'body-L': {
+  "body-L": {
     fontSize: 18,
-    lineHeight: 28
+    lineHeight: 28,
   },
-  'body-XL': {
+  "body-XL": {
     fontSize: 20,
-    lineHeight: 30
+    lineHeight: 30,
   },
-  'heading-XS': {
+  "heading-XS": {
     fontSize: 24,
-    lineHeight: 32
+    lineHeight: 32,
   },
-  'heading-S': {
+  "heading-S": {
     fontSize: 30,
-    lineHeight: 34
+    lineHeight: 34,
   },
   "heading-M": {
     fontSize: 36,
     lineHeight: 44,
-    letterSpacing: -0.02
+    letterSpacing: -0.02,
   },
   "heading-L": {
     fontSize: 0,
     lineHeight: 0,
-    letterSpacing: undefined
+    letterSpacing: undefined,
   },
   "heading-XL": {
     fontSize: 0,
     lineHeight: 0,
-    letterSpacing: undefined
-  }
+    letterSpacing: undefined,
+  },
 };
