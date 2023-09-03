@@ -10,6 +10,7 @@ import { ModalScreen } from "../base/modal/ModalScreen";
 import { DropdownInput } from "../base/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
 import { Button } from "../../design-system/buttons/Button";
+import { useForwardRef } from "../../hooks/useForwardRef";
 
 interface CreateExerciseModalProps {
   onSuccess: () => void;
@@ -19,7 +20,9 @@ export const CreateExerciseModal = forwardRef(
   (
     { onSuccess }: CreateExerciseModalProps,
     ref: ForwardedRef<BottomSheetModal>
-  ) => { 
+  ) => {
+    const modalRef = useForwardRef<BottomSheetModal>(ref);
+
     const [name, setName] = useState<string>("");
     const [nameError, setNameError] = useState<string | undefined>(undefined);
     const [targetMuscleGroup, setTargetMuscleGroup] = useState<Muscle | "">("");
@@ -48,14 +51,14 @@ export const CreateExerciseModal = forwardRef(
     };
 
     return (
-      <BottomModal ref={ref}>
+      <BottomModal ref={modalRef}>
         <ModalScreen>
           <View style={styles.header}>
-            <Text type="body-L-bold">Create new exercise</Text>
+            <Text type={"body-L-semibold"}>Creating Exercise</Text>
             <Button
-              text="Create exercise"
-              onPress={onSubmit}
-              type={'primary-solid-md'}
+              type={"primary-link-2xl"}
+              iconName={"Close"}
+              onPress={() => modalRef.current.close()}
             />
           </View>
           <View style={styles.form}>
@@ -79,6 +82,11 @@ export const CreateExerciseModal = forwardRef(
             />
             <Input placeholder="Description" label="Description" />
           </View>
+          <Button
+            text="Create exercise"
+            onPress={onSubmit}
+            type={"primary-solid-md"}
+          />
         </ModalScreen>
       </BottomModal>
     );
@@ -86,17 +94,14 @@ export const CreateExerciseModal = forwardRef(
 );
 
 const styles = StyleSheet.create({
-  container: {
-    padding: spacing["spacing-8"],
-    flex: 1,
-  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom: spacing["spacing-8"],
+    paddingBottom: spacing["spacing-7"],
   },
   form: {
     gap: spacing["spacing-4"],
+    paddingBottom: spacing["spacing-7"],
   },
 });

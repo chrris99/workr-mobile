@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { Exercise } from "../../models/exercise";
 import { ExerciseCard } from "./ExerciseCard";
 import { spacing } from "../../design-system/spacing/spacing";
+import { EmptyState } from "./EmptyState";
 
 interface ExerciseTableProps {
   exercises: Exercise[];

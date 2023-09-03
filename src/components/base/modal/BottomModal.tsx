@@ -7,6 +7,7 @@ import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typesc
 import { ForwardedRef, forwardRef, useCallback, useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { spacing } from "../../../design-system/spacing/spacing";
+import { colors } from "../../../design-system/colors/colors";
 
 type BottomModalProps = Pick<BottomSheetModalProps, "children">;
 
@@ -27,6 +28,7 @@ export const BottomModal = forwardRef(
         index={2}
         snapPoints={snapPoints}
         backdropComponent={renderBackdropComponent}
+        backgroundStyle={styles.background}
       >
         {children}
       </BottomSheetModal>
@@ -35,7 +37,7 @@ export const BottomModal = forwardRef(
 );
 
 const styles = StyleSheet.create({
-  modalScreen: {
-    padding: spacing["spacing-8"],
+  background: {
+    backgroundColor: colors['gray-50']
   },
 });

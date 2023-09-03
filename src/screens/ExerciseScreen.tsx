@@ -10,6 +10,8 @@ import { Input } from "../components/base/Input";
 import { colors } from "../design-system/colors/colors";
 import { useGetExercisesQuery } from "../api/api";
 import { Button } from "../design-system/buttons/Button";
+import { EmptyState } from "../components/exercise/EmptyState";
+import { FeaturedIcon } from "../design-system/icons/FeaturedIcon";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -29,15 +31,40 @@ const ExerciseScreen = () => {
         <Input placeholder="Search" />
       </View>
 
-      {data && <ExerciseList exercises={data} />}
-
-      <View style={styles.addButton}>
-        <Button
-          text="Add Exercise"
-          type={"primary-solid-lg"}
-          onPress={openModal}
-        />
+      <View style={styles.contentContainer}>
+        {data && data.length > 0 ? (
+          <>
+            <ExerciseList exercises={data} />
+            <View style={styles.addButton}>
+              <Button
+                text="Add Exercise"
+                type={"primary-solid-lg"}
+                onPress={openModal}
+              />
+            </View>
+          </>
+        ) : (
+          <View style={styles.emptyStateContainer}>
+            <FeaturedIcon
+              iconName="Search"
+              color={"gray-700"}
+              strokeWidth={2}
+            />
+            <Text type={"body-L-semibold"} style={styles.emptyStateTitle}>
+              No exercises found
+            </Text>
+            <View style={styles.emptyStateButtonContainer}>
+              <Button text="Clear search" type={"gray-solid-lg"} />
+              <Button
+                text="New exercise"
+                type={"primary-solid-lg"}
+                onPress={openModal}
+              />
+            </View>
+          </View>
+        )}
       </View>
+
       <CreateExerciseModal
         ref={bottomSheetRef}
         onSuccess={() => bottomSheetRef.current?.dismiss()}
@@ -50,7 +77,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: spacing["spacing-4"],
-    backgroundColor: colors["white"],
+    backgroundColor: colors['white']
+  },
+  emptyStateContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  emptyStateTitle: {
+    paddingTop: spacing["spacing-4"],
+  },
+  emptyStateButtonContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: spacing["spacing-3"],
+    paddingTop: spacing['spacing-8']
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: "center",
   },
   heading: {
     textAlign: "center",

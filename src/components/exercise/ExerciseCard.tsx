@@ -48,7 +48,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
     <Swipeable
       renderRightActions={renderRightActions}
       enableTrackpadTwoFingerGesture
-      rightThreshold={40}
+      rightThreshold={30}
     >
       <View style={styles.container}>
         <View style={styles.name}>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing["spacing-3"],
+    gap: spacing["spacing-5"],
   },
   name: {
     gap: spacing["spacing-1"],

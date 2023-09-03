@@ -1,5 +1,6 @@
 import { StyleSheet, View, ViewProps } from "react-native";
 import { spacing } from "../../../design-system/spacing/spacing";
+import { colors } from "../../../design-system/colors/colors";
 
 type ModalScreenProps = ViewProps;
 
@@ -14,6 +15,7 @@ export const ModalScreen = (props: ModalScreenProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: spacing["spacing-8"],
+    paddingTop: spacing["spacing-2"],
+    paddingHorizontal: spacing["spacing-8"],
   },
 });
