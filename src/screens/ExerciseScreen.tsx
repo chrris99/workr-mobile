@@ -2,7 +2,6 @@ import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Text from "../design-system/typography/Text";
 import { spacing } from "../design-system/spacing/spacing";
-import { Button } from "../components/base/Button";
 import { useCallback, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { CreateExerciseModal } from "../components/exercise/CreateExerciseModal";
@@ -10,6 +9,7 @@ import { ExerciseList } from "../components/exercise/ExerciseList";
 import { Input } from "../components/base/Input";
 import { colors } from "../design-system/colors/colors";
 import { useGetExercisesQuery } from "../api/api";
+import { Button } from "../design-system/buttons/Button";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -32,9 +32,16 @@ const ExerciseScreen = () => {
       {data && <ExerciseList exercises={data} />}
 
       <View style={styles.addButton}>
-        <Button title="Add Exercise" type="solid" onPress={openModal} />
+        <Button
+          text="Add Exercise"
+          type={"primary-solid-lg"}
+          onPress={openModal}
+        />
       </View>
-      <CreateExerciseModal ref={bottomSheetRef} onSuccess={() => bottomSheetRef.current?.dismiss()} />
+      <CreateExerciseModal
+        ref={bottomSheetRef}
+        onSuccess={() => bottomSheetRef.current?.dismiss()}
+      />
     </View>
   );
 };

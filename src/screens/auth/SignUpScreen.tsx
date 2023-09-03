@@ -2,7 +2,6 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Input } from "../../components/base/Input";
-import { Button } from "../../components/base/Button";
 import { useState } from "react";
 import { ClerkError } from "../../models/clerkError";
 import { spacing } from "../../design-system/spacing/spacing";
@@ -15,6 +14,7 @@ import { Divider } from "../../design-system/spacing/Divider";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { SignUpScreenNavigationProps } from "../../navigation/RootStackNavigator";
+import { Button } from "../../design-system/buttons/Button";
 
 const SignUpScreen = () => {
   const insets = useSafeAreaInsets();

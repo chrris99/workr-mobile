@@ -2,7 +2,6 @@ import { StyleSheet, View } from "react-native";
 import Text from "../../design-system/typography/Text";
 import { Input } from "../base/Input";
 import { spacing } from "../../design-system/spacing/spacing";
-import { Button } from "../base/Button";
 import { ForwardedRef, forwardRef, useState } from "react";
 import { BottomModal } from "../base/modal/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
@@ -10,6 +9,7 @@ import { Muscle, muscles } from "../../types/muscle";
 import { ModalScreen } from "../base/modal/ModalScreen";
 import { DropdownInput } from "../base/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
+import { Button } from "../../design-system/buttons/Button";
 
 interface CreateExerciseModalProps {
   onSuccess: () => void;
@@ -53,10 +53,9 @@ export const CreateExerciseModal = forwardRef(
           <View style={styles.header}>
             <Text type="body-L-bold">Create new exercise</Text>
             <Button
-              title="Create exercise"
+              text="Create exercise"
               onPress={onSubmit}
-              type="solid"
-              textStyle="body-XS-medium"
+              type={'primary-solid-md'}
             />
           </View>
           <View style={styles.form}>

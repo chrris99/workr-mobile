@@ -4,10 +4,9 @@ import Text from "../../design-system/typography/Text";
 import { spacing } from "../../design-system/spacing/spacing";
 import { colors } from "../../design-system/colors/colors";
 import { Swipeable } from "react-native-gesture-handler";
-import { Button } from "../base/Button";
-import { Icon } from "../../design-system/icons/Icon";
 import { useDeleteExerciseMutation } from "../../api/api";
 import Badge from "../base/Badge";
+import { Button } from "../../design-system/buttons/Button";
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -32,14 +31,13 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
         <AnimatedView style={{ transform: [{ scale }] }} />
 
         <Button
-          type="solid"
-          backgroundColor="primary-600"
-          icon={<Icon color="white" name={"Edit"} />}
+          type={"secondary-icon-sm"}
+          iconName="Edit"
+          onPress={() => console.log('edit')}
         />
         <Button
-          type="solid"
-          backgroundColor="error-600"
-          icon={<Icon color="white" name={"Trash"} />}
+          type={"secondary-icon-sm"}
+          iconName="Trash"
           onPress={() => deleteExercise(exercise.id)}
         />
       </View>
@@ -80,7 +78,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: spacing["spacing-3"],
     gap: spacing["spacing-3"],
   },
   name: {

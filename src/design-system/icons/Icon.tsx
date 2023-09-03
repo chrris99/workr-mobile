@@ -1,7 +1,7 @@
 import { Color, colors } from "../colors/colors";
 import { IconName, icons } from "./icons";
 
-type IconSize = "S" | "M";
+export type IconSize = "S" | "M";
 
 interface IconProps {
   name: IconName;
