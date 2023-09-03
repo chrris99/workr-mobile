@@ -19,7 +19,7 @@ export const Icon = ({
   name,
   size = "M",
   color = "primary-700",
-  strokeWidth = 1.5,
+  strokeWidth = 2,
 }: IconProps) => {
   const SvgIcon = icons[name];
   return (

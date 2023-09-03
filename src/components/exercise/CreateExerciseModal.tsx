@@ -1,12 +1,10 @@
 import { StyleSheet, View } from "react-native";
-import Text from "../../design-system/typography/Text";
 import { Input } from "../base/Input";
 import { spacing } from "../../design-system/spacing/spacing";
 import { ForwardedRef, forwardRef, useState } from "react";
 import { BottomModal } from "../base/modal/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
-import { ModalScreen } from "../base/modal/ModalScreen";
 import { DropdownInput } from "../base/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
 import { Button } from "../../design-system/buttons/Button";
@@ -51,43 +49,37 @@ export const CreateExerciseModal = forwardRef(
     };
 
     return (
-      <BottomModal ref={modalRef}>
-        <ModalScreen>
-          <View style={styles.header}>
-            <Text type={"body-L-semibold"}>Creating Exercise</Text>
-            <Button
-              type={"primary-link-2xl"}
-              iconName={"Close"}
-              onPress={() => modalRef.current.close()}
-            />
-          </View>
-          <View style={styles.form}>
-            <Input
-              placeholder="Exercise name"
-              label="Name"
-              value={name}
-              onChangeText={(name) => setName(name)}
-              error={nameError}
-              setError={setNameError}
-            />
-            <DropdownInput
-              label={"Target muscle group"}
-              data={[...muscles].map((muscle) => ({
-                value: muscle,
-                label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
-              }))}
-              selectedValue={targetMuscleGroup}
-              setSelectedValue={setTargetMuscleGroup}
-              placeholder="Select target muscle group"
-            />
-            <Input placeholder="Description" label="Description" />
-          </View>
-          <Button
-            text="Create exercise"
-            onPress={onSubmit}
-            type={"primary-solid-md"}
+      <BottomModal
+        ref={modalRef}
+        title="Add exercise"
+        subtitle="Create a new exercise to use in your workout templates"
+      >
+        <View style={styles.form}>
+          <Input
+            placeholder="Exercise name"
+            label="Name"
+            value={name}
+            onChangeText={(name) => setName(name)}
+            error={nameError}
+            setError={setNameError}
           />
-        </ModalScreen>
+          <DropdownInput
+            label={"Target muscle group"}
+            data={[...muscles].map((muscle) => ({
+              value: muscle,
+              label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
+            }))}
+            selectedValue={targetMuscleGroup}
+            setSelectedValue={setTargetMuscleGroup}
+            placeholder="Select target muscle group"
+          />
+          <Input placeholder="Description" label="Description" />
+        </View>
+        <Button
+          text="Create exercise"
+          onPress={onSubmit}
+          type={"primary-solid-md"}
+        />
       </BottomModal>
     );
   }
@@ -105,3 +97,7 @@ const styles = StyleSheet.create({
     paddingBottom: spacing["spacing-7"],
   },
 });
+function useForm(arg0: { defaultValues: { firstName: string; lastName: string; }; }): { control: any; handleSubmit: any; formState: { errors: any; }; } {
+  throw new Error("Function not implemented.");
+}
+
