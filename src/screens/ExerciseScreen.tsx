@@ -7,10 +7,8 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { CreateExerciseModal } from "../components/exercise/CreateExerciseModal";
 import { ExerciseList } from "../components/exercise/ExerciseList";
 import { Input } from "../components/base/Input";
-import { colors } from "../design-system/colors/colors";
 import { useGetExercisesQuery } from "../api/api";
 import { Button } from "../design-system/buttons/Button";
-import { EmptyState } from "../components/exercise/EmptyState";
 import { FeaturedIcon } from "../design-system/icons/FeaturedIcon";
 
 const ExerciseScreen = () => {
@@ -24,12 +22,9 @@ const ExerciseScreen = () => {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <View style={styles.filter}>
-        <Text type={"body-M-semibold"} style={styles.heading}>
-          Your Exercises
-        </Text>
-        <Input placeholder="Search" />
-      </View>
+      <Text type={"body-M-semibold"} style={styles.heading}>
+        Your Exercises
+      </Text>
 
       <View style={styles.contentContainer}>
         {data && data.length > 0 ? (
@@ -77,7 +72,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: spacing["spacing-4"],
-    backgroundColor: colors['white']
   },
   emptyStateContainer: {
     display: "flex",
@@ -90,7 +84,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     gap: spacing["spacing-3"],
-    paddingTop: spacing['spacing-8']
+    paddingTop: spacing["spacing-8"],
   },
   contentContainer: {
     flex: 1,
@@ -99,9 +93,6 @@ const styles = StyleSheet.create({
   heading: {
     textAlign: "center",
     paddingBottom: spacing["spacing-4"],
-  },
-  filter: {
-    paddingVertical: spacing["spacing-8"],
   },
   exerciseList: {
     paddingBottom: spacing["spacing-5"],

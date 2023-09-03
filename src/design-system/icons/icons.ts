@@ -1,8 +1,9 @@
 import Apple from "../../../assets/icons/apple.svg";
 import ArrowLeft from "../../../assets/icons/arrow-left.svg";
 import ArrowRight from "../../../assets/icons/arrow-right.svg";
-import Close from "../../../assets/icons/xmark-circle.svg";
+import Close from "../../../assets/icons/close.svg";
 import Edit from "../../../assets/icons/edit.svg";
+import Error from "../../../assets/icons/error.svg";
 import Home from "../../../assets/icons/home.svg";
 import Search from "../../../assets/icons/search.svg";
 import Settings from "../../../assets/icons/settings.svg";
@@ -17,6 +18,7 @@ export const icons = {
   ArrowRight,
   Close,
   Edit,
+  Error,
   Home,
   Search,
   Settings,

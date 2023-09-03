@@ -6,6 +6,7 @@ import Text from "../../design-system/typography/Text";
 import { colors } from "../../design-system/colors/colors";
 import Error from "../../../assets/icons/xmark-circle.svg";
 import { useState } from "react";
+import { Icon } from "../../design-system/icons/Icon";
 
 interface InputProps extends TextInputProps {
   type?: TextType;
@@ -45,14 +46,7 @@ export const Input = (props: InputProps) => {
               { flex: 1 },
             ]}
           />
-          {props.error && (
-            <Error
-              height={16}
-              width={16}
-              color={colors["error-500"]}
-              strokeWidth={1.5}
-            />
-          )}
+          {props.error && <Icon name="Error" color={"error-500"} />}
         </View>
       </View>
       {props.error && (

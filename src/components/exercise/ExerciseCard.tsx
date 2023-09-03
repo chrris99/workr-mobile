@@ -33,7 +33,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
         <Button
           type={"secondary-icon-sm"}
           iconName="Edit"
-          onPress={() => console.log('edit')}
+          onPress={() => console.log("edit")}
         />
         <Button
           type={"secondary-icon-sm"}
@@ -56,6 +56,11 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
             {exercise.targetMuscleGroup}
           </Text>
           <Text type="body-L-semibold">{exercise.name}</Text>
+          {exercise.description && (
+            <Text type={"body-M-regular"} color={"gray-500"}>
+              {exercise.description}
+            </Text>
+          )}
         </View>
         <View style={styles.muscles}>
           {exercise.forceType && (
@@ -71,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     padding: spacing["spacing-4"],
     borderRadius: spacing["spacing-4"],
-    backgroundColor: colors["gray-50"],
+    backgroundColor: colors["white"],
     gap: spacing["spacing-4"],
   },
   actionContainer: {

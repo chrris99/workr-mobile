@@ -27,8 +27,6 @@ export const Button = (props: ButtonProps) => {
   const { type, text, iconName, iconPosition = "trailing" } = props;
   const buttonStyles = buttons[type];
 
-  console.log(buttonStyles)
-
   const renderChildren = () => (
     <View style={styles.container}>
       {iconName && iconPosition === "leading" && (
