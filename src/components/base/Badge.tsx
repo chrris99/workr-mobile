@@ -10,13 +10,13 @@ interface BadgeProps {
 
 const Badge = ({ text, type }: BadgeProps) => {
   const backgroundColor =
-    type === "solid" ? { backgroundColor: colors["primary-700"] } : {};
+    type === "solid" ? { backgroundColor: colors["primary-200"] } : {};
 
   return (
     <View style={[styles.badge, backgroundColor]}>
       <Text
         type="body-S-medium"
-        color={type === "solid" ? "white" : "primary-700"}
+        color={'primary-700'}
       >
         {text}
       </Text>

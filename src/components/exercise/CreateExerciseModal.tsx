@@ -1,103 +1,104 @@
 import { StyleSheet, View } from "react-native";
-import Text from "../../design-system/typography/Text";
 import { Input } from "../base/Input";
 import { spacing } from "../../design-system/spacing/spacing";
-import { Button } from "../base/Button";
-import { ForwardedRef, forwardRef, useState } from "react";
+import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { BottomModal } from "../base/modal/BottomModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
-import { ModalScreen } from "../base/modal/ModalScreen";
 import { DropdownInput } from "../base/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
+import { Button } from "../../design-system/buttons/Button";
+import { useForwardRef } from "../../hooks/useForwardRef";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-interface CreateExerciseModalProps {
-  onSuccess: () => void;
-}
+type CreateExerciseFormValues = {
+  name: string;
+  targetMuscleGroup: Muscle;
+};
 
 export const CreateExerciseModal = forwardRef(
-  (
-    { onSuccess }: CreateExerciseModalProps,
-    ref: ForwardedRef<BottomSheetModal>
-  ) => { 
-    const [name, setName] = useState<string>("");
-    const [nameError, setNameError] = useState<string | undefined>(undefined);
-    const [targetMuscleGroup, setTargetMuscleGroup] = useState<Muscle | "">("");
-    const [targetMuscleGroupError, setTargetMuscleGroupError] = useState<
-      string | undefined
-    >(undefined);
+  (props, ref: ForwardedRef<BottomSheetModal>) => {
+    const modalRef = useForwardRef<BottomSheetModal>(ref);
+
+    const {
+      control,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm<CreateExerciseFormValues>({
+      defaultValues: {
+        name: "",
+        targetMuscleGroup: "abs",
+      },
+    });
 
     const [addExercise, res] = useAddExerciseMutation();
 
-    const onSubmit = async () => {
-      setNameError(undefined);
-      setTargetMuscleGroupError(undefined);
+    const onSubmit: SubmitHandler<CreateExerciseFormValues> = async (
+      data: CreateExerciseFormValues
+    ) => {
+      console.log(data);
+      await addExercise({
+        name: data.name,
+        targetMuscleGroup: data.targetMuscleGroup,
+      })
+        .unwrap()
+        .catch((err) => console.error(err));
 
-      if (name === "") setNameError("You must provide an exercise name");
-      if (targetMuscleGroup === "")
-        setTargetMuscleGroupError("You must provided a target muscle group");
-
-      if (!nameError && !targetMuscleGroupError) {
-        await addExercise({ name, targetMuscleGroup })
-          .unwrap()
-          .then((payload) => console.log(payload))
-          .catch((err) => console.error(err));
-
-        onSuccess();
-      }
+      modalRef.current.dismiss();
+      reset();
     };
 
     return (
-      <BottomModal ref={ref}>
-        <ModalScreen>
-          <View style={styles.header}>
-            <Text type="body-L-bold">Create new exercise</Text>
-            <Button
-              title="Create exercise"
-              onPress={onSubmit}
-              type="solid"
-              textStyle="body-XS-medium"
-            />
-          </View>
-          <View style={styles.form}>
-            <Input
-              placeholder="Exercise name"
-              label="Name"
-              value={name}
-              onChangeText={(name) => setName(name)}
-              error={nameError}
-              setError={setNameError}
-            />
-            <DropdownInput
-              label={"Target muscle group"}
-              data={[...muscles].map((muscle) => ({
-                value: muscle,
-                label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
-              }))}
-              selectedValue={targetMuscleGroup}
-              setSelectedValue={setTargetMuscleGroup}
-              placeholder="Select target muscle group"
-            />
-            <Input placeholder="Description" label="Description" />
-          </View>
-        </ModalScreen>
+      <BottomModal
+        ref={modalRef}
+        title="Add exercise"
+        subtitle="Create a new exercise to use in your workout templates"
+      >
+        <View style={styles.form}>
+          <Input
+            control={control}
+            rules={{
+              required: {
+                value: true,
+                message: "Exercise name is required",
+              },
+            }}
+            name={"name"}
+            error={errors.name}
+            placeholder="Exercise name"
+            label="Name"
+          />
+          <DropdownInput
+            control={control}
+            name={"targetMuscleGroup"}
+            label={"Target muscle group"}
+            data={[...muscles].map((muscle) => ({
+              value: muscle,
+              label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
+            }))}
+            placeholder="Select target muscle group"
+          />
+        </View>
+        <Button
+          text="Create exercise"
+          onPress={handleSubmit(onSubmit)}
+          type={"primary-solid-md"}
+        />
       </BottomModal>
     );
   }
 );
 
 const styles = StyleSheet.create({
-  container: {
-    padding: spacing["spacing-8"],
-    flex: 1,
-  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom: spacing["spacing-8"],
+    paddingBottom: spacing["spacing-7"],
   },
   form: {
     gap: spacing["spacing-4"],
+    paddingBottom: spacing["spacing-7"],
   },
 });

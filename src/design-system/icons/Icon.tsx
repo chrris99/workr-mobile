@@ -1,7 +1,7 @@
 import { Color, colors } from "../colors/colors";
 import { IconName, icons } from "./icons";
 
-type IconSize = "S" | "M";
+export type IconSize = "S" | "M";
 
 interface IconProps {
   name: IconName;
@@ -19,7 +19,7 @@ export const Icon = ({
   name,
   size = "M",
   color = "primary-700",
-  strokeWidth = 1.5,
+  strokeWidth = 2,
 }: IconProps) => {
   const SvgIcon = icons[name];
   return (

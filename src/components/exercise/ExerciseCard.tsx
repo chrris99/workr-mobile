@@ -4,9 +4,9 @@ import Text from "../../design-system/typography/Text";
 import { spacing } from "../../design-system/spacing/spacing";
 import { colors } from "../../design-system/colors/colors";
 import { Swipeable } from "react-native-gesture-handler";
-import { Button } from "../base/Button";
-import { Icon } from "../../design-system/icons/Icon";
 import { useDeleteExerciseMutation } from "../../api/api";
+import Badge from "../base/Badge";
+import { Button } from "../../design-system/buttons/Button";
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -15,8 +15,8 @@ interface ExerciseCardProps {
 const AnimatedView = Animated.createAnimatedComponent(View);
 
 export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
-  const [deleteExercise]= useDeleteExerciseMutation()
-  
+  const [deleteExercise] = useDeleteExerciseMutation();
+
   const renderRightActions = (
     dragX: Animated.AnimatedInterpolation<number>
   ) => {
@@ -31,14 +31,13 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
         <AnimatedView style={{ transform: [{ scale }] }} />
 
         <Button
-          type="solid"
-          backgroundColor="primary-600"
-          icon={<Icon color="white" name={"Edit"} />}
+          type={"secondary-icon-sm"}
+          iconName="Edit"
+          onPress={() => console.log("edit")}
         />
         <Button
-          type="solid"
-          backgroundColor="error-600"
-          icon={<Icon color="white" name={"Trash"} />}
+          type={"secondary-icon-sm"}
+          iconName="Trash"
           onPress={() => deleteExercise(exercise.id)}
         />
       </View>
@@ -49,7 +48,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
     <Swipeable
       renderRightActions={renderRightActions}
       enableTrackpadTwoFingerGesture
-      rightThreshold={40}
+      rightThreshold={30}
     >
       <View style={styles.container}>
         <View style={styles.name}>
@@ -57,11 +56,16 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
             {exercise.targetMuscleGroup}
           </Text>
           <Text type="body-L-semibold">{exercise.name}</Text>
+          {exercise.description && (
+            <Text type={"body-M-regular"} color={"gray-500"}>
+              {exercise.description}
+            </Text>
+          )}
         </View>
         <View style={styles.muscles}>
-          <Text type="body-M-medium" color="gray-500">
-            {exercise.forceType}
-          </Text>
+          {exercise.forceType && (
+            <Badge type="solid" text={exercise.forceType} />
+          )}
         </View>
       </View>
     </Swipeable>
@@ -71,8 +75,6 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
 const styles = StyleSheet.create({
   container: {
     padding: spacing["spacing-4"],
-    borderColor: colors["gray-200"],
-    borderWidth: 1,
     borderRadius: spacing["spacing-4"],
     backgroundColor: colors["white"],
     gap: spacing["spacing-4"],
@@ -81,8 +83,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: spacing["spacing-3"],
-    gap: spacing["spacing-3"],
+    gap: spacing["spacing-5"],
   },
   name: {
     gap: spacing["spacing-1"],

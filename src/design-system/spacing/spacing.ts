@@ -7,6 +7,7 @@ type Spacing =
   | 'spacing-3'
   | 'spacing-3.5'
   | 'spacing-4'
+  | 'spacing-4.5'
   | 'spacing-5'
   | 'spacing-6'
   | 'spacing-7'
@@ -28,6 +29,7 @@ export const spacing: Record<Spacing, number> = {
   'spacing-3': 12,
   'spacing-3.5': 14,
   'spacing-4': 16,
+  'spacing-4.5': 18,
   'spacing-5': 20,
   'spacing-6': 24,
   'spacing-7': 28,

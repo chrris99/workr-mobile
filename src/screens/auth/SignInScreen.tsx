@@ -1,23 +1,17 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import { useSignIn, useSignUp } from "@clerk/clerk-expo";
+import { useSignIn } from "@clerk/clerk-expo";
 import { Input } from "../../components/base/Input";
-import { Button } from "../../components/base/Button";
 import { useState } from "react";
 import { ClerkError } from "../../models/clerkError";
 import { spacing } from "../../design-system/spacing/spacing";
-
-import Apple from "../../../assets/icons/apple.svg";
-import Google from "../../../assets/icons/google.svg";
 import Text from "../../design-system/typography/Text";
 import { Header } from "../../components/base/Header";
 import { Divider } from "../../design-system/spacing/Divider";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import {
-  SignInScreenNavigationProps,
-  SignUpScreenNavigationProps,
-} from "../../navigation/RootStackNavigator";
+import { SignInScreenNavigationProps } from "../../navigation/RootStackNavigator";
+import { Button } from "../../design-system/buttons/Button";
 
 const SignInScreen = () => {
   const insets = useSafeAreaInsets();
@@ -91,38 +85,28 @@ const SignInScreen = () => {
           />
         </View>
         <View style={styles.forgotPasswordContainer}>
-          <Button
-            title="Forgot password?"
-            type="text"
-            textStyle="body-S-semibold"
-            textColor="primary-700"
-          />
+          <Button text="Forgot password?" type={"primary-solid-lg"} />
         </View>
 
         <View style={styles.buttonGroup}>
-          <Button title="Sign in" type="solid" onPress={onSignInPress} />
+          <Button
+            text="Sign in"
+            type={"primary-solid-lg"}
+            onPress={onSignInPress}
+          />
           <Divider text="or" />
           <Button
-            title="Sign in with Apple"
-            backgroundColor="gray-900"
-            type="solid"
-            icon={<Apple width={24} height={24} color={"white"} />}
-          />
-          <Button
-            title="Sign in with Google"
-            type="outline"
-            textColor="gray-900"
-            icon={<Google width={24} height={24} />}
+            text="Sign in with Apple"
+            type={"gray-solid-lg"}
+            iconName="Apple"
           />
         </View>
       </View>
       <View style={{ flexDirection: "row", gap: spacing["spacing-1"] }}>
         <Text>Don't have an account yet?</Text>
         <Button
-          title="Sign Up"
-          type="text"
-          textStyle="body-S-semibold"
-          textColor="primary-700"
+          text="Sign Up"
+          type={'primary-link-md'}
           onPress={() => navigation.replace("SignUp")}
         />
       </View>

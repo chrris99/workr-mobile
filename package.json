@@ -26,6 +26,7 @@
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
+    "react-hook-form": "^7.46.0",
     "react-native": "0.71.8",
     "react-native-dotenv": "^3.4.8",
     "react-native-element-dropdown": "^2.9.0",
@@ -36,7 +37,8 @@
     "react-native-svg": "13.4.0",
     "react-native-svg-transformer": "^1.0.0",
     "react-query": "^3.39.3",
-    "react-redux": "^8.1.2"
+    "react-redux": "^8.1.2",
+    "react-search-autocomplete": "^8.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

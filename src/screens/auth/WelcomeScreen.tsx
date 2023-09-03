@@ -1,11 +1,11 @@
-import { Image, ImageBackground, StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import Text from "../../design-system/typography/Text";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Button } from "../../components/base/Button";
 import { Header } from "../../components/base/Header";
 import { useNavigation } from "@react-navigation/native";
 import { spacing } from "../../design-system/spacing/spacing";
 import { WelcomeScreenNavigationProps } from "../../navigation/RootStackNavigator";
+import { Button } from "../../design-system/buttons/Button";
 
 const WelcomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -16,7 +16,7 @@ const WelcomeScreen = () => {
   };
 
   const onSignIn = () => {
-    navigation.navigate('SignIn');
+    navigation.navigate("SignIn");
   };
 
   return (
@@ -34,18 +34,16 @@ const WelcomeScreen = () => {
           />
           <View style={styles.buttonContainer}>
             <Button
-              title="Start your journey"
-              type="solid"
+              text="Start your journey"
+              type={"primary-solid-lg"}
               onPress={onSignUp}
             />
           </View>
           <View style={styles.signInContainer}>
             <Text>Already have an account?</Text>
             <Button
-              title="Sign In"
-              type="text"
-              textStyle="body-S-semibold"
-              textColor="primary-700"
+              text="Sign In"
+              type={"primary-link-lg"}
               onPress={onSignIn}
             />
           </View>
