@@ -5,9 +5,6 @@ import { Input } from "../../components/base/Input";
 import { useState } from "react";
 import { ClerkError } from "../../models/clerkError";
 import { spacing } from "../../design-system/spacing/spacing";
-
-import Apple from "../../../assets/icons/apple.svg"
-import Google from "../../../assets/icons/google.svg";
 import Text from "../../design-system/typography/Text";
 import { Header } from "../../components/base/Header";
 import { Divider } from "../../design-system/spacing/Divider";
@@ -112,38 +109,28 @@ const SignUpScreen = () => {
               />
             </View>
             <View style={styles.forgotPasswordContainer}>
-              <Button
-                title="Forgot password?"
-                type="text"
-                textStyle="body-S-semibold"
-                textColor="primary-700"
-              />
+              <Button text="Forgot password?" type={"primary-link-md"} />
             </View>
 
             <View style={styles.buttonGroup}>
-              <Button title="Sign up" type="solid" onPress={onSignUpPress} />
+              <Button
+                text="Sign up"
+                type={"primary-solid-lg"}
+                onPress={onSignUpPress}
+              />
               <Divider text="or" />
               <Button
-                title="Sign up with Apple"
-                backgroundColor="gray-900"
-                type="solid"
-                icon={<Apple width={24} height={24} color={"white"} />}
-              />
-              <Button
-                title="Sign up with Google"
-                type="outline"
-                textColor="gray-900"
-                icon={<Google width={24} height={24} />}
+                text="Sign up with Apple"
+                type={"gray-solid-lg"}
+                iconName="Apple"
               />
             </View>
           </View>
           <View style={{ flexDirection: "row", gap: spacing["spacing-1"] }}>
             <Text>Already have an account?</Text>
             <Button
-              title="Sign In"
-              type="text"
-              textStyle="body-S-semibold"
-              textColor="primary-700"
+              text="Sign In"
+              type={"primary-link-lg"}
               onPress={() => navigation.replace("SignIn")}
             />
           </View>
@@ -160,7 +147,11 @@ const SignUpScreen = () => {
               setError={setCodeError}
             />
           </View>
-          <Button title="Verify Email" type="solid" onPress={onPressVerify} />
+          <Button
+            text="Verify Email"
+            type={"primary-solid-lg"}
+            onPress={onPressVerify}
+          />
         </View>
       )}
     </View>
