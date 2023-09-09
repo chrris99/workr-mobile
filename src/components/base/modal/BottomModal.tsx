@@ -15,11 +15,12 @@ import { useForwardRef } from "../../../hooks/useForwardRef";
 interface BottomModalProps extends Pick<ViewProps, "children"> {
   title: string;
   subtitle?: string;
+  onDismiss?: () => void;
 }
 
 export const BottomModal = forwardRef(
   (
-    { children, title, subtitle }: BottomModalProps,
+    { children, title, subtitle, onDismiss }: BottomModalProps,
     ref: ForwardedRef<BottomSheetModal>
   ) => {
     const modalRef = useForwardRef<BottomSheetModal>(ref);
@@ -27,7 +28,7 @@ export const BottomModal = forwardRef(
 
     const renderBackdropComponent = useCallback(
       (props: BottomSheetDefaultBackdropProps) => (
-        <BottomSheetBackdrop {...props} />
+        <BottomSheetBackdrop {...props} pressBehavior={0} />
       ),
       []
     );
@@ -39,6 +40,7 @@ export const BottomModal = forwardRef(
         snapPoints={snapPoints}
         backdropComponent={renderBackdropComponent}
         backgroundStyle={styles.background}
+        onDismiss={onDismiss}
       >
         <View style={styles.container}>
           <View style={styles.header}>
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors["gray-50"],
   },
   container: {
-    paddingHorizontal: spacing["spacing-4"],
+    paddingHorizontal: spacing["spacing-6"],
   },
   header: {
     paddingBottom: spacing["spacing-7"],
