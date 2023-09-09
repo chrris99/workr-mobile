@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import Text from "../../../design-system/typography/Text";
-import { DropdownItem, DropdownValue } from "./DropdownItem";
+import { DropdownItem } from "./DropdownItem";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { useState } from "react";
 import { colors } from "../../../design-system/colors/colors";
@@ -37,8 +37,6 @@ export const DropdownInput = <T extends FieldValues>({
 }: DropdownInputProps<T>) => {
   const [selectedValue, setSelectedValue] = useState("");
   const [isFocus, setIsFocus] = useState(false);
-
-  // TODO: Move selected value state here
 
   const borderColorStyle = {
     borderColor: isFocus ? colors["primary-700"] : colors["gray-300"],

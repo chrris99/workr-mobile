@@ -1,9 +1,9 @@
 import { StyleSheet, View } from "react-native";
-import { Input } from "../base/Input";
+import { Input } from "../base/input/Input";
 import { spacing } from "../../design-system/spacing/spacing";
 import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { BottomModal } from "../base/modal/BottomModal";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import {BottomSheetModal, BottomSheetTextInput, useBottomSheetModal} from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
 import { DropdownInput } from "../base/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
@@ -17,22 +17,24 @@ type CreateExerciseFormValues = {
 };
 
 export const CreateExerciseModal = forwardRef(
-  (props, ref: ForwardedRef<BottomSheetModal>) => {
-    const modalRef = useForwardRef<BottomSheetModal>(ref);
+  (_, ref: ForwardedRef<BottomSheetModal>) => {
+    const { dismiss } = useBottomSheetModal()
 
     const {
       control,
       handleSubmit,
       reset,
-      formState: { errors },
+      formState: { errors, ...formState },
     } = useForm<CreateExerciseFormValues>({
       defaultValues: {
         name: "",
-        targetMuscleGroup: "abs",
+        targetMuscleGroup: "abductors",
       },
     });
 
-    const [addExercise, res] = useAddExerciseMutation();
+    useEffect(() => console.log(formState), [formState])
+
+    const [addExercise] = useAddExerciseMutation();
 
     const onSubmit: SubmitHandler<CreateExerciseFormValues> = async (
       data: CreateExerciseFormValues
@@ -45,57 +47,59 @@ export const CreateExerciseModal = forwardRef(
         .unwrap()
         .catch((err) => console.error(err));
 
-      modalRef.current.dismiss();
+      dismiss();
       reset();
     };
 
     return (
       <BottomModal
-        ref={modalRef}
+        ref={ref}
         title="Add exercise"
         subtitle="Create a new exercise to use in your workout templates"
+        onDismiss={reset}
       >
-        <View style={styles.form}>
-          <Input
-            control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "Exercise name is required",
-              },
-            }}
-            name={"name"}
-            error={errors.name}
-            placeholder="Exercise name"
-            label="Name"
-          />
-          <DropdownInput
-            control={control}
-            name={"targetMuscleGroup"}
-            label={"Target muscle group"}
-            data={[...muscles].map((muscle) => ({
-              value: muscle,
-              label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
-            }))}
-            placeholder="Select target muscle group"
+        <View style={styles.container}>
+          <View style={styles.form}>
+            <Input
+              control={control}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Exercise name is required",
+                },
+              }}
+              name={"name"}
+              error={errors.name}
+              placeholder="Exercise name"
+              label="Name"
+            />
+            <DropdownInput
+              control={control}
+              name={"targetMuscleGroup"}
+              label={"Target muscle group"}
+              data={[...muscles].map((muscle) => ({
+                value: muscle,
+                label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
+              }))}
+              placeholder="Select target muscle group"
+            />
+          </View>
+          <Button
+            text="Create exercise"
+            onPress={handleSubmit(onSubmit)}
+            type={"primary-solid-md"}
           />
         </View>
-        <Button
-          text="Create exercise"
-          onPress={handleSubmit(onSubmit)}
-          type={"primary-solid-md"}
-        />
+
       </BottomModal>
     );
   }
 );
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: spacing["spacing-7"],
+  container: {
+    display: "flex",
+    justifyContent: 'space-between'
   },
   form: {
     gap: spacing["spacing-4"],

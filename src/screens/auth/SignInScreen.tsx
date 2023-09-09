@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
-import { Input } from "../../components/base/Input";
+import { Input } from "../../components/base/input/Input";
 import { useState } from "react";
 import { ClerkError } from "../../models/clerkError";
 import { spacing } from "../../design-system/spacing/spacing";

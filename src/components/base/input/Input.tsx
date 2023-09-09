@@ -1,11 +1,11 @@
 import { TextInputProps } from "react-native/types";
 import { TextInput, StyleSheet, View } from "react-native";
-import { spacing } from "../../design-system/spacing/spacing";
-import { fonts } from "../../design-system/typography/fonts";
-import Text from "../../design-system/typography/Text";
-import { colors } from "../../design-system/colors/colors";
-import { useState } from "react";
-import { Icon } from "../../design-system/icons/Icon";
+import { spacing } from "../../../design-system/spacing/spacing";
+import { fonts } from "../../../design-system/typography/fonts";
+import Text from "../../../design-system/typography/Text";
+import { colors } from "../../../design-system/colors/colors";
+import {useCallback, useEffect, useState} from "react";
+import { Icon } from "../../../design-system/icons/Icon";
 import {
   Control,
   Controller,
@@ -14,8 +14,9 @@ import {
   Path,
   RegisterOptions,
 } from "react-hook-form";
+import {useBottomSheetInternal} from "@gorhom/bottom-sheet";
 
-interface InputProps<T extends FieldValues> extends TextInputProps {
+export interface InputProps<T extends FieldValues> extends TextInputProps {
   control: Control<T>;
   name: Path<T>;
   rules?: RegisterOptions<T>;
@@ -36,9 +37,33 @@ export const Input = <T extends FieldValues>({
 }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
+  const { shouldHandleKeyboardEvents } = useBottomSheetInternal();
+
+  const handleOnFocus = useCallback(
+    args => {
+      setIsFocused(true);
+      shouldHandleKeyboardEvents.value = true;
+      if (props.onFocus) {
+        props.onFocus(args);
+      }
+    },
+    [props.onFocus, shouldHandleKeyboardEvents]
+  );
+
+  const handleOnBlur = useCallback(
+    args => {
+      setIsFocused(false);
+      shouldHandleKeyboardEvents.value = false;
+      if (props.onBlur) {
+        props.onBlur(args);
+      }
+    },
+    [props.onBlur, shouldHandleKeyboardEvents]
+  );
+
   return (
     <View style={styles.container}>
-      {label && <Text type="body-S-medium">{}</Text>}
+      {label && <Text type="body-S-medium">{label}</Text>}
       <View
         style={[
           styles.inputContainer,
@@ -60,8 +85,8 @@ export const Input = <T extends FieldValues>({
                 {...props}
                 placeholder={placeholder}
                 onChangeText={onChange}
-                onBlur={onBlur}
-                onFocus={() => setIsFocused(true)}
+                onFocus={handleOnFocus}
+                onBlur={handleOnBlur}
                 value={value}
                 selectionColor={colors["primary-700"]}
                 style={[fonts["body-M-regular"], { flex: 1 }]}
