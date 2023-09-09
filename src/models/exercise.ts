@@ -12,6 +12,6 @@ export type Exercise = {
 };
 
 export type CreateExerciseRequest = Omit<Exercise, 'id'>
-export type UpdateExerciseRequest = Omit<Exercise, 'id'>
+export type UpdateExerciseRequest = Exercise
 
 export type ExerciseResponse = Exercise;

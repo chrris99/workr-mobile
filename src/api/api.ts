@@ -1,9 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { CreateExerciseRequest, ExerciseResponse } from "../models/exercise";
-import { tokenCache } from "../services/tokenCache";
+import {
+  CreateExerciseRequest,
+  ExerciseResponse,
+  UpdateExerciseRequest,
+} from "../models/exercise";
 import { Clerk } from "@clerk/clerk-expo";
+import Constants from "expo-constants";
 
-const BASE_URL = "http://localhost:5117/api/";
+const { manifest } = Constants;
+
+const BASE_URL = `http://${manifest?.debuggerHost
+  ?.split(":")
+  .shift()}:5117/api`;
+
+//const BASE_URL = "http://localhost:5117/api/";
 
 export const api = createApi({
   reducerPath: "api",
@@ -34,6 +44,17 @@ export const api = createApi({
       }),
       invalidatesTags: [{ type: "Exercise", id: "ALL" }],
     }),
+    updateExercise: builder.mutation<ExerciseResponse, UpdateExerciseRequest>({
+      query: (data) => {
+        const { id, ...body } = data;
+        return {
+          url: `exercise/${id}`,
+          method: "PUT",
+          body,
+        };
+      },
+      invalidatesTags: (result, error, { id }) => [{ type: "Exercise", id }],
+    }),
     deleteExercise: builder.mutation<void, string>({
       query: (id) => ({
         url: `exercise/${id}`,
@@ -48,5 +69,6 @@ export const api = createApi({
 export const {
   useGetExercisesQuery,
   useAddExerciseMutation,
+  useUpdateExerciseMutation,
   useDeleteExerciseMutation,
 } = api;
