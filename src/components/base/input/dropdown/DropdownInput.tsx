@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import Text from "../../../design-system/typography/Text";
+import Text from "../../../../design-system/typography/Text";
 import { DropdownItem } from "./DropdownItem";
-import { spacing } from "../../../design-system/spacing/spacing";
+import { spacing } from "../../../../design-system/spacing/spacing";
 import { useState } from "react";
-import { colors } from "../../../design-system/colors/colors";
+import { colors } from "../../../../design-system/colors/colors";
 import {
   Control,
   Controller,
@@ -13,7 +13,7 @@ import {
   Path,
   RegisterOptions,
 } from "react-hook-form";
-import { Icon } from "../../../design-system/icons/Icon";
+import { Icon } from "../../../../design-system/icons/Icon";
 
 interface DropdownInputProps<T extends FieldValues> {
   control: Control<T>;
