@@ -1,11 +1,10 @@
 import { TextInputProps } from "react-native/types";
 import { TextInput, StyleSheet, View } from "react-native";
 import { spacing } from "../../design-system/spacing/spacing";
-import { TextType, fonts } from "../../design-system/typography/fonts";
+import { fonts } from "../../design-system/typography/fonts";
 import Text from "../../design-system/typography/Text";
 import { colors } from "../../design-system/colors/colors";
-import Error from "../../../assets/icons/xmark-circle.svg";
-import { ForwardedRef, forwardRef, useState } from "react";
+import { useState } from "react";
 import { Icon } from "../../design-system/icons/Icon";
 import {
   Control,
@@ -14,7 +13,6 @@ import {
   FieldValues,
   Path,
   RegisterOptions,
-  UseFormRegister,
 } from "react-hook-form";
 
 interface InputProps<T extends FieldValues> extends TextInputProps {
@@ -24,6 +22,7 @@ interface InputProps<T extends FieldValues> extends TextInputProps {
   error?: FieldError;
   icon?: string;
   label?: string;
+  placeholder?: string;
 }
 
 export const Input = <T extends FieldValues>({
@@ -32,12 +31,14 @@ export const Input = <T extends FieldValues>({
   rules,
   error,
   label,
+  placeholder,
+  ...props
 }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
-      {label && <Text type="body-S-medium">{label}</Text>}
+      {label && <Text type="body-S-medium">{}</Text>}
       <View
         style={[
           styles.inputContainer,
@@ -56,7 +57,8 @@ export const Input = <T extends FieldValues>({
             rules={rules}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                placeholder="First name"
+                {...props}
+                placeholder={placeholder}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 onFocus={() => setIsFocused(true)}

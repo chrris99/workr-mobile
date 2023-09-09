@@ -12,6 +12,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { SignInScreenNavigationProps } from "../../navigation/RootStackNavigator";
 import { Button } from "../../design-system/buttons/Button";
+import { useForm } from "react-hook-form";
+
+type SignInFormValues = {
+  email: string;
+  password: string;
+};
 
 const SignInScreen = () => {
   const insets = useSafeAreaInsets();
@@ -19,36 +25,46 @@ const SignInScreen = () => {
 
   const { isLoaded, signIn, setActive } = useSignIn();
 
-  const [emailAddress, setEmailAddress] = useState<string>("");
-  const [emailAddressError, setEmailAddressError] = useState<
-    string | undefined
-  >(undefined);
-  const [password, setPassword] = useState<string>("");
-  const [passwordError, setPasswordError] = useState<string | undefined>(
-    undefined
-  );
+  const {
+    control,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { errors },
+  } = useForm<SignInFormValues>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-  const onSignInPress = async () => {
+  const onSubmit = async (data: SignInFormValues) => {
     if (!isLoaded) {
       return;
     }
 
     try {
-      const completeSignIn = await signIn.create({
-        identifier: emailAddress,
-        password,
+      const completeSignIn = await signIn?.create({
+        identifier: data.email,
+        password: data.password,
       });
 
       await setActive({ session: completeSignIn.createdSessionId });
     } catch (err: any) {
-      console.error(JSON.stringify(err, null, 2));
+      console.error(JSON.stringify(err));
       if (err.clerkError) {
-        const errors = err.errors as ClerkError[];
-        errors.forEach((error) => {
-          if (error.meta.paramName === "email_address")
-            setEmailAddressError(error.longMessage);
-          if (error.meta.paramName === "password")
-            setPasswordError(error.longMessage);
+        const clerkErrors = err.errors as ClerkError[];
+        clerkErrors.forEach((clerkError) => {
+          if (clerkError.meta.paramName === "email_address")
+            setError("email", {
+              type: "clerk",
+              message: clerkError.longMessage,
+            });
+          if (clerkError.meta.paramName === "password")
+            setError("password", {
+              type: "clerk",
+              message: clerkError.longMessage,
+            });
         });
       }
     }
@@ -63,25 +79,21 @@ const SignInScreen = () => {
       <View style={styles.signUpContainer}>
         <View style={styles.inputContainer}>
           <Input
+            control={control}
+            name="email"
             label="Email"
             autoComplete="email"
             autoCapitalize="none"
-            value={emailAddress}
             placeholder="Enter your email"
-            onChangeText={(email) => setEmailAddress(email)}
-            error={emailAddressError}
-            setError={setEmailAddressError}
           />
 
           <Input
+            control={control}
+            name="password"
             label="Password"
             autoComplete="password-new"
-            value={password}
             placeholder="Password..."
             secureTextEntry={true}
-            onChangeText={(password) => setPassword(password)}
-            error={passwordError}
-            setError={setPasswordError}
           />
         </View>
         <View style={styles.forgotPasswordContainer}>
@@ -92,7 +104,7 @@ const SignInScreen = () => {
           <Button
             text="Sign in"
             type={"primary-solid-lg"}
-            onPress={onSignInPress}
+            onPress={handleSubmit(onSubmit)}
           />
           <Divider text="or" />
           <Button
@@ -106,7 +118,7 @@ const SignInScreen = () => {
         <Text>Don't have an account yet?</Text>
         <Button
           text="Sign Up"
-          type={'primary-link-md'}
+          type={"primary-link-md"}
           onPress={() => navigation.replace("SignUp")}
         />
       </View>
