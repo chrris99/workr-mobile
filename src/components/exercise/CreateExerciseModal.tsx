@@ -34,8 +34,6 @@ export const CreateExerciseModal = forwardRef(
       },
     });
 
-    useEffect(() => console.log(formState.), [formState])
-
     const [addExercise] = useAddExerciseMutation();
 
     const onSubmit: SubmitHandler<CreateExerciseFormValues> = async (
