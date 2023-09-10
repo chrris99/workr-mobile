@@ -1,9 +1,14 @@
-import { StyleSheet, View } from "react-native";
+import { Keyboard, StyleSheet, View } from "react-native";
 import { Input } from "../base/input/Input";
 import { spacing } from "../../design-system/spacing/spacing";
 import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { BottomModal } from "../base/modal/BottomModal";
-import {BottomSheetModal, BottomSheetTextInput, useBottomSheetModal} from "@gorhom/bottom-sheet";
+import {
+  BottomSheetModal,
+  BottomSheetTextInput,
+  useBottomSheet,
+  useBottomSheetModal,
+} from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
 import { DropdownInput } from "../base/input/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
@@ -19,7 +24,7 @@ type CreateExerciseFormValues = {
 
 export const CreateExerciseModal = forwardRef(
   (_, ref: ForwardedRef<BottomSheetModal>) => {
-    const { dismiss } = useBottomSheetModal()
+    const { dismiss } = useBottomSheetModal();
 
     const {
       control,
@@ -36,6 +41,12 @@ export const CreateExerciseModal = forwardRef(
 
     const [addExercise] = useAddExerciseMutation();
 
+    const closeModal = () => {
+      if (Keyboard.isVisible()) Keyboard.dismiss();
+      dismiss();
+      reset();
+    };
+
     const onSubmit: SubmitHandler<CreateExerciseFormValues> = async (
       data: CreateExerciseFormValues
     ) => {
@@ -47,8 +58,7 @@ export const CreateExerciseModal = forwardRef(
         .unwrap()
         .catch((err) => console.error(err));
 
-      dismiss();
-      reset();
+      closeModal();
     };
 
     return (
@@ -90,7 +100,6 @@ export const CreateExerciseModal = forwardRef(
             type={"primary-solid-md"}
           />
         </View>
-
       </BottomModal>
     );
   }
@@ -99,7 +108,7 @@ export const CreateExerciseModal = forwardRef(
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
   form: {
     gap: spacing["spacing-4"],

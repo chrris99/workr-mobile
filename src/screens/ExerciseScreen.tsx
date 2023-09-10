@@ -60,10 +60,7 @@ const ExerciseScreen = () => {
         )}
       </View>
 
-      <CreateExerciseModal
-        ref={bottomSheetRef}
-        onSuccess={() => bottomSheetRef.current?.dismiss()}
-      />
+      <CreateExerciseModal ref={bottomSheetRef} />
     </View>
   );
 };

@@ -5,10 +5,7 @@ import { DropdownItem } from "./DropdownItem";
 import { spacing } from "../../../../design-system/spacing/spacing";
 import { useState } from "react";
 import { colors } from "../../../../design-system/colors/colors";
-import {
-  Controller,
-  FieldValues,
-} from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
 import { Icon } from "../../../../design-system/icons/Icon";
 import { DropdownInputProps } from "../types";
 
@@ -33,22 +30,23 @@ export const DropdownInput = <T extends FieldValues>({
       <Controller
         control={control}
         rules={rules}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange, onBlur, value } }) => (
           <Dropdown
+            search
             style={[styles.dropdown, borderColorStyle]}
             containerStyle={styles.dropdownContainer}
             data={data}
             renderItem={(item, selected) => (
-              <DropdownItem
-                item={item}
-                isSelected={selected ?? false}
-              />
+              <DropdownItem item={item} isSelected={selected ?? false} />
             )}
             labelField={"label"}
             valueField={"value"}
             value={value}
             onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
+            onBlur={() => {
+              onBlur();
+              setIsFocus(false);
+            }}
             onChange={(item) => {
               setIsFocus(false);
               onChange(item.value);
@@ -61,6 +59,8 @@ export const DropdownInput = <T extends FieldValues>({
                 color="gray-500"
               />
             )}
+            showsVerticalScrollIndicator={false}
+            inverted={false}
           />
         )}
         name={name}
