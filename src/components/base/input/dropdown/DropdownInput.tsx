@@ -21,7 +21,6 @@ export const DropdownInput = <T extends FieldValues>({
   label,
   placeholder,
 }: DropdownInputProps<T>) => {
-  const [selectedValue, setSelectedValue] = useState("");
   const [isFocus, setIsFocus] = useState(false);
 
   const borderColorStyle = {
@@ -39,10 +38,10 @@ export const DropdownInput = <T extends FieldValues>({
             style={[styles.dropdown, borderColorStyle]}
             containerStyle={styles.dropdownContainer}
             data={data}
-            renderItem={(item) => (
+            renderItem={(item, selected) => (
               <DropdownItem
                 item={item}
-                isSelected={item.value === selectedValue}
+                isSelected={selected ?? false}
               />
             )}
             labelField={"label"}
@@ -52,7 +51,6 @@ export const DropdownInput = <T extends FieldValues>({
             onBlur={() => setIsFocus(false)}
             onChange={(item) => {
               setIsFocus(false);
-              setSelectedValue(item.value);
               onChange(item.value);
             }}
             placeholder={placeholder ?? "Select item"}
