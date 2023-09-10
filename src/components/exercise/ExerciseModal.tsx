@@ -7,7 +7,7 @@ import { Muscle, muscles } from "../../types/muscle";
 import { BottomModal } from "../base/modal/BottomModal";
 import { StyleSheet, View } from "react-native";
 import { Input } from "../base/input/Input";
-import { DropdownInput } from "../base/dropdown/DropdownInput";
+import { DropdownInput } from "../base/input/dropdown/DropdownInput";
 import { spacing } from "../../design-system/spacing/spacing";
 import { Button } from "../../design-system/buttons/Button";
 

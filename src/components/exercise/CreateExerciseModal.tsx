@@ -5,11 +5,12 @@ import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { BottomModal } from "../base/modal/BottomModal";
 import {BottomSheetModal, BottomSheetTextInput, useBottomSheetModal} from "@gorhom/bottom-sheet";
 import { Muscle, muscles } from "../../types/muscle";
-import { DropdownInput } from "../base/dropdown/DropdownInput";
+import { DropdownInput } from "../base/input/dropdown/DropdownInput";
 import { useAddExerciseMutation } from "../../api/api";
 import { Button } from "../../design-system/buttons/Button";
 import { useForwardRef } from "../../hooks/useForwardRef";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { BottomSheetInput } from "../base/input/BottomSheetInput";
 
 type CreateExerciseFormValues = {
   name: string;
@@ -24,6 +25,7 @@ export const CreateExerciseModal = forwardRef(
       control,
       handleSubmit,
       reset,
+      setFocus,
       formState: { errors, ...formState },
     } = useForm<CreateExerciseFormValues>({
       defaultValues: {
@@ -32,7 +34,7 @@ export const CreateExerciseModal = forwardRef(
       },
     });
 
-    useEffect(() => console.log(formState), [formState])
+    useEffect(() => console.log(formState.), [formState])
 
     const [addExercise] = useAddExerciseMutation();
 
@@ -60,7 +62,7 @@ export const CreateExerciseModal = forwardRef(
       >
         <View style={styles.container}>
           <View style={styles.form}>
-            <Input
+            <BottomSheetInput
               control={control}
               rules={{
                 required: {

@@ -1,10 +1,14 @@
-import { TextInputProps } from "react-native/types";
+import {
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
+  TextInputProps,
+} from "react-native/types";
 import { TextInput, StyleSheet, View } from "react-native";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { fonts } from "../../../design-system/typography/fonts";
 import Text from "../../../design-system/typography/Text";
 import { colors } from "../../../design-system/colors/colors";
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useState } from "react";
 import { Icon } from "../../../design-system/icons/Icon";
 import {
   Control,
@@ -14,7 +18,7 @@ import {
   Path,
   RegisterOptions,
 } from "react-hook-form";
-import {useBottomSheetInternal} from "@gorhom/bottom-sheet";
+import { useBottomSheetInternal } from "@gorhom/bottom-sheet";
 
 export interface InputProps<T extends FieldValues> extends TextInputProps {
   control: Control<T>;
@@ -40,7 +44,7 @@ export const Input = <T extends FieldValues>({
   const { shouldHandleKeyboardEvents } = useBottomSheetInternal();
 
   const handleOnFocus = useCallback(
-    args => {
+    (args: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(true);
       shouldHandleKeyboardEvents.value = true;
       if (props.onFocus) {
@@ -51,7 +55,7 @@ export const Input = <T extends FieldValues>({
   );
 
   const handleOnBlur = useCallback(
-    args => {
+    (args: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(false);
       shouldHandleKeyboardEvents.value = false;
       if (props.onBlur) {
