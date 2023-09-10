@@ -52,7 +52,14 @@ export const Button = (props: ButtonProps) => {
   );
 
   if (type.includes("link"))
-    return <BorderlessButton {...props}>{renderChildren()}</BorderlessButton>;
+    return (
+      <BorderlessButton
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        {...props}
+      >
+        {renderChildren()}
+      </BorderlessButton>
+    );
 
   return (
     <RectButton
