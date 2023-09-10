@@ -1,45 +1,47 @@
+import { ForwardedRef, forwardRef } from "react";
+import { Exercise } from "../../../models/exercise";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
+import { Muscle, muscles } from "../../../types/muscle";
+import { BottomModal } from "../../base/modal/BottomModal";
 import { Keyboard, StyleSheet, View } from "react-native";
-import { Input } from "../base/input/Input";
-import { spacing } from "../../design-system/spacing/spacing";
-import { ForwardedRef, forwardRef, useEffect, useState } from "react";
-import { BottomModal } from "../base/modal/BottomModal";
-import {
-  BottomSheetModal,
-  BottomSheetTextInput,
-  useBottomSheet,
-  useBottomSheetModal,
-} from "@gorhom/bottom-sheet";
-import { Muscle, muscles } from "../../types/muscle";
-import { DropdownInput } from "../base/input/dropdown/DropdownInput";
-import { useAddExerciseMutation } from "../../api/api";
-import { Button } from "../../design-system/buttons/Button";
-import { useForwardRef } from "../../hooks/useForwardRef";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { BottomSheetInput } from "../base/input/BottomSheetInput";
+import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
+import { spacing } from "../../../design-system/spacing/spacing";
+import { Button } from "../../../design-system/buttons/Button";
+import { BottomSheetInput } from "../../base/input/BottomSheetInput";
 
-type CreateExerciseFormValues = {
+export type ExerciseFormValues = {
   name: string;
   targetMuscleGroup: Muscle;
+  description: string;
 };
 
-export const CreateExerciseModal = forwardRef(
-  (_, ref: ForwardedRef<BottomSheetModal>) => {
+interface ExerciseModalProps {
+  onSubmit: SubmitHandler<ExerciseFormValues>;
+  title: string;
+  subtitle?: string;
+  exercise?: Exercise;
+}
+
+export const ExerciseModal = forwardRef(
+  (
+    { onSubmit, title, subtitle, exercise }: ExerciseModalProps,
+    ref: ForwardedRef<BottomSheetModal>
+  ) => {
     const { dismiss } = useBottomSheetModal();
 
     const {
       control,
       handleSubmit,
       reset,
-      setFocus,
-      formState: { errors, ...formState },
-    } = useForm<CreateExerciseFormValues>({
+      formState: { errors },
+    } = useForm<ExerciseFormValues>({
       defaultValues: {
-        name: "",
-        targetMuscleGroup: "abductors",
+        name: exercise?.name ?? "",
+        targetMuscleGroup: exercise?.targetMuscleGroup ?? "abductors",
+        description: exercise?.description ?? "",
       },
     });
-
-    const [addExercise] = useAddExerciseMutation();
 
     const closeModal = () => {
       if (Keyboard.isVisible()) Keyboard.dismiss();
@@ -47,25 +49,16 @@ export const CreateExerciseModal = forwardRef(
       reset();
     };
 
-    const onSubmit: SubmitHandler<CreateExerciseFormValues> = async (
-      data: CreateExerciseFormValues
-    ) => {
-      console.log(data);
-      await addExercise({
-        name: data.name,
-        targetMuscleGroup: data.targetMuscleGroup,
-      })
-        .unwrap()
-        .catch((err) => console.error(err));
-
+    const onValid = (data: ExerciseFormValues) => {
+      onSubmit(data);
       closeModal();
     };
 
     return (
       <BottomModal
         ref={ref}
-        title="Add exercise"
-        subtitle="Create a new exercise to use in your workout templates"
+        title={title}
+        subtitle={subtitle}
         onDismiss={reset}
       >
         <View style={styles.container}>
@@ -96,7 +89,7 @@ export const CreateExerciseModal = forwardRef(
           </View>
           <Button
             text="Create exercise"
-            onPress={handleSubmit(onSubmit)}
+            onPress={handleSubmit(onValid)}
             type={"primary-solid-md"}
           />
         </View>

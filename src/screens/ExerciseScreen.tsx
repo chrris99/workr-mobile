@@ -4,7 +4,7 @@ import Text from "../design-system/typography/Text";
 import { spacing } from "../design-system/spacing/spacing";
 import { useCallback, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { CreateExerciseModal } from "../components/exercise/CreateExerciseModal";
+import { CreateExerciseModal } from "../components/exercise/modals/CreateExerciseModal";
 import { ExerciseList } from "../components/exercise/ExerciseList";
 import { Input } from "../components/base/input/Input";
 import { useGetExercisesQuery } from "../api/api";

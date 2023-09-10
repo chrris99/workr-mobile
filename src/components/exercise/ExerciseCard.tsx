@@ -7,6 +7,11 @@ import { Swipeable } from "react-native-gesture-handler";
 import { useDeleteExerciseMutation } from "../../api/api";
 import Badge from "../base/Badge";
 import { Button } from "../../design-system/buttons/Button";
+import { shadows } from "../../design-system/shadows/shadows";
+import { CreateExerciseModal } from "./modals/CreateExerciseModal";
+import { useCallback, useRef } from "react";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { UpdateExerciseModal } from "./modals/UpdateExerciseModal";
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -15,6 +20,13 @@ interface ExerciseCardProps {
 const AnimatedView = Animated.createAnimatedComponent(View);
 
 export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
+  const swipeableRef = useRef<Swipeable>(null);
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+  const openModal = useCallback(() => {
+    bottomSheetRef.current?.present();
+  }, []);
+
   const [deleteExercise] = useDeleteExerciseMutation();
 
   const renderRightActions = (
@@ -27,25 +39,33 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
     });
 
     return (
-      <View style={styles.actionContainer}>
-        <AnimatedView style={{ transform: [{ scale }] }} />
+      <>
+        <View style={styles.actionContainer}>
+          <AnimatedView style={{ transform: [{ scale }] }} />
 
-        <Button
-          type={"secondary-icon-sm"}
-          iconName="Edit"
-          onPress={() => console.log("edit")}
-        />
-        <Button
-          type={"secondary-icon-sm"}
-          iconName="Trash"
-          onPress={() => deleteExercise(exercise.id)}
-        />
-      </View>
+          <Button
+            type={"secondary-icon-sm"}
+            iconName="Edit"
+            onPress={() => {
+              openModal();
+              swipeableRef.current?.close();
+
+            }}
+          />
+          <Button
+            type={"secondary-icon-sm"}
+            iconName="Trash"
+            onPress={() => deleteExercise(exercise.id)}
+          />
+        </View>
+        <UpdateExerciseModal ref={bottomSheetRef} exercise={exercise} />
+      </>
     );
   };
 
   return (
     <Swipeable
+      ref={swipeableRef}
       renderRightActions={renderRightActions}
       enableTrackpadTwoFingerGesture
       rightThreshold={30}
