@@ -6,25 +6,11 @@ import { spacing } from "../../../../design-system/spacing/spacing";
 import { useState } from "react";
 import { colors } from "../../../../design-system/colors/colors";
 import {
-  Control,
   Controller,
-  FieldError,
   FieldValues,
-  Path,
-  RegisterOptions,
 } from "react-hook-form";
 import { Icon } from "../../../../design-system/icons/Icon";
-
-interface DropdownInputProps<T extends FieldValues> {
-  control: Control<T>;
-  name: Path<T>;
-  rules?: RegisterOptions<T>;
-  error?: FieldError;
-  data: DropdownItem[];
-  label?: string;
-  placeholder?: string;
-  searchPlaceholder?: string;
-}
+import { DropdownInputProps } from "../types";
 
 export const DropdownInput = <T extends FieldValues>({
   control,

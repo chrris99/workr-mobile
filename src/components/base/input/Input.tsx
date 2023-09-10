@@ -19,16 +19,7 @@ import {
   RegisterOptions,
 } from "react-hook-form";
 import { useBottomSheetInternal } from "@gorhom/bottom-sheet";
-
-export interface InputProps<T extends FieldValues> extends TextInputProps {
-  control: Control<T>;
-  name: Path<T>;
-  rules?: RegisterOptions<T>;
-  error?: FieldError;
-  icon?: string;
-  label?: string;
-  placeholder?: string;
-}
+import { InputProps } from "./types";
 
 export const Input = <T extends FieldValues>({
   control,
@@ -36,7 +27,6 @@ export const Input = <T extends FieldValues>({
   rules,
   error,
   label,
-  placeholder,
   ...props
 }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -87,7 +77,6 @@ export const Input = <T extends FieldValues>({
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 {...props}
-                placeholder={placeholder}
                 onChangeText={onChange}
                 onFocus={handleOnFocus}
                 onBlur={handleOnBlur}
