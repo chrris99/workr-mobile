@@ -1,7 +1,6 @@
 import {
   NativeSyntheticEvent,
   TextInputFocusEventData,
-  TextInputProps,
 } from "react-native/types";
 import { TextInput, StyleSheet, View } from "react-native";
 import { spacing } from "../../../design-system/spacing/spacing";
@@ -11,14 +10,9 @@ import { colors } from "../../../design-system/colors/colors";
 import { useCallback, useState } from "react";
 import { Icon } from "../../../design-system/icons/Icon";
 import {
-  Control,
   Controller,
-  FieldError,
   FieldValues,
-  Path,
-  RegisterOptions,
 } from "react-hook-form";
-import { useBottomSheetInternal } from "@gorhom/bottom-sheet";
 import { InputProps } from "./types";
 
 export const Input = <T extends FieldValues>({
@@ -31,28 +25,24 @@ export const Input = <T extends FieldValues>({
 }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const { shouldHandleKeyboardEvents } = useBottomSheetInternal();
-
   const handleOnFocus = useCallback(
     (args: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(true);
-      shouldHandleKeyboardEvents.value = true;
       if (props.onFocus) {
         props.onFocus(args);
       }
     },
-    [props.onFocus, shouldHandleKeyboardEvents]
+    [props.onFocus]
   );
 
   const handleOnBlur = useCallback(
     (args: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(false);
-      shouldHandleKeyboardEvents.value = false;
       if (props.onBlur) {
         props.onBlur(args);
       }
     },
-    [props.onBlur, shouldHandleKeyboardEvents]
+    [props.onBlur]
   );
 
   return (
@@ -79,7 +69,10 @@ export const Input = <T extends FieldValues>({
                 {...props}
                 onChangeText={onChange}
                 onFocus={handleOnFocus}
-                onBlur={handleOnBlur}
+                onBlur={(args) => {
+                  onBlur();
+                  handleOnBlur(args);
+                }}
                 value={value}
                 selectionColor={colors["primary-700"]}
                 style={[fonts["body-M-regular"], { flex: 1 }]}
