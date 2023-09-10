@@ -38,6 +38,7 @@ export const UpdateExerciseModal = forwardRef(
       <ExerciseModal
         ref={ref}
         title={`Update ${exercise.name.toLowerCase()} exercise`}
+        buttonTitle="Update exercise"
         subtitle="Use up to date exercises in your workout templates"
         onSubmit={onSubmit}
         exercise={exercise}

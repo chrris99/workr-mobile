@@ -19,13 +19,14 @@ export type ExerciseFormValues = {
 interface ExerciseModalProps {
   onSubmit: SubmitHandler<ExerciseFormValues>;
   title: string;
+  buttonTitle: string;
   subtitle?: string;
   exercise?: Exercise;
 }
 
 export const ExerciseModal = forwardRef(
   (
-    { onSubmit, title, subtitle, exercise }: ExerciseModalProps,
+    { onSubmit, title, buttonTitle, subtitle, exercise }: ExerciseModalProps,
     ref: ForwardedRef<BottomSheetModal>
   ) => {
     const { dismiss } = useBottomSheetModal();
@@ -88,7 +89,7 @@ export const ExerciseModal = forwardRef(
             />
           </View>
           <Button
-            text="Create exercise"
+            text={buttonTitle}
             onPress={handleSubmit(onValid)}
             type={"primary-solid-md"}
           />
