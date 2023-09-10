@@ -9,6 +9,7 @@ import { colors } from "../../../design-system/colors/colors";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { useForwardRef } from "../../../hooks/useForwardRef";
 import { BottomModalHeader } from "./BottomModalHeader";
+import { shadows } from "../../../design-system/shadows/shadows";
 
 interface BottomModalProps extends Pick<ViewProps, "children"> {
   title: string;
@@ -61,6 +62,7 @@ export const BottomModal = forwardRef(
 const styles = StyleSheet.create({
   background: {
     backgroundColor: colors["gray-50"],
+    ...shadows['md']
   },
   container: {
     flex: 1,
