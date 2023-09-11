@@ -1,8 +1,9 @@
-import {Keyboard, StyleSheet, View} from "react-native";
+import { Keyboard, StyleSheet, View } from "react-native";
 import Text from "../../../design-system/typography/Text";
 import { Button } from "../../../design-system/buttons/Button";
 import { useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { spacing } from "../../../design-system/spacing/spacing";
+import { Divider } from "../../../design-system/spacing/Divider";
 
 interface BottomModalHeaderProps {
   title: string;
@@ -16,9 +17,9 @@ export const BottomModalHeader = ({
   const { dismiss } = useBottomSheetModal();
 
   const handleClose = () => {
-    if(Keyboard.isVisible()) Keyboard.dismiss();
+    if (Keyboard.isVisible()) Keyboard.dismiss();
     dismiss();
-  }
+  };
 
   return (
     <View style={styles.header}>
@@ -39,14 +40,14 @@ export const BottomModalHeader = ({
           {subtitle}
         </Text>
       )}
+      <View style={styles.divider}>
+        <Divider />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    paddingBottom: spacing["spacing-7"],
-  },
   title: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -54,5 +55,8 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     paddingTop: spacing["spacing-1"],
+  },
+  divider: {
+    paddingVertical: spacing["spacing-5"],
   },
 });

@@ -1,17 +1,13 @@
 import {
-  BaseButton,
   BaseButtonProps,
   BorderlessButton,
-  RectButton,
-  RectButtonProps,
-  TouchableHighlight,
+  RectButton
 } from "react-native-gesture-handler";
 import { ButtonType, buttons } from "./buttons";
 import { IconName } from "../icons/icons";
 import Text from "../typography/Text";
 import { Icon } from "../icons/Icon";
-import { StyleSheet, TouchableHighlightProps, View } from "react-native";
-import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable";
+import { StyleSheet, View } from "react-native";
 import { spacing } from "../spacing/spacing";
 
 type IconPosition = "leading" | "trailing";
@@ -28,7 +24,7 @@ export const Button = (props: ButtonProps) => {
   const buttonStyles = buttons[type];
 
   const renderChildren = () => (
-    <View style={styles.container}>
+    <View style={styles.contentContainer}>
       {iconName && iconPosition === "leading" && (
         <Icon
           name={iconName}
@@ -63,10 +59,7 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <RectButton
-      style={[
-        buttonStyles.containerStyle,
-        { borderRadius: spacing["spacing-2"] },
-      ]}
+      style={[buttonStyles.containerStyle, styles.button]}
       activeOpacity={0.8}
       underlayColor={buttonStyles.containerHighlightColor}
       {...props}
@@ -77,7 +70,11 @@ export const Button = (props: ButtonProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  button: {
+    borderRadius: spacing["spacing-2"],
+    flexGrow: 1
+  },
+  contentContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",

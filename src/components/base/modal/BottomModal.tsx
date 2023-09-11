@@ -19,6 +19,7 @@ import { useForwardRef } from "../../../hooks/useForwardRef";
 import { BottomModalHeader } from "./BottomModalHeader";
 import { shadows } from "../../../design-system/shadows/shadows";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Divider } from "../../../design-system/spacing/Divider";
 
 interface BottomModalProps extends Pick<ViewProps, "children"> {
   title: string;
@@ -77,6 +78,7 @@ export const BottomModal = forwardRef(
         backgroundStyle={styles.background}
         onDismiss={onDismiss}
         keyboardBehavior={"interactive"}
+        keyboardBlurBehavior={"restore"}
       >
         <BottomSheetView
           style={[styles.container, { paddingBottom: insets.bottom }]}

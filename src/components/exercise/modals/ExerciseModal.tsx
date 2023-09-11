@@ -9,6 +9,7 @@ import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { Button } from "../../../design-system/buttons/Button";
 import { BottomSheetInput } from "../../base/input/BottomSheetInput";
+import { usePaginatedComponent } from "../../../hooks/usePaginatedComponent";
 
 export type ExerciseFormValues = {
   name: string;
@@ -55,6 +56,8 @@ export const ExerciseModal = forwardRef(
       closeModal();
     };
 
+    // TODO: footer component contains buttons
+
     return (
       <BottomModal
         ref={ref}
@@ -75,12 +78,12 @@ export const ExerciseModal = forwardRef(
               name={"name"}
               error={errors.name}
               placeholder="Exercise name"
-              label="Name"
+              label="Name*"
             />
             <DropdownInput
               control={control}
               name={"targetMuscleGroup"}
-              label={"Target muscle group"}
+              label={"Target muscle group*"}
               data={[...muscles].map((muscle) => ({
                 value: muscle,
                 label: muscle.charAt(0).toUpperCase() + muscle.slice(1),

@@ -8,7 +8,7 @@ import {
 import { TextInputProps } from "react-native";
 import { DropdownItem } from "./dropdown/DropdownItem";
 
-interface BaseInputProps<T extends FieldValues> {
+interface BaseControlledInputProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   rules?: RegisterOptions<T>;
@@ -16,11 +16,14 @@ interface BaseInputProps<T extends FieldValues> {
 }
 
 export interface InputProps<T extends FieldValues>
-  extends BaseInputProps<T>,
+  extends BaseControlledInputProps<T>,
     TextInputProps {
   icon?: string;
   label?: string;
 }
+
+export interface NumberInputProps<T extends FieldValues>
+  extends BaseControlledInputProps<T> {}
 
 export type DropdownItem = {
   label: string;
@@ -34,7 +37,7 @@ export interface DropdownItemProps {
 }
 
 export interface DropdownInputProps<T extends FieldValues>
-  extends BaseInputProps<T> {
+  extends BaseControlledInputProps<T> {
   data: DropdownItem[];
   label?: string;
   placeholder?: string;

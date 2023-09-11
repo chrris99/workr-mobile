@@ -5,23 +5,16 @@ import { spacing } from "./spacing";
 
 interface DividerProps {
   color?: Color;
-  text?: string;
 }
 
-export const Divider = ({ color, text }: DividerProps) => {
+export const Divider = ({ color }: DividerProps) => {
   const lineStyle: StyleProp<ViewStyle> = {
     ...styles.line,
-    backgroundColor: color ? colors[color] : colors["gray-300"],
+    backgroundColor: color ? colors[color] : colors["gray-200"],
   };
 
   return (
     <View style={styles.container}>
-      <View style={lineStyle} />
-      <View>
-        <Text type="body-S-regular" color="gray-500" style={styles.text}>
-          {text}
-        </Text>
-      </View>
       <View style={lineStyle} />
     </View>
   );
