@@ -3,6 +3,7 @@ import Text from "../../design-system/typography/Text";
 import { TextType } from "../../design-system/typography/fonts";
 import { Color } from "../../design-system/colors/colors";
 import { spacing } from "../../design-system/spacing/spacing";
+import { Button } from "../../design-system/buttons/Button";
 
 interface HeaderProps {
   title: string;
@@ -16,12 +17,15 @@ interface HeaderProps {
 export const Header = (props: HeaderProps) => {
   return (
     <View style={styles.headerContainer}>
-      <Text
-        type={props.titleStyle ?? "heading-XS-semibold"}
-        color={props.titleColor ?? "gray-900"}
-      >
-        {props.title}
-      </Text>
+      <View style={styles.titleContainer}>
+        <Text
+          type={props.titleStyle ?? "heading-S-semibold"}
+          color={props.titleColor ?? "gray-900"}
+        >
+          {props.title}
+        </Text>
+      </View>
+
       <Text
         type={props.subtitleStyle ?? "body-M-regular"}
         color={props.subtitleColor ?? "gray-500"}
@@ -34,6 +38,13 @@ export const Header = (props: HeaderProps) => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    gap: spacing["spacing-2"],
+    paddingVertical: spacing["spacing-8"],
+    gap: spacing["spacing-1"],
+  },
+  titleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    textAlignVertical: "center",
   },
 });

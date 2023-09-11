@@ -10,6 +10,7 @@ import { Input } from "../components/base/input/Input";
 import { useGetExercisesQuery } from "../api/api";
 import { Button } from "../design-system/buttons/Button";
 import { FeaturedIcon } from "../design-system/icons/FeaturedIcon";
+import { Header } from "../components/base/Header";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -22,9 +23,7 @@ const ExerciseScreen = () => {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Text type={"body-M-semibold"} style={styles.heading}>
-        Your Exercises
-      </Text>
+      <Header title="Exercises" subtitle="View all exercises created by you or your trainer"/>
 
       <View style={styles.contentContainer}>
         {data && data.length > 0 ? (
