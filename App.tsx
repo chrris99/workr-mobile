@@ -18,6 +18,7 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
 import { FormProvider, useForm } from "react-hook-form";
+import { StatusBar } from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,6 +40,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
+      <StatusBar style={'dark'} />
       <Provider store={store}>
         <ClerkProvider
           publishableKey={CLERK_PUBLISHABLE_KEY}
