@@ -72,7 +72,6 @@ export const Button = (props: ButtonProps) => {
 const styles = StyleSheet.create({
   button: {
     borderRadius: spacing["spacing-2"],
-    flexGrow: 1
   },
   contentContainer: {
     display: "flex",

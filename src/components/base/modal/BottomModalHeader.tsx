@@ -4,11 +4,9 @@ import { Button } from "../../../design-system/buttons/Button";
 import { useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { Divider } from "../../../design-system/spacing/Divider";
+import { BottomModalHeaderProps } from "./types";
 
-interface BottomModalHeaderProps {
-  title: string;
-  subtitle?: string;
-}
+
 
 export const BottomModalHeader = ({
   title,
@@ -22,7 +20,7 @@ export const BottomModalHeader = ({
   };
 
   return (
-    <View style={styles.header}>
+    <>
       <View style={styles.title}>
         <Text type={"body-L-semibold"}>{title}</Text>
         <Button
@@ -43,7 +41,7 @@ export const BottomModalHeader = ({
       <View style={styles.divider}>
         <Divider />
       </View>
-    </View>
+    </>
   );
 };
 

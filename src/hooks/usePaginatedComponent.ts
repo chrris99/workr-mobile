@@ -3,6 +3,9 @@ import { ReactElement, useState } from "react";
 export const usePaginatedComponent = (steps: ReactElement[]) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
+  const isFirstStep = () => currentStepIndex === 0;
+  const isLastStep = () => currentStepIndex === steps.length - 1;
+
   const prev = () =>
     setCurrentStepIndex((curr) => {
       if (curr <= 0) return curr;
@@ -15,12 +18,17 @@ export const usePaginatedComponent = (steps: ReactElement[]) => {
       return curr + 1;
     });
 
+  const reset = () => setCurrentStepIndex(0);
+
   return {
     steps,
     currentStepIndex,
+    stepCount: steps.length,
     step: steps[currentStepIndex],
-    isFirstStep: currentStepIndex === 0,
+    isFirstStep,
+    isLastStep,
     prev,
     next,
+    reset,
   };
 };

@@ -10,12 +10,10 @@ import { spacing } from "../../../design-system/spacing/spacing";
 import { Button } from "../../../design-system/buttons/Button";
 import { BottomSheetInput } from "../../base/input/BottomSheetInput";
 import { usePaginatedComponent } from "../../../hooks/usePaginatedComponent";
-
-export type ExerciseFormValues = {
-  name: string;
-  targetMuscleGroup: Muscle;
-  description: string;
-};
+import { ExerciseDetailForm } from "../forms/ExerciseDetailsForm";
+import { PaginatedBottomModal } from "../../base/modal/PaginatedBottomModal";
+import { ExerciseFormValues } from "../forms/types";
+import { ExerciseInstructionsForm } from "../forms/ExerciseInstructionsForm";
 
 interface ExerciseModalProps {
   onSubmit: SubmitHandler<ExerciseFormValues>;
@@ -42,8 +40,18 @@ export const ExerciseModal = forwardRef(
         name: exercise?.name ?? "",
         targetMuscleGroup: exercise?.targetMuscleGroup ?? "abductors",
         description: exercise?.description ?? "",
+        instructions: exercise?.instructions
+          ? exercise.instructions.map((instruction) => ({
+              description: instruction,
+            }))
+          : [{ description: "" }],
       },
     });
+
+    const modalPages = [
+      <ExerciseDetailForm control={control} />,
+      <ExerciseInstructionsForm control={control} />,
+    ];
 
     const closeModal = () => {
       if (Keyboard.isVisible()) Keyboard.dismiss();
@@ -56,16 +64,31 @@ export const ExerciseModal = forwardRef(
       closeModal();
     };
 
-    // TODO: footer component contains buttons
-
     return (
-      <BottomModal
+      <PaginatedBottomModal
         ref={ref}
+        pages={modalPages}
         title={title}
         subtitle={subtitle}
         onDismiss={reset}
-      >
-        <View style={styles.container}>
+      />
+    );
+  }
+);
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  form: {
+    gap: spacing["spacing-4"],
+    paddingBottom: spacing["spacing-7"],
+  },
+});
+
+/**
+ *  <View style={styles.container}>
           <View style={styles.form}>
             <BottomSheetInput
               control={control}
@@ -97,18 +120,4 @@ export const ExerciseModal = forwardRef(
             type={"primary-solid-md"}
           />
         </View>
-      </BottomModal>
-    );
-  }
-);
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  form: {
-    gap: spacing["spacing-4"],
-    paddingBottom: spacing["spacing-7"],
-  },
-});
+ */

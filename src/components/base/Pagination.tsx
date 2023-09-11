@@ -1,6 +1,6 @@
-import { StyleSheet, View, ViewStyle } from 'react-native';
-import { spacing } from '../../design-system/spacing/spacing';
-import { colors } from '../../design-system/colors/colors';
+import { StyleSheet, View, ViewStyle } from "react-native";
+import { spacing } from "../../design-system/spacing/spacing";
+import { colors } from "../../design-system/colors/colors";
 
 interface PaginationIndicatorProps {
   isCompleted: boolean;
@@ -8,10 +8,14 @@ interface PaginationIndicatorProps {
 
 const PaginationIndicator = ({ isCompleted }: PaginationIndicatorProps) => {
   const backgroundColorStyle: ViewStyle = {
-    backgroundColor: isCompleted ? colors['primary-700'] : colors['primary-200']
+    backgroundColor: isCompleted
+      ? colors["primary-700"]
+      : colors["primary-200"],
   };
 
-  return <View style={[styles.paginationIndicator, backgroundColorStyle]}></View>;
+  return (
+    <View style={[styles.paginationIndicator, backgroundColorStyle]}></View>
+  );
 };
 
 interface PaginationProps {
@@ -21,7 +25,7 @@ interface PaginationProps {
 
 export const Pagination = ({ steps, currentStep }: PaginationProps) => {
   const indicators = [...Array(steps)].map((_, index) => (
-    <PaginationIndicator isCompleted={index < currentStep} />
+    <PaginationIndicator key={index} isCompleted={index < currentStep} />
   ));
 
   return <View style={styles.pagination}>{indicators}</View>;
@@ -29,13 +33,13 @@ export const Pagination = ({ steps, currentStep }: PaginationProps) => {
 
 const styles = StyleSheet.create({
   paginationIndicator: {
-    height: spacing['spacing-2'],
-    width: spacing['spacing-12'],
-    borderRadius: 4
+    height: spacing["spacing-2"],
+    width: spacing["spacing-12"],
+    borderRadius: 4,
   },
   pagination: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: spacing['spacing-3']
-  }
+    display: "flex",
+    flexDirection: "row",
+    gap: spacing["spacing-3"],
+  },
 });

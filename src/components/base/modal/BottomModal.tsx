@@ -9,17 +9,15 @@ import {
   ForwardedRef,
   forwardRef,
   useCallback,
-  useEffect,
   useMemo,
 } from "react";
-import { Keyboard, StyleSheet, View, ViewProps } from "react-native";
+import { Keyboard, StyleSheet, ViewProps } from "react-native";
 import { colors } from "../../../design-system/colors/colors";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { useForwardRef } from "../../../hooks/useForwardRef";
 import { BottomModalHeader } from "./BottomModalHeader";
 import { shadows } from "../../../design-system/shadows/shadows";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Divider } from "../../../design-system/spacing/Divider";
 
 interface BottomModalProps extends Pick<ViewProps, "children"> {
   title: string;
