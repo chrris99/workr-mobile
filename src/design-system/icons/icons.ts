@@ -8,6 +8,7 @@ import Close from "../../../assets/icons/close.svg";
 import Edit from "../../../assets/icons/edit.svg";
 import Error from "../../../assets/icons/error.svg";
 import Home from "../../../assets/icons/home.svg";
+import Plus from "../../../assets/icons/plus.svg";
 import Search from "../../../assets/icons/search.svg";
 import Settings from "../../../assets/icons/settings.svg";
 import Target from "../../../assets/icons/target.svg";
@@ -26,6 +27,7 @@ export const icons = {
   Edit,
   Error,
   Home,
+  Plus,
   Search,
   Settings,
   Target,
