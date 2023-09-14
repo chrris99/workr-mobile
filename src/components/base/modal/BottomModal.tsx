@@ -1,50 +1,40 @@
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
+  BottomSheetScrollView,
   BottomSheetView,
-  useBottomSheetDynamicSnapPoints,
 } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
+import { ForwardedRef, forwardRef, useCallback, useMemo } from "react";
 import {
-  ForwardedRef,
-  forwardRef,
-  useCallback,
-  useMemo,
-} from "react";
-import { Keyboard, StyleSheet, ViewProps } from "react-native";
+  Dimensions,
+  Keyboard,
+  StyleSheet,
+  View,
+  ViewProps,
+} from "react-native";
 import { colors } from "../../../design-system/colors/colors";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { useForwardRef } from "../../../hooks/useForwardRef";
 import { BottomModalHeader } from "./BottomModalHeader";
 import { shadows } from "../../../design-system/shadows/shadows";
+import { BottomModalProps } from "./types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-interface BottomModalProps extends Pick<ViewProps, "children"> {
-  title: string;
-  subtitle?: string;
-  onDismiss?: () => void;
-}
-
-const DYNAMIC_SNAPPOINT_PLACEHOLDER = "CONTENT_HEIGHT";
 
 export const BottomModal = forwardRef(
   (
-    { children, title, subtitle, onDismiss }: BottomModalProps,
+    {
+      children,
+      title,
+      subtitle,
+      onDismiss,
+      scrollable = false,
+    }: BottomModalProps,
     ref: ForwardedRef<BottomSheetModal>
   ) => {
     const insets = useSafeAreaInsets();
     const modalRef = useForwardRef<BottomSheetModal>(ref);
-    const initialSnapPoints = useMemo(
-      () => ["15%", DYNAMIC_SNAPPOINT_PLACEHOLDER],
-      []
-    );
-
-    const {
-      animatedHandleHeight,
-      animatedSnapPoints,
-      animatedContentHeight,
-      handleContentLayout,
-    } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
+    const initialSnapPoints = useMemo(() => ["15%"], []);
 
     const renderBackdropComponent = useCallback(
       (props: BottomSheetDefaultBackdropProps) => (
@@ -59,32 +49,29 @@ export const BottomModal = forwardRef(
       []
     );
 
-    /*
-    useEffect(() => {
-      Keyboard.addListener('keyboardDidHide', () => modalRef.current.snapToIndex(1))
-      return () => Keyboard.removeAllListeners('keyboardDidHide')
-    }, [])*/
-
     return (
       <BottomSheetModal
         ref={modalRef}
         index={1}
-        snapPoints={animatedSnapPoints}
-        handleHeight={animatedHandleHeight}
-        contentHeight={animatedContentHeight}
+        enableDynamicSizing
+        topInset={insets.top}
+        maxDynamicContentSize={Dimensions.get("window").height * 0.85}
+        snapPoints={initialSnapPoints}
         backdropComponent={renderBackdropComponent}
         backgroundStyle={styles.background}
         onDismiss={onDismiss}
         keyboardBehavior={"interactive"}
         keyboardBlurBehavior={"restore"}
       >
-        <BottomSheetView
-          style={[styles.container, { paddingBottom: insets.bottom }]}
-          onLayout={handleContentLayout}
+        <BottomSheetScrollView
+          style={styles.container}
+          stickyHeaderIndices={[0]}
+          bounces={false}
         >
           <BottomModalHeader title={title} subtitle={subtitle} />
           {children}
-        </BottomSheetView>
+          <View style={{paddingBottom: insets.bottom}}/>
+        </BottomSheetScrollView>
       </BottomSheetModal>
     );
   }
@@ -93,10 +80,9 @@ export const BottomModal = forwardRef(
 const styles = StyleSheet.create({
   background: {
     backgroundColor: colors["gray-50"],
-    ...shadows["md"],
+    ...shadows["lg"],
   },
   container: {
-    flex: 1,
     paddingHorizontal: spacing["spacing-6"],
   },
 });

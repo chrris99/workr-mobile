@@ -9,6 +9,7 @@ export interface BottomModalProps extends Pick<ViewProps, "children"> {
   title: string;
   subtitle?: string;
   onDismiss?: () => void;
+  scrollable?: boolean;
 }
 
 export interface PaginatedBottomModalProps extends BottomModalProps {

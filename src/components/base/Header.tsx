@@ -7,7 +7,8 @@ import { Button } from "../../design-system/buttons/Button";
 
 interface HeaderProps {
   title: string;
-  subtitle: string;
+  rightComponent?: JSX.Element;
+  subtitle?: string;
   titleStyle?: TextType;
   titleColor?: Color;
   subtitleStyle?: TextType;
@@ -24,6 +25,7 @@ export const Header = (props: HeaderProps) => {
         >
           {props.title}
         </Text>
+        {props.rightComponent && props.rightComponent}
       </View>
 
       <Text
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    textAlignVertical: "center",
+    alignItems: 'center',
   },
 });

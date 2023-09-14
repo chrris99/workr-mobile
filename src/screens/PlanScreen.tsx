@@ -11,6 +11,7 @@ const PlanScreen = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const openModal = useCallback(() => {
+    console.log('hello')
     bottomSheetRef.current?.present();
   }, []);
 

@@ -1,18 +1,21 @@
 import { ForwardedRef, forwardRef } from "react";
 import { BottomModal } from "./BottomModal";
 import { PaginatedBottomModalProps } from "./types";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { BottomSheetModal, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { StyleSheet, View } from "react-native";
 import { Pagination } from "../Pagination";
 import { Button } from "../../../design-system/buttons/Button";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { usePaginatedComponent } from "../../../hooks/usePaginatedComponent";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const PaginatedBottomModal = forwardRef(
   (
-    { title, subtitle, onDismiss, pages }: PaginatedBottomModalProps,
+    { title, subtitle, onDismiss, pages, scrollable }: PaginatedBottomModalProps,
     ref: ForwardedRef<BottomSheetModal>
   ) => {
+    const insets = useSafeAreaInsets();
+
     const {
       step,
       stepCount,
@@ -21,7 +24,7 @@ export const PaginatedBottomModal = forwardRef(
       next,
       reset: resetPagination,
     } = usePaginatedComponent(pages);
-    
+
     return (
       <BottomModal
         ref={ref}
@@ -31,14 +34,15 @@ export const PaginatedBottomModal = forwardRef(
           if (onDismiss) onDismiss();
           resetPagination();
         }}
+        scrollable
       >
         <View style={styles.progress}>
           <Pagination currentStep={currentStepIndex + 1} steps={stepCount} />
         </View>
 
-        <View style={styles.content}>{step}</View>
+        {step}
 
-        <View style={styles.pagination}>
+        <View style={[styles.pagination, { paddingBottom: insets.bottom }]}>
           <Button
             text="Back"
             iconName="ArrowLeft"

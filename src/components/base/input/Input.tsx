@@ -21,6 +21,7 @@ export const Input = <T extends FieldValues>({
   rules,
   error,
   label,
+  style,
   ...props
 }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -75,7 +76,7 @@ export const Input = <T extends FieldValues>({
                 }}
                 value={value}
                 selectionColor={colors["primary-700"]}
-                style={[fonts["body-M-regular"], { flex: 1 }]}
+                style={[style, fonts["body-M-regular"], { flex: 1 }]}
               />
             )}
             name={name}

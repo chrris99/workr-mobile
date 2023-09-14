@@ -5,6 +5,8 @@ import { StyleSheet, View } from "react-native";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { useEffect } from "react";
 import { Button } from "../../../design-system/buttons/Button";
+import { TextArea } from "../../base/input/TextArea";
+import { BottomSheetTextArea } from "../../base/input/BottomSheetTextArea";
 
 export const ExerciseInstructionsForm = ({
   control,
@@ -27,7 +29,7 @@ export const ExerciseInstructionsForm = ({
     field: FieldArrayWithId<ExerciseFormValues, "instructions", "id">,
     index: number
   ) => (
-    <BottomSheetInput
+    <BottomSheetTextArea
       key={field.id}
       control={control}
       name={`instructions.${index}.description`}

@@ -7,8 +7,6 @@ import { Swipeable } from "react-native-gesture-handler";
 import { useDeleteExerciseMutation } from "../../api/api";
 import Badge from "../base/Badge";
 import { Button } from "../../design-system/buttons/Button";
-import { shadows } from "../../design-system/shadows/shadows";
-import { CreateExerciseModal } from "./modals/CreateExerciseModal";
 import { useCallback, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { UpdateExerciseModal } from "./modals/UpdateExerciseModal";

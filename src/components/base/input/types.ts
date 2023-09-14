@@ -22,6 +22,12 @@ export interface InputProps<T extends FieldValues>
   label?: string;
 }
 
+export interface TextAreaProps<T extends FieldValues>
+  extends BaseControlledInputProps<T>,
+    Omit<TextInputProps, "multiline" | "numberOfLines"> {
+  label?: string;
+}
+
 export interface NumberInputProps<T extends FieldValues>
   extends BaseControlledInputProps<T> {}
 
@@ -49,3 +55,6 @@ export interface BottomSheetInputProps<T extends FieldValues>
 
 export interface BottomSheetDropdownInputProps<T extends FieldValues>
   extends DropdownInputProps<T> {}
+
+export interface BottomSheetTextAreaProps<T extends FieldValues>
+  extends TextAreaProps<T> {}

@@ -5,6 +5,7 @@ import { useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { Divider } from "../../../design-system/spacing/Divider";
 import { BottomModalHeaderProps } from "./types";
+import { colors } from "../../../design-system/colors/colors";
 
 
 
@@ -20,7 +21,7 @@ export const BottomModalHeader = ({
   };
 
   return (
-    <>
+    <View style={styles.header}>
       <View style={styles.title}>
         <Text type={"body-L-semibold"}>{title}</Text>
         <Button
@@ -41,11 +42,14 @@ export const BottomModalHeader = ({
       <View style={styles.divider}>
         <Divider />
       </View>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  header: {
+    backgroundColor: colors['gray-50']
+  },
   title: {
     flexDirection: "row",
     justifyContent: "space-between",

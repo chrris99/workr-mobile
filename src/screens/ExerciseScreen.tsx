@@ -6,11 +6,11 @@ import { useCallback, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { CreateExerciseModal } from "../components/exercise/modals/CreateExerciseModal";
 import { ExerciseList } from "../components/exercise/ExerciseList";
-import { Input } from "../components/base/input/Input";
 import { useGetExercisesQuery } from "../api/api";
 import { Button } from "../design-system/buttons/Button";
 import { FeaturedIcon } from "../design-system/icons/FeaturedIcon";
 import { Header } from "../components/base/Header";
+import { Input } from "../components/base/input/Input";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
@@ -21,22 +21,27 @@ const ExerciseScreen = () => {
     bottomSheetRef.current?.present();
   }, []);
 
+  // TODO: Have uncontrolled inputs
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Header title="Exercises" subtitle="View all exercises created by you or your trainer"/>
+      <Header
+        title="Exercises"
+        subtitle="View all exercises created by you or your trainer"
+        rightComponent={
+          <Button
+            type={"primary-link-2xl"}
+            text="Add"
+            iconName="Plus"
+            iconPosition="leading"
+            onPress={openModal}
+          />
+        }
+      />
 
       <View style={styles.contentContainer}>
         {data && data.length > 0 ? (
-          <>
-            <ExerciseList exercises={data} />
-            <View style={styles.addButton}>
-              <Button
-                text="Add Exercise"
-                type={"primary-solid-lg"}
-                onPress={openModal}
-              />
-            </View>
-          </>
+          <ExerciseList exercises={data} />
         ) : (
           <View style={styles.emptyStateContainer}>
             <FeaturedIcon
@@ -92,10 +97,7 @@ const styles = StyleSheet.create({
   },
   exerciseList: {
     paddingBottom: spacing["spacing-5"],
-  },
-  addButton: {
-    paddingBottom: spacing["spacing-5"],
-  },
+  }
 });
 
 export default ExerciseScreen;

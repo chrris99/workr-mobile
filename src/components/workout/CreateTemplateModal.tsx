@@ -1,23 +1,23 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { ForwardedRef, forwardRef } from "react";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import {
+  BottomSheetFlatList,
+  BottomSheetModal,
+  BottomSheetScrollView,
+} from "@gorhom/bottom-sheet";
 import { spacing } from "../../design-system/spacing/spacing";
 import { usePaginatedComponent } from "../../hooks/usePaginatedComponent";
 import { WorkoutBlock } from "./WorkoutBlock";
 import { useForm } from "react-hook-form";
 import { PaginatedBottomModal } from "../base/modal/PaginatedBottomModal";
+import Text from "../../design-system/typography/Text";
+import { WorkoutPlanDetailsForm } from "./forms/WorkoutPlanDetailsForm";
+import { WorkoutPlanFormValues } from "./forms/types";
 
 interface CreateTemplateModalProps {}
 
-type WorkoutPlanFormValues = {
-  name: string;
-  description?: string;
-};
-
 export const CreateTemplateModal = forwardRef(
   (props: CreateTemplateModalProps, ref: ForwardedRef<BottomSheetModal>) => {
-    const modalPages = [<WorkoutBlock />, <WorkoutBlock />, <WorkoutBlock />];
-
     const {
       control,
       handleSubmit,
@@ -29,6 +29,12 @@ export const CreateTemplateModal = forwardRef(
         description: "",
       },
     });
+
+    const modalPages = [
+      <WorkoutPlanDetailsForm control={control} />,
+      <WorkoutBlock />,
+      <WorkoutBlock />,
+    ];
 
     return (
       <PaginatedBottomModal
