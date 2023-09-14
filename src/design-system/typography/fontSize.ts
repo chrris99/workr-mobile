@@ -44,8 +44,8 @@ export const fontSize: Record<FontSize, FontSizeStyle> = {
     letterSpacing: -0.02,
   },
   "heading-L": {
-    fontSize: 0,
-    lineHeight: 0,
+    fontSize: 48,
+    lineHeight: 60,
     letterSpacing: undefined,
   },
   "heading-XL": {
