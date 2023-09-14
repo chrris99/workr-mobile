@@ -50,8 +50,6 @@ export const CreateTemplateModal = forwardRef(
       ];
     }, [workoutDays]);
 
-    useEffect(() => console.log('workoud day', {workoutDays}), [workoutDays])
-
     const modalPages: BottomModalPage[] = useMemo(() => {
       return [
         {

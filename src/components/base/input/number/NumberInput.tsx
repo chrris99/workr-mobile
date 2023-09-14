@@ -1,42 +1,63 @@
 import { StyleSheet, View } from "react-native";
 import Text from "../../../../design-system/typography/Text";
 import { NumberInputProps } from "../types";
-import { Controller, FieldValues, useWatch } from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
 import { Button } from "../../../../design-system/buttons/Button";
+import { spacing } from "../../../../design-system/spacing/spacing";
 
 export const NumberInput = <T extends FieldValues>({
   control,
   name,
-  setValue,
   rules,
-  error,
+  label,
 }: NumberInputProps<T>) => {
-  const value = useWatch({ control, name });
-
   return (
     <View style={styles.container}>
-      <Button
-        type={"gray-icon-lg"}
-        iconName={"Plus"}
-        onPress={() => setValue(+value - 1)}
-      />
       <Controller
         control={control}
         rules={rules}
         render={({ field: { onChange, onBlur, value } }) => (
-          <Text type={"heading-M-semibold"}>{value}</Text>
+          <View style={styles.inputContainer}>
+            <Button
+              enabled={+value > 1}
+              type={"gray-icon-lg"}
+              iconName={"Minus"}
+              onPress={() => onChange(+value - 1)}
+            />
+            <Text type={"heading-L-semibold"} style={styles.value}>
+              {value}
+            </Text>
+            <Button
+              enabled={+value < 7}
+              type={"gray-icon-lg"}
+              iconName={"Plus"}
+              onPress={() => onChange(+value + 1)}
+            />
+          </View>
         )}
         name={name}
       />
-      <Button type={"gray-icon-lg"} iconName={"Plus"} />
+      {label && <Text type="body-S-medium" style={styles.label}>{label}</Text>}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    gap: spacing['spacing-3']
+  },
+  inputContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    gap: spacing["spacing-3"],
+  },
+  value: {
+    width: 30,
+    textAlign: "center",
+    marginBottom: -7,
+  },
+  label: {
+    textAlign: "center",
   },
 });

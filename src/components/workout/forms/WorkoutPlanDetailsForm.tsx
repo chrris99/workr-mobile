@@ -35,21 +35,16 @@ export const WorkoutPlanDetailsForm = ({
         placeholder="Add description..."
         label="Description"
       />
-      <NumberInput control={control} name={"daysPerWeek"} />
       <View style={styles.inputRow}>
-        <BottomSheetInput
+        <NumberInput
           control={control}
-          rules={{ valueAsNumber: true }}
-          keyboardType={"number-pad"}
           name={"weekCount"}
-          label="Weeks*"
+          label="Weeks"
         />
-        <BottomSheetInput
+        <NumberInput
           control={control}
-          rules={{ setValueAs: (value) => parseInt(value) }}
-          keyboardType={"number-pad"}
           name={"daysPerWeek"}
-          label="Days*"
+          label="Days per week"
         />
       </View>
     </View>

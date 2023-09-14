@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   pagination: {
     display: "flex",
     flexDirection: "row",
-    gap: spacing["spacing-3"],
+    gap: spacing["spacing-2"],
   },
   dot: {
     height: spacing["spacing-2"],
