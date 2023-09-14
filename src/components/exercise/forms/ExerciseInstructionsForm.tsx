@@ -4,7 +4,7 @@ import { Animated, StyleSheet, View } from "react-native";
 import { spacing } from "../../../design-system/spacing/spacing";
 import React, { useEffect, useRef } from "react";
 import { Button } from "../../../design-system/buttons/Button";
-import { BottomSheetTextArea } from "../../base/input/BottomSheetTextArea";
+import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
 import { Swipeable } from "react-native-gesture-handler";
 
 const AnimatedView = Animated.createAnimatedComponent(View);

@@ -5,7 +5,7 @@ import { BottomSheetInput } from "../../base/input/BottomSheetInput";
 import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
 import { muscles } from "../../../types/muscle";
 import { spacing } from "../../../design-system/spacing/spacing";
-import { TextArea } from "../../base/input/TextArea";
+import { TextArea } from "../../base/input/text-area/TextArea";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
 export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {

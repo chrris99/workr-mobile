@@ -1,5 +1,5 @@
 import { FieldValues } from "react-hook-form";
-import { BottomSheetTextAreaProps } from "./types";
+import { BottomSheetTextAreaProps } from "../types";
 import { useBottomSheetInternal } from "@gorhom/bottom-sheet";
 import { useCallback } from "react";
 import { NativeSyntheticEvent, TextInputFocusEventData } from "react-native";

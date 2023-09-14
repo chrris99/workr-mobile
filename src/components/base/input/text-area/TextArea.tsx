@@ -1,6 +1,6 @@
 import { FieldValues } from "react-hook-form";
-import { TextAreaProps } from "./types";
-import { Input } from "./Input";
+import { TextAreaProps } from "../types";
+import { Input } from "../Input";
 
 export const TextArea = <T extends FieldValues>({
   style,
