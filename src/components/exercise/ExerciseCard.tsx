@@ -65,7 +65,6 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
     <Swipeable
       ref={swipeableRef}
       renderRightActions={renderRightActions}
-      enableTrackpadTwoFingerGesture
       rightThreshold={30}
     >
       <View style={styles.container}>

@@ -39,16 +39,14 @@ export const BottomModalHeader = ({
           {subtitle}
         </Text>
       )}
-      <View style={styles.divider}>
-        <Divider />
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: colors['gray-50']
+    backgroundColor: colors['gray-50'],
+    paddingBottom: spacing['spacing-5']
   },
   title: {
     flexDirection: "row",
@@ -58,7 +56,5 @@ const styles = StyleSheet.create({
   subtitle: {
     paddingTop: spacing["spacing-1"],
   },
-  divider: {
-    paddingVertical: spacing["spacing-5"],
-  },
+
 });

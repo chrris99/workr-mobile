@@ -20,9 +20,16 @@ export const CreateExerciseModal = forwardRef(
     return (
       <ExerciseModal
         ref={ref}
-        title="Create a new exercise"
-        buttonTitle="Create exercise"
-        subtitle="Create a new exercise to use in your workout templates"
+        pages={{
+          detailPage: {
+            title: "Create a new exercise",
+            subtitle: "Create a new exercise to use in your workout templates",
+          },
+          instructionsPage: {
+            title: "Add instructions",
+            subtitle: "Provide step-by-step instructions on how to execute this exercise"
+          }
+        }}
         onSubmit={onSubmit}
       />
     );

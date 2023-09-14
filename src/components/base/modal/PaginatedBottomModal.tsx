@@ -8,22 +8,24 @@ import { Button } from "../../../design-system/buttons/Button";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { usePaginatedComponent } from "../../../hooks/usePaginatedComponent";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { usePaginatedBottomModal } from "../../../hooks/usePaginatedBottomModal";
 
 export const PaginatedBottomModal = forwardRef(
   (
-    { title, subtitle, onDismiss, pages, scrollable }: PaginatedBottomModalProps,
+    { onDismiss, pages }: PaginatedBottomModalProps,
     ref: ForwardedRef<BottomSheetModal>
   ) => {
     const insets = useSafeAreaInsets();
 
     const {
-      step,
-      stepCount,
-      currentStepIndex,
+      currentPageIndex,
+      title,
+      subtitle,
+      component,
       prev,
       next,
       reset: resetPagination,
-    } = usePaginatedComponent(pages);
+    } = usePaginatedBottomModal(pages);
 
     return (
       <BottomModal
@@ -37,17 +39,17 @@ export const PaginatedBottomModal = forwardRef(
         scrollable
       >
         <View style={styles.progress}>
-          <Pagination currentStep={currentStepIndex + 1} steps={stepCount} />
+          <Pagination currentStep={currentPageIndex + 1} steps={pages.length} />
         </View>
 
-        {step}
+        {component}
 
         <View style={[styles.pagination, { paddingBottom: insets.bottom }]}>
           <Button
             text="Back"
             iconName="ArrowLeft"
             iconPosition="leading"
-            type={"gray-solid-lg"}
+            type={"gray-link-lg"}
             onPress={prev}
           />
           <Button
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
   },
   pagination: {
     flexDirection: "row",
-    justifyContent: "center",
-    gap: spacing["spacing-4"],
+    justifyContent: "space-between",
+    alignItems: 'center'
   },
 });

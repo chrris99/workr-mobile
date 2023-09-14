@@ -12,6 +12,13 @@ export interface BottomModalProps extends Pick<ViewProps, "children"> {
   scrollable?: boolean;
 }
 
-export interface PaginatedBottomModalProps extends BottomModalProps {
-    pages: JSX.Element[]
+export interface BottomModalPage {
+  title: string;
+  subtitle?: string;
+  component: JSX.Element;
+}
+
+export interface PaginatedBottomModalProps
+  extends Omit<BottomModalProps, "title" | "subtitle"> {
+  pages: BottomModalPage[];
 }

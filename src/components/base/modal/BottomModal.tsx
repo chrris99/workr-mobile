@@ -71,7 +71,6 @@ export const BottomModal = forwardRef(
         >
           <BottomModalHeader title={title} subtitle={subtitle} />
           {children}
-          <View style={{paddingBottom: insets.bottom}}/>
         </BottomSheetScrollView>
       </BottomSheetModal>
     );
