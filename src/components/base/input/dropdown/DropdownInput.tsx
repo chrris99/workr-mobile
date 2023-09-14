@@ -32,13 +32,13 @@ export const DropdownInput = <T extends FieldValues>({
         rules={rules}
         render={({ field: { onChange, onBlur, value } }) => (
           <Dropdown
-            search
             style={[styles.dropdown, borderColorStyle]}
             containerStyle={styles.dropdownContainer}
             data={data}
             renderItem={(item, selected) => (
               <DropdownItem item={item} isSelected={selected ?? false} />
             )}
+            itemContainerStyle={styles.itemContainer}
             labelField={"label"}
             valueField={"value"}
             value={value}
@@ -61,6 +61,7 @@ export const DropdownInput = <T extends FieldValues>({
             )}
             showsVerticalScrollIndicator={false}
             inverted={false}
+            dropdownPosition={'top'}
           />
         )}
         name={name}
@@ -82,4 +83,7 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     borderRadius: spacing["spacing-2"],
   },
+  itemContainer: {
+    borderRadius: spacing["spacing-2"],
+  }
 });

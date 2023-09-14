@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing["spacing-2.5"],
     paddingHorizontal: spacing["spacing-3.5"],
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderRadius:10
   },
 });

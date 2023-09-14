@@ -62,6 +62,7 @@ export const BottomModal = forwardRef(
         onDismiss={onDismiss}
         keyboardBehavior={"interactive"}
         keyboardBlurBehavior={"restore"}
+        enablePanDownToClose={false}
       >
         <BottomSheetScrollView
           style={styles.container}
