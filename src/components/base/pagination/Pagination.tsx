@@ -1,7 +1,7 @@
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { spacing } from "../../design-system/spacing/spacing";
-import { colors } from "../../design-system/colors/colors";
-import { PaginationIndicatorProps, PaginationProps } from "./pagination/types";
+import { spacing } from "../../../design-system/spacing/spacing";
+import { colors } from "../../../design-system/colors/colors";
+import { PaginationIndicatorProps, PaginationProps } from "./types";
 
 const PaginationIndicator = ({
   isActive,

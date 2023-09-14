@@ -3,7 +3,7 @@ import { BottomModal } from "./BottomModal";
 import { PaginatedBottomModalProps } from "./types";
 import { BottomSheetModal, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { StyleSheet, View } from "react-native";
-import { Pagination } from "../Pagination";
+import { Pagination } from "../pagination/Pagination";
 import { Button } from "../../../design-system/buttons/Button";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { usePaginatedComponent } from "../../../hooks/usePaginatedComponent";
