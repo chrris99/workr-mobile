@@ -3,7 +3,6 @@ import Text from "../../design-system/typography/Text";
 import { TextType } from "../../design-system/typography/fonts";
 import { Color } from "../../design-system/colors/colors";
 import { spacing } from "../../design-system/spacing/spacing";
-import { Button } from "../../design-system/buttons/Button";
 
 interface HeaderProps {
   title: string;

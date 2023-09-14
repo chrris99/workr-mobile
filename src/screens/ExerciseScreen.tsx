@@ -15,13 +15,20 @@ import { Input } from "../components/base/input/Input";
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
-  const { data } = useGetExercisesQuery();
+  const { data, isFetching } = useGetExercisesQuery();
 
   const openModal = useCallback(() => {
     bottomSheetRef.current?.present();
   }, []);
 
-  // TODO: Have uncontrolled inputs
+  // TODO: Have uncontrolled
+
+  if (isFetching)
+    return (
+      <View style={[styles.container, { paddingTop: insets.top }]}>
+        <Text>Loading</Text>
+      </View>
+    );
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -97,7 +104,7 @@ const styles = StyleSheet.create({
   },
   exerciseList: {
     paddingBottom: spacing["spacing-5"],
-  }
+  },
 });
 
 export default ExerciseScreen;

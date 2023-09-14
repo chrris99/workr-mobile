@@ -5,6 +5,7 @@ import PlanScreen from "../screens/PlanScreen";
 import ExerciseScreen from "../screens/ExerciseScreen";
 import { Icon } from "../design-system/icons/Icon";
 import { Color, colors } from "../design-system/colors/colors";
+import ExerciseStackNavigator from "./ExerciseStackNavigator";
 
 type RootTabParamList = {
   Home: undefined;
@@ -53,7 +54,7 @@ const RootTabNavigator = () => {
       />
       <Tab.Screen
         name="Exercise"
-        component={ExerciseScreen}
+        component={ExerciseStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon

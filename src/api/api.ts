@@ -36,6 +36,13 @@ export const api = createApi({
             ]
           : [{ type: "Exercise", id: "ALL" }],
     }),
+    getExerciseById: builder.query<ExerciseResponse, string>({
+      query: (id) => ({
+        url: `exercise/${id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, id) => [{ type: "Exercise", id }],
+    }),
     addExercise: builder.mutation<ExerciseResponse, CreateExerciseRequest>({
       query: (body) => ({
         url: "exercise",
@@ -68,6 +75,7 @@ export const api = createApi({
 // Export hooks, which are auto-generated based on the defined endpoints
 export const {
   useGetExercisesQuery,
+  useGetExerciseByIdQuery,
   useAddExerciseMutation,
   useUpdateExerciseMutation,
   useDeleteExerciseMutation,

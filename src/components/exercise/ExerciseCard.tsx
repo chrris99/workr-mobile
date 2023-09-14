@@ -3,13 +3,15 @@ import { Exercise } from "../../models/exercise";
 import Text from "../../design-system/typography/Text";
 import { spacing } from "../../design-system/spacing/spacing";
 import { colors } from "../../design-system/colors/colors";
-import { Swipeable } from "react-native-gesture-handler";
+import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
 import { useDeleteExerciseMutation } from "../../api/api";
 import Badge from "../base/Badge";
 import { Button } from "../../design-system/buttons/Button";
 import { useCallback, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { UpdateExerciseModal } from "./modals/UpdateExerciseModal";
+import { useNavigation } from "@react-navigation/native";
+import { ExerciseListScreenNavigationProps } from "../../navigation/ExerciseStackNavigator";
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -20,6 +22,7 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
   const swipeableRef = useRef<Swipeable>(null);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
+  const navigation = useNavigation<ExerciseListScreenNavigationProps>();
 
   const openModal = useCallback(() => {
     bottomSheetRef.current?.present();
@@ -47,7 +50,6 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
             onPress={() => {
               openModal();
               swipeableRef.current?.close();
-
             }}
           />
           <Button
@@ -67,7 +69,12 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
       renderRightActions={renderRightActions}
       rightThreshold={30}
     >
-      <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() =>
+          navigation.navigate("ExerciseDetail", { id: exercise.id })
+        }
+      >
         <View style={styles.name}>
           <Text type="body-S-semibold" color="primary-700">
             {exercise.targetMuscleGroup}
@@ -84,7 +91,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
             <Badge type="solid" text={exercise.forceType} />
           )}
         </View>
-      </View>
+      </TouchableOpacity>
     </Swipeable>
   );
 };

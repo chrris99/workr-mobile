@@ -4,7 +4,6 @@ import {
 } from "@react-navigation/stack";
 import WelcomeScreen from "../screens/auth/WelcomeScreen";
 import SignUpScreen from "../screens/auth/SignUpScreen";
-import { Button } from "../components/base/Button";
 import SignInScreen from "../screens/auth/SignInScreen";
 
 type RootStackParamList = {

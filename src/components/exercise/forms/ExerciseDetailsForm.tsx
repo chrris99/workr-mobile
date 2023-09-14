@@ -7,6 +7,7 @@ import { muscles } from "../../../types/muscle";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { TextArea } from "../../base/input/text-area/TextArea";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
 
 export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
   const { errors } = useFormState({
@@ -27,6 +28,13 @@ export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
         error={errors.name}
         placeholder="Exercise name"
         label="Name*"
+      />
+      <BottomSheetTextArea
+        control={control}
+        name={"description"}
+        error={errors.description}
+        placeholder="Add description..."
+        label="Description"
       />
       <DropdownInput
         control={control}
