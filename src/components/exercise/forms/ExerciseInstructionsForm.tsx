@@ -54,7 +54,7 @@ export const ExerciseInstructionsForm = ({
     index: number
   ) => (
     <Swipeable
-      key={index}
+      key={field.id}
       ref={swipeableRef}
       renderRightActions={(dragX) => renderRightActions(index, dragX)}
     >
