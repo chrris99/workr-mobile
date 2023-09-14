@@ -4,8 +4,8 @@ import { BottomModalPage } from "../components/base/modal/types";
 export const usePaginatedBottomModal = (pages: BottomModalPage[]) => {
   const [currentPage, setCurrentPage] = useState(0);
 
-  const isFirstPage = () => currentPage === 0;
-  const isLastPage = () => currentPage === pages.length - 1;
+  const isFirstPage = currentPage === 0;
+  const isLastPage = currentPage === pages.length - 1;
 
   const prev = () =>
     setCurrentPage((curr) => {

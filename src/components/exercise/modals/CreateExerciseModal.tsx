@@ -12,6 +12,11 @@ export const CreateExerciseModal = forwardRef(
       await addExercise({
         name: data.name,
         targetMuscleGroup: data.targetMuscleGroup,
+        secondaryMuscleGroups: data.secondaryMuscleGroups,
+        description: data.description,
+        instructions: data.instructions.map(
+          (instruction) => instruction.description
+        ),
       })
         .unwrap()
         .catch((err) => console.error(err));
@@ -20,15 +25,16 @@ export const CreateExerciseModal = forwardRef(
     return (
       <ExerciseModal
         ref={ref}
-        pages={{
+        headers={{
           detailPage: {
             title: "Create a new exercise",
             subtitle: "Create a new exercise to use in your workout templates",
           },
           instructionsPage: {
             title: "Add instructions",
-            subtitle: "Provide step-by-step instructions on how to execute this exercise"
-          }
+            subtitle:
+              "Provide step-by-step instructions on how to execute this exercise",
+          },
         }}
         onSubmit={onSubmit}
       />

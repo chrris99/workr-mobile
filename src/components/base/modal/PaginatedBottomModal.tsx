@@ -6,13 +6,12 @@ import { StyleSheet, View } from "react-native";
 import { Pagination } from "../pagination/Pagination";
 import { Button } from "../../../design-system/buttons/Button";
 import { spacing } from "../../../design-system/spacing/spacing";
-import { usePaginatedComponent } from "../../../hooks/usePaginatedComponent";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { usePaginatedBottomModal } from "../../../hooks/usePaginatedBottomModal";
 
 export const PaginatedBottomModal = forwardRef(
   (
-    { onDismiss, pages }: PaginatedBottomModalProps,
+    { pages, onDismiss, onSubmit, submitTitle }: PaginatedBottomModalProps,
     ref: ForwardedRef<BottomSheetModal>
   ) => {
     const insets = useSafeAreaInsets();
@@ -22,10 +21,13 @@ export const PaginatedBottomModal = forwardRef(
       title,
       subtitle,
       component,
+      isLastPage,
       prev,
       next,
       reset: resetPagination,
     } = usePaginatedBottomModal(pages);
+
+    const primaryButtonText = isLastPage ? submitTitle ?? "Submit" : "Next";
 
     return (
       <BottomModal
@@ -48,12 +50,17 @@ export const PaginatedBottomModal = forwardRef(
             type={"gray-link-lg"}
             onPress={prev}
           />
-          <Pagination currentStepIndex={currentPageIndex} steps={pages.length} />
+          <Pagination
+            currentStepIndex={currentPageIndex}
+            steps={pages.length}
+          />
           <Button
-            text="Next"
+            text={primaryButtonText}
             iconName="ArrowRight"
             type={"primary-solid-lg"}
-            onPress={next}
+            onPress={() => {
+              isLastPage ? onSubmit() : next();
+            }}
           />
         </View>
       </BottomModal>
@@ -74,6 +81,6 @@ const styles = StyleSheet.create({
   pagination: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: 'center'
+    alignItems: "center",
   },
 });

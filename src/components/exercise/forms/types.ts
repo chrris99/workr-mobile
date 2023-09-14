@@ -8,6 +8,7 @@ export type ExerciseInstruction = {
 export type ExerciseFormValues = {
   name: string;
   targetMuscleGroup: Muscle;
+  secondaryMuscleGroups: Muscle[];
   description: string;
   instructions: ExerciseInstruction[];
 };

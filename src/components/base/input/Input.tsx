@@ -97,6 +97,7 @@ export const Input = <T extends FieldValues>({
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     gap: spacing["spacing-1.5"],
   },
   inputContainer: {

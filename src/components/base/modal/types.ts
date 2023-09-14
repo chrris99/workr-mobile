@@ -16,10 +16,12 @@ export interface BottomModalPage {
   component: JSX.Element;
   title: string;
   subtitle?: string;
-  submitTitle?: string;
 }
+export type BottomModalPageHeader = Omit<BottomModalPage, "component">;
 
 export interface PaginatedBottomModalProps
   extends Omit<BottomModalProps, "title" | "subtitle"> {
   pages: BottomModalPage[];
+  onSubmit: () => void;
+  submitTitle?: string;
 }

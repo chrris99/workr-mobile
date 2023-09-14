@@ -8,7 +8,7 @@ export type Exercise = {
   description?: string;
   forceType?: string;
   instructions?: string[];
-  secondaryMuscleGroups?: string[]
+  secondaryMuscleGroups?: Muscle[]
 };
 
 export type CreateExerciseRequest = Omit<Exercise, 'id'>

@@ -29,7 +29,9 @@ export interface TextAreaProps<T extends FieldValues>
 }
 
 export interface NumberInputProps<T extends FieldValues>
-  extends BaseControlledInputProps<T> {}
+  extends BaseControlledInputProps<T> {
+    setValue: (value: number) => void
+  }
 
 export type DropdownItem = {
   label: string;

@@ -77,18 +77,20 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
       >
         <View style={styles.name}>
           <Text type="body-S-semibold" color="primary-700">
-            {exercise.targetMuscleGroup}
+            {exercise.targetMuscleGroup.toUpperCase()}
           </Text>
           <Text type="body-L-semibold">{exercise.name}</Text>
           {exercise.description && (
             <Text type={"body-M-regular"} color={"gray-500"}>
-              {exercise.description}
+              {exercise.description.length > 100
+                ? `${exercise.description.slice(0, 100)}...`
+                : exercise.description}
             </Text>
           )}
         </View>
         <View style={styles.muscles}>
-          {exercise.forceType && (
-            <Badge type="solid" text={exercise.forceType} />
+          {exercise.secondaryMuscleGroups && (
+            <Badge type="solid" text={exercise.secondaryMuscleGroups[0]} />
           )}
         </View>
       </TouchableOpacity>

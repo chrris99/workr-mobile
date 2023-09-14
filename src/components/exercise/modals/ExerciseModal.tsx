@@ -7,22 +7,24 @@ import { ExerciseDetailForm } from "../forms/ExerciseDetailsForm";
 import { PaginatedBottomModal } from "../../base/modal/PaginatedBottomModal";
 import { ExerciseFormValues } from "../forms/types";
 import { ExerciseInstructionsForm } from "../forms/ExerciseInstructionsForm";
-import { BottomModalPage } from "../../base/modal/types";
+import { BottomModalPage, BottomModalPageHeader } from "../../base/modal/types";
+import { ExerciseMuscleForm } from "../forms/ExerciseMusclesForm";
 
-interface ExerciseModalPages {
-  detailPage?: Omit<BottomModalPage, 'component'>
-  instructionsPage?: Omit<BottomModalPage, 'component'>
+interface ExerciseModalPageHeaders {
+  detailPage?: BottomModalPageHeader
+  musclesPage?: BottomModalPageHeader,
+  instructionsPage?: BottomModalPageHeader
 }
 
 interface ExerciseModalProps {
-  pages?: ExerciseModalPages
+  headers?: ExerciseModalPageHeaders
   onSubmit: SubmitHandler<ExerciseFormValues>;
   exercise?: Exercise;
 }
 
 export const ExerciseModal = forwardRef(
   (
-    { pages, onSubmit, exercise }: ExerciseModalProps,
+    { headers, onSubmit, exercise }: ExerciseModalProps,
     ref: ForwardedRef<BottomSheetModal>
   ) => {
     const { dismiss } = useBottomSheetModal();
@@ -36,6 +38,7 @@ export const ExerciseModal = forwardRef(
       defaultValues: {
         name: exercise?.name ?? "",
         targetMuscleGroup: exercise?.targetMuscleGroup ?? "abductors",
+        secondaryMuscleGroups: exercise?.secondaryMuscleGroups ?? [],
         description: exercise?.description ?? "",
         instructions: exercise?.instructions
           ? exercise.instructions.map((instruction) => ({
@@ -48,13 +51,18 @@ export const ExerciseModal = forwardRef(
     const modalPages: BottomModalPage[] = [
       {
         component: <ExerciseDetailForm control={control} />,
-        title: pages?.detailPage?.title ?? "Input exerecise details",
-        subtitle: pages?.detailPage?.subtitle
+        title: headers?.detailPage?.title ?? "Input exerecise details",
+        subtitle: headers?.detailPage?.subtitle
+      },
+      {
+        component: <ExerciseMuscleForm control={control} />,
+        title: headers?.musclesPage?.title ?? "Add muscles",
+        subtitle: headers?.musclesPage?.subtitle
       },
       {
         component: <ExerciseInstructionsForm control={control} />,
-        title: pages?.instructionsPage?.title ?? "Default",
-        subtitle: pages?.instructionsPage?.subtitle
+        title: headers?.instructionsPage?.title ?? "Default",
+        subtitle: headers?.instructionsPage?.subtitle
       },
     ];
 
@@ -65,6 +73,7 @@ export const ExerciseModal = forwardRef(
     };
 
     const onValid = (data: ExerciseFormValues) => {
+      console.log('hello')
       onSubmit(data);
       closeModal();
     };
@@ -74,6 +83,7 @@ export const ExerciseModal = forwardRef(
         ref={ref}
         pages={modalPages}
         onDismiss={reset}
+        onSubmit={handleSubmit(onValid)}
       />
     );
   }

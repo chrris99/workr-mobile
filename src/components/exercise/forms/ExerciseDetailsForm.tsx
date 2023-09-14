@@ -5,8 +5,6 @@ import { BottomSheetInput } from "../../base/input/BottomSheetInput";
 import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
 import { muscles } from "../../../types/muscle";
 import { spacing } from "../../../design-system/spacing/spacing";
-import { TextArea } from "../../base/input/text-area/TextArea";
-import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
 
 export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
@@ -35,16 +33,6 @@ export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
         error={errors.description}
         placeholder="Add description..."
         label="Description"
-      />
-      <DropdownInput
-        control={control}
-        name={"targetMuscleGroup"}
-        label={"Target muscle group*"}
-        data={[...muscles].map((muscle) => ({
-          value: muscle,
-          label: muscle.charAt(0).toUpperCase() + muscle.slice(1),
-        }))}
-        placeholder="Select target muscle group"
       />
     </View>
   );

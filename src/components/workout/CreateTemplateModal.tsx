@@ -1,9 +1,14 @@
-import { ForwardedRef, forwardRef } from "react";
 import {
-  BottomSheetModal
-} from "@gorhom/bottom-sheet";
+  ForwardedRef,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { WorkoutBlock } from "./WorkoutBlock";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { PaginatedBottomModal } from "../base/modal/PaginatedBottomModal";
 import { WorkoutPlanDetailsForm } from "./forms/WorkoutPlanDetailsForm";
 import { WorkoutPlanFormValues } from "./forms/types";
@@ -13,6 +18,8 @@ interface CreateTemplateModalProps {}
 
 export const CreateTemplateModal = forwardRef(
   (props: CreateTemplateModalProps, ref: ForwardedRef<BottomSheetModal>) => {
+    const defaultWorkoutDays = 3;
+
     const {
       control,
       handleSubmit,
@@ -22,27 +29,40 @@ export const CreateTemplateModal = forwardRef(
       defaultValues: {
         name: "",
         description: "",
+        weekCount: 4,
+        daysPerWeek: defaultWorkoutDays,
       },
     });
 
-    const modalPages: BottomModalPage[] = [
-      {
-        component: <WorkoutPlanDetailsForm control={control} />,
-        title: "Add plan",
-        subtitle:
-          "Create a new workout plan from your workout templates and exercises",
-      },
-      {
-        component: <WorkoutBlock />,
-        title: "Define workout",
-        subtitle: "todo",
-      },
-      {
-        component: <WorkoutBlock />,
-        title: "Define workout",
-        subtitle: "todo",
-      },
-    ];
+    const workoutDays = useWatch({
+      control,
+      name: "daysPerWeek",
+      defaultValue: defaultWorkoutDays,
+    });
+
+    const workoutPages = useMemo(() => {
+      return [
+        ...[...Array(workoutDays)].map((_, index) => ({
+          component: <WorkoutBlock />,
+          title: `Add day ${index + 1}`,
+          subtitle: "Create a workout from a template for your plan",
+        })),
+      ];
+    }, [workoutDays]);
+
+    useEffect(() => console.log('workoud day', {workoutDays}), [workoutDays])
+
+    const modalPages: BottomModalPage[] = useMemo(() => {
+      return [
+        {
+          component: <WorkoutPlanDetailsForm control={control} />,
+          title: "Add plan",
+          subtitle:
+            "Create a new workout plan from your workout templates and exercises",
+        },
+        ...workoutPages
+      ];
+    }, [workoutPages]);
 
     return <PaginatedBottomModal ref={ref} pages={modalPages} />;
   }
