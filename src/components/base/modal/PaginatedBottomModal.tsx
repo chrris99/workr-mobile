@@ -38,10 +38,6 @@ export const PaginatedBottomModal = forwardRef(
         }}
         scrollable
       >
-        <View style={styles.progress}>
-          <Pagination currentStep={currentPageIndex + 1} steps={pages.length} />
-        </View>
-
         {component}
 
         <View style={[styles.pagination, { paddingBottom: insets.bottom }]}>
@@ -52,6 +48,7 @@ export const PaginatedBottomModal = forwardRef(
             type={"gray-link-lg"}
             onPress={prev}
           />
+          <Pagination currentStepIndex={currentPageIndex} steps={pages.length} />
           <Button
             text="Next"
             iconName="ArrowRight"

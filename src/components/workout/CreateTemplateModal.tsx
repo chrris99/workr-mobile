@@ -1,18 +1,13 @@
-import { StyleSheet, View } from "react-native";
 import { ForwardedRef, forwardRef } from "react";
 import {
-  BottomSheetFlatList,
-  BottomSheetModal,
-  BottomSheetScrollView,
+  BottomSheetModal
 } from "@gorhom/bottom-sheet";
-import { spacing } from "../../design-system/spacing/spacing";
-import { usePaginatedComponent } from "../../hooks/usePaginatedComponent";
 import { WorkoutBlock } from "./WorkoutBlock";
 import { useForm } from "react-hook-form";
 import { PaginatedBottomModal } from "../base/modal/PaginatedBottomModal";
-import Text from "../../design-system/typography/Text";
 import { WorkoutPlanDetailsForm } from "./forms/WorkoutPlanDetailsForm";
 import { WorkoutPlanFormValues } from "./forms/types";
+import { BottomModalPage } from "../base/modal/types";
 
 interface CreateTemplateModalProps {}
 
@@ -30,19 +25,25 @@ export const CreateTemplateModal = forwardRef(
       },
     });
 
-    const modalPages = [
-      <WorkoutPlanDetailsForm control={control} />,
-      <WorkoutBlock />,
-      <WorkoutBlock />,
+    const modalPages: BottomModalPage[] = [
+      {
+        component: <WorkoutPlanDetailsForm control={control} />,
+        title: "Add plan",
+        subtitle:
+          "Create a new workout plan from your workout templates and exercises",
+      },
+      {
+        component: <WorkoutBlock />,
+        title: "Define workout",
+        subtitle: "todo",
+      },
+      {
+        component: <WorkoutBlock />,
+        title: "Define workout",
+        subtitle: "todo",
+      },
     ];
 
-    return (
-      <PaginatedBottomModal
-        ref={ref}
-        pages={modalPages}
-        title="Add plan"
-        subtitle="Create a new workout plan from your workout templates and exercises"
-      />
-    );
+    return <PaginatedBottomModal ref={ref} pages={modalPages} />;
   }
 );

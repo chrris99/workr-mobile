@@ -10,8 +10,7 @@ export const TextArea = <T extends FieldValues>({
     <Input
       multiline
       numberOfLines={4}
-      maxLength={116}
-      style={[style, { height: 100, textAlignVertical: "top", justifyContent: 'flex-start' }]}
+      style={[style, { height: 116, textAlignVertical: "top", justifyContent: 'flex-start' }]}
       {...props}
     />
   );
