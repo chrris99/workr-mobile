@@ -13,9 +13,10 @@ export interface BottomModalProps extends Pick<ViewProps, "children"> {
 }
 
 export interface BottomModalPage {
+  component: JSX.Element;
   title: string;
   subtitle?: string;
-  component: JSX.Element;
+  submitTitle?: string;
 }
 
 export interface PaginatedBottomModalProps
