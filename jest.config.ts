@@ -2,7 +2,7 @@ import type { Config } from "jest";
 
 const config: Config = {
   verbose: true,
-  preset: "react-native",
+  preset: "jest-expo",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
 };
 
