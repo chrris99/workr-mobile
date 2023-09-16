@@ -1,0 +1,30 @@
+name: Tests CI
+
+on: [push]
+
+jobs:
+  setup:
+    name: Setup environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+      - name: Set up Node environment
+        uses: actions/setup-node@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: npm=${{ hashFiles('**/package-lock.json') }}
+      - name: Install node modules
+        run: npm install
+        if: steps.cache-node-modules.outputs.cache-hit != true
+        
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Jest
+        run: npm run test
