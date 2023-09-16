@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checkbox in selected state should render correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "borderRadius": 8,
+        "height": 16,
+        "justifyContent": "center",
+        "width": 16,
+      },
+      {
+        "backgroundColor": "#6941C6",
+        "borderColor": "#6941C6",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        undefined,
+        {
+          "fontFamily": "Poppins_400Regular",
+          "fontSize": 14,
+          "lineHeight": 20,
+        },
+        {
+          "color": "#101828",
+        },
+      ]
+    }
+  >
+    Check
+  </Text>
+</View>
+`;
+
+exports[`checkbox in unselected state should render correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "borderRadius": 8,
+        "height": 16,
+        "justifyContent": "center",
+        "width": 16,
+      },
+      {
+        "borderColor": "#D0D5DD",
+        "borderRadius": 8,
+        "borderWidth": 1,
+      },
+    ]
+  }
+/>
+`;
