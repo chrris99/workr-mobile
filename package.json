@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --config ./jest.config.ts --collectCoverage --coverageDirectory=./coverage --ci"
   },
   "dependencies": {
     "@clerk/clerk-expo": "^0.17.2",
