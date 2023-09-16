@@ -2,33 +2,34 @@ import { FieldValue, FieldValues } from "react-hook-form";
 import { IconName } from "../../../../design-system/icons/icons";
 import { BaseControlledInputProps } from "../types";
 
-export type SelectItem = {
-  id: number;
+export type SelectItem<T> = {
+  value: T;
   iconName: IconName;
-  value: string;
+  displayText: string;
 };
 
-type BaseSelectItemProps = {
+type BaseSelectItemProps<T> = {
   onChange: (...event: any[]) => void;
-  item: SelectItem;
+  item: SelectItem<T>;
 };
 
-type SingleSelectItemProps = BaseSelectItemProps & {
-  multiselect: false;
-  selectedIndex: number;
-  setSelectedIndex: (index: number) => void;
+export type SingleSelectItemProps<T> = BaseSelectItemProps<T> & {
+  selectedItem: T;
+  setSelectedItem: (value: T) => void;
 };
 
-type MultiSelectItemProps = BaseSelectItemProps & {
-  multiselect: true;
-  selectedIndexes: number[];
-  setSelectedIndexes: (indexes: number[]) => void;
+export type MultiSelectItemProps<T> = BaseSelectItemProps<T> & {
+  selectedItems: T[];
+  setSelectedItems: (indexes: T[]) => void;
 };
 
-export type SelectItemProps = SingleSelectItemProps | MultiSelectItemProps;
+export type SelectItemProps<T> = {
+  item: SelectItem<T>;
+  isSelected: boolean;
+  onPress: () => void;
+};
 
-export interface SelectInputProps<T extends FieldValues>
+export interface SelectInputProps<T extends FieldValues, V>
   extends BaseControlledInputProps<T> {
-  options: Omit<SelectItem, "id">[];
-  multiselect?: boolean;
+  options: SelectItem<V>[];
 }
