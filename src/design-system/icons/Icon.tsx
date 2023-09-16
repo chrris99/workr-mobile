@@ -1,7 +1,7 @@
 import { Color, colors } from "../colors/colors";
 import { IconName, icons } from "./icons";
 
-export type IconSize = "S" | "M";
+export type IconSize = "XS" | "S" | "M";
 
 interface IconProps {
   name: IconName;
@@ -11,6 +11,7 @@ interface IconProps {
 }
 
 const iconSize: Record<IconSize, number> = {
+  XS: 10,
   S: 20,
   M: 24,
 };

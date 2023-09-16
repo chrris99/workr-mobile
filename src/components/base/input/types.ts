@@ -8,7 +8,7 @@ import {
 import { TextInputProps } from "react-native";
 import { DropdownItem } from "./dropdown/DropdownItem";
 
-interface BaseControlledInputProps<T extends FieldValues> {
+export interface BaseControlledInputProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   rules?: RegisterOptions<T>;

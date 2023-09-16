@@ -6,6 +6,7 @@ import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
 import { muscles } from "../../../types/muscle";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
+import { SelectInput } from "../../base/input/select/SelectInput";
 
 export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
   const { errors } = useFormState({
