@@ -1,11 +1,6 @@
-import {
-  FlatList,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
-import Badge from "./base/Badge";
-import { spacing } from "../design-system/spacing/spacing";
+import Badge from "@/components/base/Badge";
+import { spacing } from "@/design-system/spacing/spacing";
+import { FlatList, Pressable, StyleSheet, View } from "react-native";
 
 interface ListItemProps<T extends { text: string }> {
   item: T;

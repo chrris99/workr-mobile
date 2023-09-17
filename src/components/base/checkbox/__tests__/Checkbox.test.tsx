@@ -1,5 +1,5 @@
+import { Checkbox } from "@/components/base/checkbox/Checkbox";
 import { render } from "@testing-library/react-native";
-import { Checkbox } from "../Checkbox";
 
 describe("checkbox", () => {
   describe("in selected state", () => {

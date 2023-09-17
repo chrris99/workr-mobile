@@ -1,9 +1,9 @@
-import { StyleSheet, View } from "react-native";
+import { MultiSelectItem } from "@/components/base/input/select/MultiSelectItem";
+import { SelectInputProps } from "@/components/base/input/select/types";
+import { spacing } from "@/design-system/spacing/spacing";
 import { useState } from "react";
-import { SelectInputProps } from "./types";
-import { spacing } from "../../../../design-system/spacing/spacing";
 import { Controller, FieldValues } from "react-hook-form";
-import { MultiSelectItem } from "./MultiSelectItem";
+import { StyleSheet, View } from "react-native";
 
 export const MultiSelectInput = <T extends FieldValues, V>({
   control,

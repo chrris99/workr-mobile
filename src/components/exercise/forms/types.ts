@@ -1,5 +1,5 @@
-import { Control, FieldValues, Path } from "react-hook-form";
-import { Muscle } from "../../../types/muscle";
+import { Muscle } from "@/types/muscle";
+import { Control } from "react-hook-form";
 
 export type ExerciseInstruction = {
   description: string;

@@ -1,8 +1,8 @@
+import { SelectInput } from "@/components/base/input/select/SelectInput";
+import { SINGLE_SELECT_ITEM_TEST_IDS } from "@/components/base/input/select/SingleSelectItem";
+import { Item } from "@/components/base/input/select/types";
 import { render, renderHook } from "@testing-library/react-native";
-import { Item } from "../types";
-import { SelectInput } from "../SelectInput";
 import { useForm } from "react-hook-form";
-import { SINGLE_SELECT_ITEM_TEST_IDS } from "../SingleSelectItem";
 
 const options: Item<string>[] = [
   { value: "abs", displayText: "Abs", iconName: "Abs" },

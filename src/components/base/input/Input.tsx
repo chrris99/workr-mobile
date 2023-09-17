@@ -1,19 +1,16 @@
+import { InputProps } from "@/components/base/input/types";
+import { colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { fonts } from "@/design-system/typography/fonts";
+import { useCallback, useState } from "react";
+import { Controller, FieldValues } from "react-hook-form";
+import { StyleSheet, TextInput, View } from "react-native";
 import {
   NativeSyntheticEvent,
   TextInputFocusEventData,
 } from "react-native/types";
-import { TextInput, StyleSheet, View } from "react-native";
-import { spacing } from "../../../design-system/spacing/spacing";
-import { fonts } from "../../../design-system/typography/fonts";
-import Text from "../../../design-system/typography/Text";
-import { colors } from "../../../design-system/colors/colors";
-import { useCallback, useState } from "react";
-import { Icon } from "../../../design-system/icons/Icon";
-import {
-  Controller,
-  FieldValues,
-} from "react-hook-form";
-import { InputProps } from "./types";
 
 export const Input = <T extends FieldValues>({
   control,

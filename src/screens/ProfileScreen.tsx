@@ -1,11 +1,10 @@
-import { Image, StyleSheet, View } from "react-native";
-import Text from "../design-system/typography/Text";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SettingsList } from "@/components/profile/SettingsList";
+import { Button } from "@/design-system/buttons/Button";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
 import { useAuth, useUser } from "@clerk/clerk-expo";
-import { SettingsList } from "../components/profile/SettingsList";
-import { spacing } from "../design-system/spacing/spacing";
-
-import { Button } from "../design-system/buttons/Button";
+import { Image, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
   const insets = useSafeAreaInsets();

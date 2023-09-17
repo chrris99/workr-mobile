@@ -1,5 +1,5 @@
-import { Color, colors } from "../colors/colors";
-import { IconName, icons } from "./icons";
+import { Color, colors } from "@/design-system/colors/colors";
+import { IconName, icons } from "@/design-system/icons/icons";
 
 export type IconSize = "XS" | "S" | "M";
 

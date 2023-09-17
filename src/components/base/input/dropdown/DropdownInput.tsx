@@ -1,13 +1,13 @@
+import { DropdownItem } from "@/components/base/input/dropdown/DropdownItem";
+import { DropdownInputProps } from "@/components/base/input/dropdown/types";
+import { colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { useState } from "react";
+import { Controller, FieldValues } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import Text from "../../../../design-system/typography/Text";
-import { DropdownItem } from "./DropdownItem";
-import { spacing } from "../../../../design-system/spacing/spacing";
-import { useState } from "react";
-import { colors } from "../../../../design-system/colors/colors";
-import { Controller, FieldValues } from "react-hook-form";
-import { Icon } from "../../../../design-system/icons/Icon";
-import { DropdownInputProps } from "../types";
 
 export const DropdownInput = <T extends FieldValues>({
   control,
@@ -61,7 +61,7 @@ export const DropdownInput = <T extends FieldValues>({
             )}
             showsVerticalScrollIndicator={false}
             inverted={false}
-            dropdownPosition={'top'}
+            dropdownPosition={"top"}
           />
         )}
         name={name}
@@ -85,5 +85,5 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     borderRadius: spacing["spacing-2"],
-  }
+  },
 });

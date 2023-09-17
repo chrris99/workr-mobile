@@ -1,13 +1,11 @@
+import { BottomSheetInput } from "@/components/base/input/BottomSheetInput";
+import { MultiSelectInput } from "@/components/base/input/select/MultiSelectInput";
+import { BottomSheetTextArea } from "@/components/base/input/text-area/BottomSheetTextArea";
+import { BaseExerciseFormProps } from "@/components/exercise/forms/types";
+import { spacing } from "@/design-system/spacing/spacing";
+import { mapMuscle, muscles } from "@/types/muscle";
 import { useFormState } from "react-hook-form";
-import { BaseExerciseFormProps } from "./types";
 import { StyleSheet, View } from "react-native";
-import { BottomSheetInput } from "../../base/input/BottomSheetInput";
-import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
-import { mapMuscle, muscles } from "../../../types/muscle";
-import { spacing } from "../../../design-system/spacing/spacing";
-import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
-import { SelectInput } from "../../base/input/select/SelectInput";
-import { MultiSelectInput } from "../../base/input/select/MultiSelectInput";
 
 export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
   const { errors } = useFormState({
@@ -42,7 +40,7 @@ export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
         options={[...muscles].map((muscle) => ({
           value: muscle,
           displayText: muscle,
-          iconName: mapMuscle(muscle)
+          iconName: mapMuscle(muscle),
         }))}
       />
     </View>

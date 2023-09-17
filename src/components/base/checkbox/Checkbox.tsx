@@ -1,7 +1,7 @@
+import { colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
+import { spacing } from "@/design-system/spacing/spacing";
 import { StyleSheet, View } from "react-native";
-import { Icon } from "../../../design-system/icons/Icon";
-import { spacing } from "../../../design-system/spacing/spacing";
-import { colors } from "../../../design-system/colors/colors";
 
 interface CheckboxProps {
   selected: boolean;
@@ -12,7 +12,9 @@ export const Checkbox = ({ selected }: CheckboxProps) => {
 
   return (
     <View style={[styles.container, selectionStyle]}>
-      {selected && <Icon name={"Check"} color={"white"} size="XS" strokeWidth={4}/>}
+      {selected && (
+        <Icon name={"Check"} color={"white"} size="XS" strokeWidth={4} />
+      )}
     </View>
   );
 };
@@ -22,8 +24,8 @@ const styles = StyleSheet.create({
     width: spacing["spacing-4"],
     height: spacing["spacing-4"],
     borderRadius: spacing["spacing-2"],
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   selected: {
     borderWidth: 1,

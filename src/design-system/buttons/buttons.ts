@@ -1,15 +1,15 @@
-import { ViewStyle } from "react-native";
-import { buttonContainerStyle } from "./buttonContainer";
 import {
   buttonColor,
   buttonHiglightColor,
   buttonTextColor,
-} from "./buttonColor";
-import { buttonText } from "./buttonText";
-import { IconSize } from "../icons/Icon";
-import { buttonIcon } from "./buttonIcon";
-import { TextType } from "../typography/fonts";
-import { Color } from "../colors/colors";
+} from "@/design-system/buttons/buttonColor";
+import { buttonContainerStyle } from "@/design-system/buttons/buttonContainer";
+import { buttonIcon } from "@/design-system/buttons/buttonIcon";
+import { buttonText } from "@/design-system/buttons/buttonText";
+import { Color } from "@/design-system/colors/colors";
+import { IconSize } from "@/design-system/icons/Icon";
+import { TextType } from "@/design-system/typography/fonts";
+import { ViewStyle } from "react-native";
 
 export type ButtonHierarchy = "primary" | "secondary" | "gray";
 export type ButtonVariant = "solid" | "link" | "icon";

@@ -1,13 +1,13 @@
+import { BottomModal } from "@/components/base/modal/BottomModal";
+import { PaginatedBottomModalProps } from "@/components/base/modal/types";
+import { Pagination } from "@/components/base/pagination/Pagination";
+import { Button } from "@/design-system/buttons/Button";
+import { spacing } from "@/design-system/spacing/spacing";
+import { usePaginatedBottomModal } from "@/hooks/usePaginatedBottomModal";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { ForwardedRef, forwardRef } from "react";
-import { BottomModal } from "./BottomModal";
-import { PaginatedBottomModalProps } from "./types";
-import { BottomSheetModal, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { StyleSheet, View } from "react-native";
-import { Pagination } from "../pagination/Pagination";
-import { Button } from "../../../design-system/buttons/Button";
-import { spacing } from "../../../design-system/spacing/spacing";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { usePaginatedBottomModal } from "../../../hooks/usePaginatedBottomModal";
 
 export const PaginatedBottomModal = forwardRef(
   (

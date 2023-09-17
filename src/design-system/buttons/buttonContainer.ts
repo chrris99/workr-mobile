@@ -1,6 +1,6 @@
+import { ButtonSize, ButtonVariant } from "@/design-system/buttons/buttons";
+import { spacing } from "@/design-system/spacing/spacing";
 import { ViewStyle } from "react-native";
-import { spacing } from "../spacing/spacing";
-import { ButtonSize, ButtonVariant } from "./buttons";
 
 type ButtonContainerType = `${ButtonVariant}-${ButtonSize}`;
 
@@ -10,12 +10,7 @@ const linkContainerStyle: Pick<ViewStyle, "display" | "gap" | "padding"> = {
 
 export const buttonContainerStyle: Record<
   ButtonContainerType,
-  Pick<
-    ViewStyle,
-    | "paddingHorizontal"
-    | "paddingVertical"
-    | "padding"
-  >
+  Pick<ViewStyle, "paddingHorizontal" | "paddingVertical" | "padding">
 > = {
   "solid-sm": {
     paddingHorizontal: spacing["spacing-3.5"],

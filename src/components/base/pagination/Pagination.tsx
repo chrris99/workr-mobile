@@ -1,7 +1,10 @@
+import {
+  PaginationIndicatorProps,
+  PaginationProps,
+} from "@/components/base/pagination/types";
+import { colors } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { spacing } from "../../../design-system/spacing/spacing";
-import { colors } from "../../../design-system/colors/colors";
-import { PaginationIndicatorProps, PaginationProps } from "./types";
 
 const PaginationIndicator = ({
   isActive,
@@ -16,15 +19,24 @@ const PaginationIndicator = ({
   return <View style={[sizeStyle, backgroundColorStyle]}></View>;
 };
 
-export const Pagination = ({ steps, currentStepIndex, type = 'active', style = 'dot' }: PaginationProps) => {
+export const Pagination = ({
+  steps,
+  currentStepIndex,
+  type = "active",
+  style = "dot",
+}: PaginationProps) => {
   const calculateIsActive = (index: number) => {
-    if (type === 'active') return currentStepIndex === index
+    if (type === "active") return currentStepIndex === index;
 
-    return index <= currentStepIndex
-  }
+    return index <= currentStepIndex;
+  };
 
   const indicators = [...Array(steps)].map((_, index) => (
-    <PaginationIndicator key={index} isActive={calculateIsActive(index)} paginationStyle={style} />
+    <PaginationIndicator
+      key={index}
+      isActive={calculateIsActive(index)}
+      paginationStyle={style}
+    />
   ));
 
   return <View style={styles.pagination}>{indicators}</View>;

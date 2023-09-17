@@ -1,8 +1,8 @@
-import { ForwardedRef, forwardRef } from "react";
+import { useAddExerciseMutation } from "@/api/api";
+import { ExerciseFormValues } from "@/components/exercise/forms/types";
+import { ExerciseModal } from "@/components/exercise/modals/ExerciseModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { useAddExerciseMutation } from "../../../api/api";
-import { ExerciseModal } from "./ExerciseModal";
-import { ExerciseFormValues } from "../forms/types";
+import { ForwardedRef, forwardRef } from "react";
 
 export const CreateExerciseModal = forwardRef(
   (_, ref: ForwardedRef<BottomSheetModal>) => {

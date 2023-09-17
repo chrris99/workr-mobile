@@ -1,9 +1,8 @@
+import { Color, colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
+import { IconName } from "@/design-system/icons/icons";
+import { spacing } from "@/design-system/spacing/spacing";
 import { StyleSheet, View } from "react-native";
-import { Icon } from "./Icon";
-import { IconName } from "./icons";
-import { spacing } from "../spacing/spacing";
-import { color } from "react-native-reanimated";
-import { Color, colors } from "../colors/colors";
 
 interface FeaturedIconProps {
   iconName: IconName;

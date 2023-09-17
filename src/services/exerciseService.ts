@@ -1,7 +1,4 @@
-import {
-  CreateExerciseRequest,
-  ExerciseResponse,
-} from "../models/exercise";
+import { CreateExerciseRequest, ExerciseResponse } from "@/models/exercise";
 import axios from "axios";
 
 const BASE_URI = "http://localhost:5117/api/exercise";

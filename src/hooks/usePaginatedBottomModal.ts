@@ -1,5 +1,5 @@
+import { BottomModalPage } from "@/components/base/modal/types";
 import { useState } from "react";
-import { BottomModalPage } from "../components/base/modal/types";
 
 export const usePaginatedBottomModal = (pages: BottomModalPage[]) => {
   const [currentPage, setCurrentPage] = useState(0);

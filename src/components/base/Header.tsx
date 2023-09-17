@@ -1,8 +1,8 @@
+import { Color } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { TextType } from "@/design-system/typography/fonts";
 import { StyleSheet, View } from "react-native";
-import Text from "../../design-system/typography/Text";
-import { TextType } from "../../design-system/typography/fonts";
-import { Color } from "../../design-system/colors/colors";
-import { spacing } from "../../design-system/spacing/spacing";
 
 interface HeaderProps {
   title: string;
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: 'center',
+    alignItems: "center",
   },
 });

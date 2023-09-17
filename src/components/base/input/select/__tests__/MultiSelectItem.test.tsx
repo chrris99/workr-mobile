@@ -1,7 +1,7 @@
+import { MultiSelectItem } from "@/components/base/input/select/MultiSelectItem";
+import { SELECT_ITEM_TEST_IDS } from "@/components/base/input/select/SelectItem";
+import { Item } from "@/components/base/input/select/types";
 import { fireEvent, render } from "@testing-library/react-native";
-import { Item } from "../types";
-import { MultiSelectItem } from "../MultiSelectItem";
-import { SELECT_ITEM_TEST_IDS } from "../SelectItem";
 
 const mockItem: Item<string> = {
   value: "abs",

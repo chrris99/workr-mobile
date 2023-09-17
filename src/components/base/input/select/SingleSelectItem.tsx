@@ -1,7 +1,7 @@
-import { SingleSelectItemProps } from "./types";
-import { SelectItem } from "./SelectItem";
+import { SelectItem } from "@/components/base/input/select/SelectItem";
+import { SingleSelectItemProps } from "@/components/base/input/select/types";
+import { testId } from "@/utils/testId";
 import { View } from "react-native";
-import { testId } from "../../../../utils/testId";
 
 export const SINGLE_SELECT_ITEM_TEST_IDS = {
   ITEM: testId("single-select-item"),

@@ -1,10 +1,13 @@
+import { BottomSheetTextArea } from "@/components/base/input/text-area/BottomSheetTextArea";
+import {
+  BaseExerciseFormProps,
+  ExerciseFormValues,
+} from "@/components/exercise/forms/types";
+import { Button } from "@/design-system/buttons/Button";
+import { spacing } from "@/design-system/spacing/spacing";
+import React, { useRef } from "react";
 import { FieldArrayWithId, useFieldArray, useFormState } from "react-hook-form";
-import { BaseExerciseFormProps, ExerciseFormValues } from "./types";
 import { Animated, StyleSheet, View } from "react-native";
-import { spacing } from "../../../design-system/spacing/spacing";
-import React, { useEffect, useRef } from "react";
-import { Button } from "../../../design-system/buttons/Button";
-import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
 import { Swipeable } from "react-native-gesture-handler";
 
 const AnimatedView = Animated.createAnimatedComponent(View);

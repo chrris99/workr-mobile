@@ -1,18 +1,11 @@
-import {
-  ForwardedRef,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { PaginatedBottomModal } from "@/components/base/modal/PaginatedBottomModal";
+import { BottomModalPage } from "@/components/base/modal/types";
+import { WorkoutBlock } from "@/components/workout/WorkoutBlock";
+import { WorkoutPlanDetailsForm } from "@/components/workout/forms/WorkoutPlanDetailsForm";
+import { WorkoutPlanFormValues } from "@/components/workout/forms/types";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { WorkoutBlock } from "./WorkoutBlock";
+import { ForwardedRef, forwardRef, useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { PaginatedBottomModal } from "../base/modal/PaginatedBottomModal";
-import { WorkoutPlanDetailsForm } from "./forms/WorkoutPlanDetailsForm";
-import { WorkoutPlanFormValues } from "./forms/types";
-import { BottomModalPage } from "../base/modal/types";
 
 interface CreateTemplateModalProps {}
 
@@ -58,7 +51,7 @@ export const CreateTemplateModal = forwardRef(
           subtitle:
             "Create a new workout plan from your workout templates and exercises",
         },
-        ...workoutPages
+        ...workoutPages,
       ];
     }, [workoutPages]);
 

@@ -1,7 +1,7 @@
+import { ExerciseCard } from "@/components/exercise/ExerciseCard";
+import { spacing } from "@/design-system/spacing/spacing";
+import { Exercise } from "@/models/exercise";
 import { FlatList, StyleSheet, View } from "react-native";
-import { Exercise } from "../../models/exercise";
-import { ExerciseCard } from "./ExerciseCard";
-import { spacing } from "../../design-system/spacing/spacing";
 
 interface ExerciseTableProps {
   exercises: Exercise[];

@@ -1,6 +1,9 @@
+import {
+  SELECT_ITEM_TEST_IDS,
+  SelectItem,
+} from "@/components/base/input/select/SelectItem";
+import { Item } from "@/components/base/input/select/types";
 import { fireEvent, render } from "@testing-library/react-native";
-import { SELECT_ITEM_TEST_IDS, SelectItem } from "../SelectItem";
-import { Item } from "../types";
 
 const ABS_ITEM: Item<string> = {
   value: "abs",

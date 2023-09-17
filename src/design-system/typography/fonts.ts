@@ -1,6 +1,7 @@
+import { fontFamily } from "@/design-system/typography/fontFamily";
+import { FontSize, fontSize } from "@/design-system/typography/fontSize";
 import { TextStyle } from "react-native";
-import { FontWeight, fontFamily } from "./fontFamily";
-import { FontSize, fontSize } from "./fontSize";
+import { FontWeight } from "react-native-svg";
 
 export type TextType = `${FontSize}-${FontWeight}`;
 

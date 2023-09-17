@@ -1,11 +1,11 @@
-import { ImageBackground, StyleSheet, View } from "react-native";
-import Text from "../../design-system/typography/Text";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Header } from "../../components/base/Header";
+import { Header } from "@/components/base/Header";
+import { Button } from "@/design-system/buttons/Button";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { WelcomeScreenNavigationProps } from "@/navigation/RootStackNavigator";
 import { useNavigation } from "@react-navigation/native";
-import { spacing } from "../../design-system/spacing/spacing";
-import { WelcomeScreenNavigationProps } from "../../navigation/RootStackNavigator";
-import { Button } from "../../design-system/buttons/Button";
+import { ImageBackground, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const WelcomeScreen = () => {
   const insets = useSafeAreaInsets();
