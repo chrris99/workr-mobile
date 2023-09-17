@@ -92,7 +92,7 @@ describe("multi select item", () => {
         fireEvent.press(selectItem);
 
         expect(mockSetSelectedItems).toBeCalledTimes(1);
-        expect(mockSetSelectedItems).toBeCalledWith(["abs", "chestc"]);
+        expect(mockSetSelectedItems).toBeCalledWith(["abs", "chest"]);
       });
     });
   });
