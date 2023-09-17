@@ -6,7 +6,7 @@ import { SELECT_ITEM_TEST_IDS } from "../SelectItem";
 const mockItem: Item<string> = {
   value: "abs",
   displayText: "Abs",
-  iconName: "Abs",
+  iconName: "Abs"
 };
 
 const mockOnChange = jest.fn();

@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { useState } from "react";
 import { SelectInputProps } from "./types";
-import { SelectItem } from "./SelectItem";
 import { spacing } from "../../../../design-system/spacing/spacing";
 import { Controller, FieldValues } from "react-hook-form";
 import { SingleSelectItem } from "./SingleSelectItem";
@@ -16,8 +15,9 @@ export const SelectInput = <T extends FieldValues, V>({
   const [selectedItem, setSelectedItem] = useState<V>(options[0].value);
 
   const renderOptions = (onChange: () => void) =>
-    options.map((item) => (
+    options.map((item, index) => (
       <SingleSelectItem
+        key={index}
         onChange={onChange}
         item={item}
         selectedItem={selectedItem}

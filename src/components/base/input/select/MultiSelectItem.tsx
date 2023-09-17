@@ -1,5 +1,11 @@
+import { View } from "react-native";
 import { SelectItem } from "./SelectItem";
 import { MultiSelectItemProps } from "./types";
+import { testId } from "../../../../utils/testId";
+
+export const MULTI_SELECT_ITEM_TEST_IDS = {
+  ITEM: testId("multi-select-item"),
+} satisfies Record<string, string>;
 
 export const MultiSelectItem = <T,>({
   item,
@@ -29,5 +35,9 @@ export const MultiSelectItem = <T,>({
     onChange(newSelectedItems);
   };
 
-  return <SelectItem item={item} isSelected={isSelected} onPress={onPress} />;
+  return (
+    <View testID={`${MULTI_SELECT_ITEM_TEST_IDS.ITEM}-${item.value}`}>
+      <SelectItem item={item} isSelected={isSelected} onPress={onPress} />
+    </View>
+  );
 };

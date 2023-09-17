@@ -9,7 +9,7 @@ import { Icon } from "../../../../design-system/icons/Icon";
 import { testId } from "../../../../utils/testId";
 
 export const SELECT_ITEM_TEST_IDS = {
-  SELECT_ITEM: testId('select-item'),
+  SELECT_ITEM: testId("select-item"),
 } satisfies Record<string, string>;
 
 export const SelectItem = <T,>({

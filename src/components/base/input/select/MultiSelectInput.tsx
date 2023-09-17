@@ -15,8 +15,9 @@ export const MultiSelectInput = <T extends FieldValues, V>({
   const [selectedItems, setSelectedItems] = useState<V[]>([]);
 
   const renderMultiSelectOptions = (onChange: () => void) =>
-    options.map((item) => (
+    options.map((item, index) => (
       <MultiSelectItem
+        key={index}
         onChange={onChange}
         item={item}
         selectedItems={selectedItems}
