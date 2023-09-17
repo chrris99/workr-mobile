@@ -1,12 +1,12 @@
-import { SelectInput } from "@/components/base/input/select/SelectInput";
+import { MultiSelectInput } from "@/components/base/input/select/MultiSelectInput";
 import { BaseExerciseFormProps } from "@/components/exercise/forms/types";
 import { muscleItem, muscles } from "@/types/muscle";
 
-export const TargetMuscleForm = ({ control }: BaseExerciseFormProps) => {
+export const SecondaryMuscleForm = ({ control }: BaseExerciseFormProps) => {
   return (
-    <SelectInput
+    <MultiSelectInput
       control={control}
-      name={"targetMuscleGroup"}
+      name={"secondaryMuscleGroups"}
       options={muscles.map((muscle) => muscleItem(muscle))}
     />
   );

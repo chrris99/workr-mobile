@@ -1,6 +1,7 @@
+import { Item } from "@/components/base/input/select/types";
 import { IconName } from "@/design-system/icons/icons";
 
-export const muscles = [
+export const muscleValues = [
   "abductors",
   "abs",
   "adductors",
@@ -22,13 +23,17 @@ export const muscles = [
   "triceps",
 ] as const;
 
-export type Muscle = (typeof muscles)[number];
+export const muscles = [...muscleValues];
 
-export function isOfTypeMuscle(value: string): value is Muscle {
-  return muscles.includes(value as Muscle);
-}
+export type Muscle = (typeof muscleValues)[number];
 
-export function mapMuscle(muscle: Muscle): IconName {
+export const muscleItem = (muscle: Muscle): Item<string> => ({
+  value: muscle,
+  displayText: capitalize(muscle),
+  iconName: muscleToIcon(muscle),
+});
+
+const muscleToIcon = (muscle: Muscle): IconName => {
   switch (muscle) {
     case "abductors":
     case "glutes ":
@@ -49,4 +54,7 @@ export function mapMuscle(muscle: Muscle): IconName {
     default:
       return "Arm";
   }
-}
+};
+
+const capitalize = (muscle: Muscle) =>
+  muscle.charAt(0).toUpperCase() + muscle.slice(1);
