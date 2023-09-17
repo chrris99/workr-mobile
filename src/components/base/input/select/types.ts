@@ -1,8 +1,8 @@
-import { FieldValue, FieldValues } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { IconName } from "../../../../design-system/icons/icons";
 import { BaseControlledInputProps } from "../types";
 
-export type SelectItem<T> = {
+export type Item<T> = {
   value: T;
   iconName: IconName;
   displayText: string;
@@ -10,7 +10,7 @@ export type SelectItem<T> = {
 
 type BaseSelectItemProps<T> = {
   onChange: (...event: any[]) => void;
-  item: SelectItem<T>;
+  item: Item<T>;
 };
 
 export type SingleSelectItemProps<T> = BaseSelectItemProps<T> & {
@@ -24,12 +24,12 @@ export type MultiSelectItemProps<T> = BaseSelectItemProps<T> & {
 };
 
 export type SelectItemProps<T> = {
-  item: SelectItem<T>;
+  item: Item<T>;
   isSelected: boolean;
   onPress: () => void;
 };
 
 export interface SelectInputProps<T extends FieldValues, V>
   extends BaseControlledInputProps<T> {
-  options: SelectItem<V>[];
+  options: Item<V>[];
 }
