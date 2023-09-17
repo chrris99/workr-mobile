@@ -6,6 +6,11 @@ import { colors } from "../../../../design-system/colors/colors";
 import { Checkbox } from "../../checkbox/Checkbox";
 import { SelectItemProps } from "./types";
 import { Icon } from "../../../../design-system/icons/Icon";
+import { testId } from "../../../../utils/testId";
+
+export const SELECT_ITEM_TEST_IDS = {
+  SELECT_ITEM: testId('select-item'),
+} satisfies Record<string, string>;
 
 export const SelectItem = <T,>({
   item,
@@ -18,6 +23,7 @@ export const SelectItem = <T,>({
     <TouchableWithoutFeedback
       style={[styles.container, selectionStyle]}
       onPress={onPress}
+      testID={SELECT_ITEM_TEST_IDS.SELECT_ITEM}
     >
       <View style={styles.contentContainer}>
         <Icon
