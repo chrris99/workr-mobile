@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`select item in selected state should render correctly 1`] = `
+<RNGestureHandlerButton
+  collapsable={false}
+  delayLongPress={600}
+  enabled={true}
+  exclusive={true}
+  handlerTag={1}
+  handlerType="NativeViewGestureHandler"
+  onGestureEvent={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onHandlerStateChange={[Function]}
+  rippleColor={0}
+  testID="workr:select-item"
+  touchSoundDisabled={false}
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    style={
+      {
+        "backgroundColor": "#F9F5FF",
+        "borderColor": "#6941C6",
+        "borderRadius": 8,
+        "borderWidth": 2,
+        "paddingHorizontal": 12,
+        "paddingVertical": 8,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "gap": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            undefined,
+            {
+              "fontFamily": "Poppins_400Regular",
+              "fontSize": 14,
+              "lineHeight": 20,
+            },
+            {
+              "color": "#101828",
+            },
+          ]
+        }
+      >
+        Abs
+      </Text>
+      <Text
+        style={
+          [
+            {
+              "alignSelf": "center",
+              "flexGrow": 1,
+            },
+            {
+              "fontFamily": "Poppins_400Regular",
+              "fontSize": 14,
+              "lineHeight": 20,
+            },
+            {
+              "color": "#101828",
+            },
+          ]
+        }
+      >
+        Abs
+      </Text>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "borderRadius": 8,
+              "height": 16,
+              "justifyContent": "center",
+              "width": 16,
+            },
+            {
+              "backgroundColor": "#6941C6",
+              "borderColor": "#6941C6",
+              "borderWidth": 1,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            [
+              undefined,
+              {
+                "fontFamily": "Poppins_400Regular",
+                "fontSize": 14,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#101828",
+              },
+            ]
+          }
+        >
+          Check
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNGestureHandlerButton>
+`;
+
+exports[`select item in unselected state should render correctly 1`] = `
+<RNGestureHandlerButton
+  collapsable={false}
+  delayLongPress={600}
+  enabled={true}
+  exclusive={true}
+  handlerTag={2}
+  handlerType="NativeViewGestureHandler"
+  onGestureEvent={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onHandlerStateChange={[Function]}
+  rippleColor={0}
+  testID="workr:select-item"
+  touchSoundDisabled={false}
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    style={
+      {
+        "borderColor": "#EAECF0",
+        "borderRadius": 8,
+        "borderWidth": 2,
+        "paddingHorizontal": 12,
+        "paddingVertical": 8,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "gap": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            undefined,
+            {
+              "fontFamily": "Poppins_400Regular",
+              "fontSize": 14,
+              "lineHeight": 20,
+            },
+            {
+              "color": "#101828",
+            },
+          ]
+        }
+      >
+        Abs
+      </Text>
+      <Text
+        style={
+          [
+            {
+              "alignSelf": "center",
+              "flexGrow": 1,
+            },
+            {
+              "fontFamily": "Poppins_400Regular",
+              "fontSize": 14,
+              "lineHeight": 20,
+            },
+            {
+              "color": "#101828",
+            },
+          ]
+        }
+      >
+        Abs
+      </Text>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "borderRadius": 8,
+              "height": 16,
+              "justifyContent": "center",
+              "width": 16,
+            },
+            {
+              "borderColor": "#D0D5DD",
+              "borderRadius": 8,
+              "borderWidth": 1,
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</RNGestureHandlerButton>
+`;

@@ -2,46 +2,35 @@ import { StyleSheet, View } from "react-native";
 import Text from "../../../../design-system/typography/Text";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { spacing } from "../../../../design-system/spacing/spacing";
-import { FeaturedIcon } from "../../../../design-system/icons/FeaturedIcon";
 import { colors } from "../../../../design-system/colors/colors";
 import { Checkbox } from "../../checkbox/Checkbox";
 import { SelectItemProps } from "./types";
 import { Icon } from "../../../../design-system/icons/Icon";
-import { FieldValues } from "react-hook-form";
+import { testId } from "../../../../utils/testId";
 
-export const SelectItem = ({ item, onChange, ...props }: SelectItemProps) => {
-  const isSelected = props.multiselect
-    ? props.selectedIndexes.includes(item.id)
-    : props.selectedIndex === item.id;
+export const SELECT_ITEM_TEST_IDS = {
+  SELECT_ITEM: testId("select-item"),
+} satisfies Record<string, string>;
 
+export const SelectItem = <T,>({
+  item,
+  isSelected,
+  onPress,
+}: SelectItemProps<T>) => {
   const selectionStyle = isSelected ? styles.selected : styles.notSelected;
-
-  const onPress = () => {
-    if (props.multiselect) {
-      isSelected
-        ? props.setSelectedIndexes(
-            props.selectedIndexes.filter((index) => index !== item.id)
-          )
-        : props.setSelectedIndexes([item.id, ...props.selectedIndexes]);
-
-      onChange(props.selectedIndexes);
-    } else {
-      props.setSelectedIndex(item.id);
-      onChange(props.selectedIndex);
-    }
-  };
 
   return (
     <TouchableWithoutFeedback
       style={[styles.container, selectionStyle]}
       onPress={onPress}
+      testID={SELECT_ITEM_TEST_IDS.SELECT_ITEM}
     >
       <View style={styles.contentContainer}>
         <Icon
           name={item.iconName}
           color={isSelected ? "primary-700" : "gray-900"}
         />
-        <Text style={styles.textContainer}>{item.value}</Text>
+        <Text style={styles.textContainer}>{item.displayText}</Text>
         <Checkbox selected={isSelected} />
       </View>
     </TouchableWithoutFeedback>

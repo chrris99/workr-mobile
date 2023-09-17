@@ -7,6 +7,7 @@ import { CreateTemplateModal } from "../components/workout/CreateTemplateModal";
 import { Button } from "../design-system/buttons/Button";
 import { SelectItem } from "../components/base/input/select/SelectItem";
 import { SelectInput } from "../components/base/input/select/SelectInput";
+import { SelectList } from "../components/SelectList";
 
 const PlanScreen = () => {
   const insets = useSafeAreaInsets();

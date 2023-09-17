@@ -1,45 +1,27 @@
 import { StyleSheet, View } from "react-native";
 import { useState } from "react";
 import { SelectInputProps } from "./types";
-import { SelectItem } from "./SelectItem";
 import { spacing } from "../../../../design-system/spacing/spacing";
 import { Controller, FieldValues } from "react-hook-form";
+import { SingleSelectItem } from "./SingleSelectItem";
 
-export const SelectInput = <T extends FieldValues>({
+export const SelectInput = <T extends FieldValues, V>({
   control,
   name,
   rules,
   error,
   options,
-  multiselect = false,
-}: SelectInputProps<T>) => {
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
+}: SelectInputProps<T, V>) => {
+  const [selectedItem, setSelectedItem] = useState<V>(options[0].value);
 
   const renderOptions = (onChange: () => void) =>
-    multiselect
-      ? renderMultiSelectOptions(onChange)
-      : renderSingleSelectOptions(onChange);
-
-  const renderSingleSelectOptions = (onChange: () => void) =>
     options.map((item, index) => (
-      <SelectItem
+      <SingleSelectItem
+        key={index}
         onChange={onChange}
-        multiselect={false}
-        item={{ id: index, ...item }}
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
-      />
-    ));
-
-  const renderMultiSelectOptions = (onChange: () => void) =>
-    options.map((item, index) => (
-      <SelectItem
-        onChange={onChange}
-        multiselect
-        item={{ id: index, ...item }}
-        selectedIndexes={selectedIndexes}
-        setSelectedIndexes={setSelectedIndexes}
+        item={item}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
       />
     ));
 

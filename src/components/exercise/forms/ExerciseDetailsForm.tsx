@@ -3,10 +3,11 @@ import { BaseExerciseFormProps } from "./types";
 import { StyleSheet, View } from "react-native";
 import { BottomSheetInput } from "../../base/input/BottomSheetInput";
 import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
-import { muscles } from "../../../types/muscle";
+import { mapMuscle, muscles } from "../../../types/muscle";
 import { spacing } from "../../../design-system/spacing/spacing";
 import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
 import { SelectInput } from "../../base/input/select/SelectInput";
+import { MultiSelectInput } from "../../base/input/select/MultiSelectInput";
 
 export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
   const { errors } = useFormState({
@@ -34,6 +35,15 @@ export const ExerciseDetailForm = ({ control }: BaseExerciseFormProps) => {
         error={errors.description}
         placeholder="Add description..."
         label="Description"
+      />
+      <MultiSelectInput
+        control={control}
+        name={"targetMuscleGroup"}
+        options={[...muscles].map((muscle) => ({
+          value: muscle,
+          displayText: muscle,
+          iconName: mapMuscle(muscle)
+        }))}
       />
     </View>
   );

@@ -129,12 +129,15 @@ const SignInScreen = () => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: spacing["spacing-4"],
+    flex: 1
   },
   signUpContainer: {
     paddingVertical: spacing["spacing-8"],
+    flex: 1,
   },
   inputContainer: {
     gap: spacing["spacing-5"],
+    flex: 1
   },
   forgotPasswordContainer: {
     paddingVertical: spacing["spacing-6"],
