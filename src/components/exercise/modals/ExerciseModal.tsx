@@ -5,12 +5,13 @@ import {
 } from "@/components/base/modal/types";
 import { ExerciseDetailForm } from "@/components/exercise/forms/ExerciseDetailsForm";
 import { ExerciseInstructionsForm } from "@/components/exercise/forms/ExerciseInstructionsForm";
-import { ExerciseMuscleForm } from "@/components/exercise/forms/ExerciseMusclesForm";
+import { SecondaryMuscleForm } from "@/components/exercise/forms/SecondaryMuscleForm";
+import { TargetMuscleForm } from "@/components/exercise/forms/TargetMuscleForm";
 import { ExerciseFormValues } from "@/components/exercise/forms/types";
 import { Exercise } from "@/models/exercise";
 import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
-import { ForwardedRef, forwardRef, useEffect } from "react";
-import { SubmitHandler, useForm, useWatch } from "react-hook-form";
+import { ForwardedRef, forwardRef } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
 
 interface ExerciseModalPageHeaders {
@@ -52,15 +53,7 @@ export const ExerciseModal = forwardRef(
       },
     });
 
-    const muscle = useWatch({
-      control,
-      name: "targetMuscleGroup",
-      defaultValue: "abs",
-    });
-
-    useEffect(() => {
-      console.log(muscle);
-    }, [muscle]);
+    // TODO: Use translation file
 
     const modalPages: BottomModalPage[] = [
       {
@@ -69,9 +62,18 @@ export const ExerciseModal = forwardRef(
         subtitle: headers?.detailPage?.subtitle,
       },
       {
-        component: <ExerciseMuscleForm control={control} />,
-        title: headers?.musclesPage?.title ?? "Add muscles",
-        subtitle: headers?.musclesPage?.subtitle,
+        component: <TargetMuscleForm control={control} />,
+        title: headers?.musclesPage?.title ?? "Select pirmary muscle group",
+        subtitle:
+          headers?.musclesPage?.subtitle ??
+          "The main target muscle required for the exercise",
+      },
+      {
+        component: <SecondaryMuscleForm control={control} />,
+        title: headers?.musclesPage?.title ?? "Select secondary muscle groups",
+        subtitle:
+          headers?.musclesPage?.subtitle ??
+          "The support muscles that ensure stability and efficiency for the primary muscle",
       },
       {
         component: <ExerciseInstructionsForm control={control} />,
