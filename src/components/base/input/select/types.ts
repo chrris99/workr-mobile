@@ -1,6 +1,6 @@
+import { BaseControlledInputProps } from "@/components/base/input/types";
+import { IconName } from "@/design-system/icons/icons";
 import { FieldValues } from "react-hook-form";
-import { IconName } from "../../../../design-system/icons/icons";
-import { BaseControlledInputProps } from "../types";
 
 export type Item<T> = {
   value: T;

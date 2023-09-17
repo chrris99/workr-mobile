@@ -1,17 +1,17 @@
-import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { Header } from "@/components/base/Header";
+import { Input } from "@/components/base/input/Input";
+import { Button } from "@/design-system/buttons/Button";
+import { Divider } from "@/design-system/spacing/Divider";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { ClerkError } from "@/models/clerkError";
+import { SignUpScreenNavigationProps } from "@/navigation/RootStackNavigator";
 import { useSignUp } from "@clerk/clerk-expo";
-import { Input } from "../../components/base/input/Input";
-import { useState } from "react";
-import { ClerkError } from "../../models/clerkError";
-import { spacing } from "../../design-system/spacing/spacing";
-import Text from "../../design-system/typography/Text";
-import { Header } from "../../components/base/Header";
-import { Divider } from "../../design-system/spacing/Divider";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import { SignUpScreenNavigationProps } from "../../navigation/RootStackNavigator";
-import { Button } from "../../design-system/buttons/Button";
+import * as React from "react";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SignUpScreen = () => {
   const insets = useSafeAreaInsets();

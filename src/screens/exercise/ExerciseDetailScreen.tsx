@@ -1,12 +1,12 @@
-import { StyleSheet, View } from "react-native";
-import { useGetExerciseByIdQuery } from "../../api/api";
-import Text from "../../design-system/typography/Text";
-import { spacing } from "../../design-system/spacing/spacing";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Header } from "../../components/base/Header";
+import Badge from "@/components/base/Badge";
+import { Header } from "@/components/base/Header";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { ExerciseDetailScreenRouteProp } from "@/navigation/ExerciseStackNavigator";
 import { useRoute } from "@react-navigation/native";
-import { ExerciseDetailScreenRouteProp } from "../../navigation/ExerciseStackNavigator";
-import Badge from "../../components/base/Badge";
+import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useGetExerciseByIdQuery } from "../../api/api";
 
 export const ExerciseDetailScreen = () => {
   const insets = useSafeAreaInsets();

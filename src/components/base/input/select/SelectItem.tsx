@@ -1,12 +1,12 @@
+import { Checkbox } from "@/components/base/checkbox/Checkbox";
+import { SelectItemProps } from "@/components/base/input/select/types";
+import { colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { testId } from "@/utils/testId";
 import { StyleSheet, View } from "react-native";
-import Text from "../../../../design-system/typography/Text";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { spacing } from "../../../../design-system/spacing/spacing";
-import { colors } from "../../../../design-system/colors/colors";
-import { Checkbox } from "../../checkbox/Checkbox";
-import { SelectItemProps } from "./types";
-import { Icon } from "../../../../design-system/icons/Icon";
-import { testId } from "../../../../utils/testId";
 
 export const SELECT_ITEM_TEST_IDS = {
   SELECT_ITEM: testId("select-item"),

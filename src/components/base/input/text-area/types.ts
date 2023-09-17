@@ -1,5 +1,5 @@
+import { BaseControlledInputProps } from "@/components/base/input/types";
 import { FieldValues } from "react-hook-form";
-import { BaseControlledInputProps } from "../types";
 import { TextInputProps } from "react-native";
 
 export interface TextAreaProps<T extends FieldValues>

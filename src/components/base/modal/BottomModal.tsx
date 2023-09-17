@@ -1,24 +1,17 @@
+import { BottomModalHeader } from "@/components/base/modal/BottomModalHeader";
+import { BottomModalProps } from "@/components/base/modal/types";
+import { colors } from "@/design-system/colors/colors";
+import { shadows } from "@/design-system/shadows/shadows";
+import { spacing } from "@/design-system/spacing/spacing";
+import { useForwardRef } from "@/hooks/useForwardRef";
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
   BottomSheetScrollView,
-  BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import { ForwardedRef, forwardRef, useCallback, useMemo } from "react";
-import {
-  Dimensions,
-  Keyboard,
-  StyleSheet,
-  View,
-  ViewProps,
-} from "react-native";
-import { colors } from "../../../design-system/colors/colors";
-import { spacing } from "../../../design-system/spacing/spacing";
-import { useForwardRef } from "../../../hooks/useForwardRef";
-import { BottomModalHeader } from "./BottomModalHeader";
-import { shadows } from "../../../design-system/shadows/shadows";
-import { BottomModalProps } from "./types";
+import { Dimensions, Keyboard, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const BottomModal = forwardRef(

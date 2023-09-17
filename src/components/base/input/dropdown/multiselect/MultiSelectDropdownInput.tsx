@@ -1,13 +1,13 @@
-import { StyleSheet, View } from "react-native";
-import { Dropdown, MultiSelect } from "react-native-element-dropdown";
-import Text from "../../../../../design-system/typography/Text";
-import { DropdownItem } from "../DropdownItem";
-import { spacing } from "../../../../../design-system/spacing/spacing";
+import { DropdownItem } from "@/components/base/input/dropdown/DropdownItem";
+import { DropdownInputProps } from "@/components/base/input/dropdown/types";
+import { colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
 import { useState } from "react";
-import { colors } from "../../../../../design-system/colors/colors";
 import { Controller, FieldValues } from "react-hook-form";
-import { Icon } from "../../../../../design-system/icons/Icon";
-import { DropdownInputProps } from "../../types";
+import { StyleSheet, View } from "react-native";
+import { MultiSelect } from "react-native-element-dropdown";
 
 export const MultiSelectDropdownInput = <T extends FieldValues>({
   control,

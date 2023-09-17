@@ -1,7 +1,8 @@
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
-import { spacing } from "../../design-system/spacing/spacing";
-import User from "../../../assets/icons/user.svg";
-import { colors } from "../../design-system/colors/colors";
+import User from "@/assets/icons/user.svg";
+import { colors } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
+import React from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
 
 type AvatarSize = "XS" | "S" | "M" | "L" | "XL" | "2XL";
 type AvatarType = "image" | "icon" | "monogram";
@@ -47,6 +48,8 @@ interface AvatarProps {
   size?: AvatarSize;
 }
 
+// TODO: Move user icon to icons.ts
+
 export const Avatar = ({ type, size }: AvatarProps) => {
   return (
     <View style={[styles.avatar, avatarSize[size ? size : "M"]]}>
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 200,
     backgroundColor: colors["primary-100"],
     borderWidth: 1.5,
-    borderColor: colors['primary-700'],
+    borderColor: colors["primary-700"],
     alignItems: "center",
     justifyContent: "center",
   },

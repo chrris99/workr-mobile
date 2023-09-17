@@ -1,10 +1,10 @@
+import SignInScreen from "@/screens/auth/SignInScreen";
+import SignUpScreen from "@/screens/auth/SignUpScreen";
+import WelcomeScreen from "@/screens/auth/WelcomeScreen";
 import {
   StackNavigationProp,
   createStackNavigator,
 } from "@react-navigation/stack";
-import WelcomeScreen from "../screens/auth/WelcomeScreen";
-import SignUpScreen from "../screens/auth/SignUpScreen";
-import SignInScreen from "../screens/auth/SignInScreen";
 
 type RootStackParamList = {
   Welcome: undefined;
@@ -29,21 +29,28 @@ const RootStack = createStackNavigator<RootStackParamList>();
 
 const RootStackNavigator = () => {
   return (
-    <RootStack.Navigator initialRouteName="Welcome" screenOptions={{
-      headerShown: true,
-      headerBackTitleVisible: false
-    }}>
+    <RootStack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{
+        headerShown: true,
+        headerBackTitleVisible: false,
+      }}
+    >
       <RootStack.Screen name="Welcome" component={WelcomeScreen} />
       <RootStack.Screen
         name="SignUp"
         component={SignUpScreen}
         options={{
-          title: 'Sign Up'
+          title: "Sign Up",
         }}
       />
-      <RootStack.Screen name="SignIn" component={SignInScreen} options={{
-        title: 'Sign In'
-      }}/>
+      <RootStack.Screen
+        name="SignIn"
+        component={SignInScreen}
+        options={{
+          title: "Sign In",
+        }}
+      />
     </RootStack.Navigator>
   );
 };

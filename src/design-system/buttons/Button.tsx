@@ -1,14 +1,14 @@
+import { ButtonType, buttons } from "@/design-system/buttons/buttons";
+import { Icon } from "@/design-system/icons/Icon";
+import { IconName } from "@/design-system/icons/icons";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { StyleSheet, View } from "react-native";
 import {
   BaseButtonProps,
   BorderlessButton,
-  RectButton
+  RectButton,
 } from "react-native-gesture-handler";
-import { ButtonType, buttons } from "./buttons";
-import { IconName } from "../icons/icons";
-import Text from "../typography/Text";
-import { Icon } from "../icons/Icon";
-import { StyleSheet, View } from "react-native";
-import { spacing } from "../spacing/spacing";
 
 type IconPosition = "leading" | "trailing";
 

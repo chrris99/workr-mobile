@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle } from "react-native";
+import { TextStyle } from "react-native";
 
 export type FontSize = `${"body" | "heading"}-${Size}`;
 

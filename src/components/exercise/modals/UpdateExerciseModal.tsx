@@ -1,10 +1,10 @@
-import { ForwardedRef, forwardRef } from "react";
+import { useUpdateExerciseMutation } from "@/api/api";
+import { ExerciseModal } from "@/components/exercise/modals/ExerciseModal";
+import { Exercise } from "@/models/exercise";
+import { Muscle } from "@/types/muscle";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { Muscle } from "../../../types/muscle";
-import { useAddExerciseMutation, useUpdateExerciseMutation } from "../../../api/api";
+import { ForwardedRef, forwardRef } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { ExerciseModal } from "./ExerciseModal";
-import { Exercise } from "../../../models/exercise";
 
 type CreateExerciseFormValues = {
   name: string;

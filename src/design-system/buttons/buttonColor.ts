@@ -1,6 +1,9 @@
+import {
+  ButtonHierarchy,
+  ButtonVariant,
+} from "@/design-system/buttons/buttons";
+import { Color, colors } from "@/design-system/colors/colors";
 import { ViewStyle } from "react-native";
-import { ButtonHierarchy, ButtonVariant } from "./buttons";
-import { Color, colors } from "../colors/colors";
 
 export type ButtonColorType = `${ButtonHierarchy}-${ButtonVariant}`;
 

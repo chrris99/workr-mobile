@@ -1,9 +1,9 @@
+import { DropdownInput } from "@/components/base/input/dropdown/DropdownInput";
+import { MultiSelectDropdownInput } from "@/components/base/input/dropdown/multiselect/MultiSelectDropdownInput";
+import { BaseExerciseFormProps } from "@/components/exercise/forms/types";
+import { spacing } from "@/design-system/spacing/spacing";
+import { muscles } from "@/types/muscle";
 import { StyleSheet, View } from "react-native";
-import { BaseExerciseFormProps } from "./types";
-import { DropdownInput } from "../../base/input/dropdown/DropdownInput";
-import { muscles } from "../../../types/muscle";
-import { MultiSelectDropdownInput } from "../../base/input/dropdown/multiselect/MultiSelectDropdownInput";
-import { spacing } from "../../../design-system/spacing/spacing";
 
 export const ExerciseMuscleForm = ({ control }: BaseExerciseFormProps) => {
   return (

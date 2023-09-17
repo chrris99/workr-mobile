@@ -1,12 +1,9 @@
-import {
-  NativeSyntheticEvent,
-  TextInputFocusEventData
-} from "react-native";
-import { Input } from "./Input";
-import { FieldValues } from "react-hook-form";
+import { Input } from "@/components/base/input/Input";
+import { BottomSheetInputProps } from "@/components/base/input/types";
 import { useBottomSheetInternal } from "@gorhom/bottom-sheet";
 import { useCallback } from "react";
-import { BottomSheetInputProps } from "./types";
+import { FieldValues } from "react-hook-form";
+import { NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
 
 export const BottomSheetInput = <T extends FieldValues>(
   props: BottomSheetInputProps<T>

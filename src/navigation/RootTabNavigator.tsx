@@ -1,10 +1,9 @@
+import { Color, colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
+import HomeScreen from "@/screens/HomeScreen";
+import PlanScreen from "@/screens/PlanScreen";
+import ProfileScreen from "@/screens/ProfileScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/HomeScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import PlanScreen from "../screens/PlanScreen";
-import ExerciseScreen from "../screens/ExerciseScreen";
-import { Icon } from "../design-system/icons/Icon";
-import { Color, colors } from "../design-system/colors/colors";
 import ExerciseStackNavigator from "./ExerciseStackNavigator";
 
 type RootTabParamList = {

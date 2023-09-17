@@ -1,14 +1,17 @@
-import { ForwardedRef, forwardRef, useEffect } from "react";
-import { Exercise } from "../../../models/exercise";
-import { useForm, SubmitHandler, useWatch } from "react-hook-form";
+import { PaginatedBottomModal } from "@/components/base/modal/PaginatedBottomModal";
+import {
+  BottomModalPage,
+  BottomModalPageHeader,
+} from "@/components/base/modal/types";
+import { ExerciseDetailForm } from "@/components/exercise/forms/ExerciseDetailsForm";
+import { ExerciseInstructionsForm } from "@/components/exercise/forms/ExerciseInstructionsForm";
+import { ExerciseMuscleForm } from "@/components/exercise/forms/ExerciseMusclesForm";
+import { ExerciseFormValues } from "@/components/exercise/forms/types";
+import { Exercise } from "@/models/exercise";
 import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
+import { ForwardedRef, forwardRef, useEffect } from "react";
+import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 import { Keyboard } from "react-native";
-import { ExerciseDetailForm } from "../forms/ExerciseDetailsForm";
-import { PaginatedBottomModal } from "../../base/modal/PaginatedBottomModal";
-import { ExerciseFormValues } from "../forms/types";
-import { ExerciseInstructionsForm } from "../forms/ExerciseInstructionsForm";
-import { BottomModalPage, BottomModalPageHeader } from "../../base/modal/types";
-import { ExerciseMuscleForm } from "../forms/ExerciseMusclesForm";
 
 interface ExerciseModalPageHeaders {
   detailPage?: BottomModalPageHeader;
@@ -56,8 +59,8 @@ export const ExerciseModal = forwardRef(
     });
 
     useEffect(() => {
-      console.log(muscle)
-    }, [muscle])
+      console.log(muscle);
+    }, [muscle]);
 
     const modalPages: BottomModalPage[] = [
       {

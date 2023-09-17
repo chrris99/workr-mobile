@@ -1,9 +1,9 @@
-import { StyleSheet, View } from "react-native";
-import Text from "../../../../design-system/typography/Text";
-import { NumberInputProps } from "../types";
+import { NumberInputProps } from "@/components/base/input/types";
+import { Button } from "@/design-system/buttons/Button";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
 import { Controller, FieldValues } from "react-hook-form";
-import { Button } from "../../../../design-system/buttons/Button";
-import { spacing } from "../../../../design-system/spacing/spacing";
+import { StyleSheet, View } from "react-native";
 
 export const NumberInput = <T extends FieldValues>({
   control,
@@ -37,14 +37,18 @@ export const NumberInput = <T extends FieldValues>({
         )}
         name={name}
       />
-      {label && <Text type="body-S-medium" style={styles.label}>{label}</Text>}
+      {label && (
+        <Text type="body-S-medium" style={styles.label}>
+          {label}
+        </Text>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    gap: spacing['spacing-3']
+    gap: spacing["spacing-3"],
   },
   inputContainer: {
     display: "flex",

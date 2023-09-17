@@ -1,6 +1,6 @@
+import { Input } from "@/components/base/input/Input";
+import { TextAreaProps } from "@/components/base/input/text-area/types";
 import { FieldValues } from "react-hook-form";
-import { TextAreaProps } from "../types";
-import { Input } from "../Input";
 
 export const TextArea = <T extends FieldValues>({
   style,
@@ -10,7 +10,10 @@ export const TextArea = <T extends FieldValues>({
     <Input
       multiline
       numberOfLines={3}
-      style={[style, { height: 92, textAlignVertical: "top", justifyContent: 'flex-start' }]}
+      style={[
+        style,
+        { height: 92, textAlignVertical: "top", justifyContent: "flex-start" },
+      ]}
       {...props}
     />
   );

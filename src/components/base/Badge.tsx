@@ -1,7 +1,7 @@
+import { colors } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
 import { StyleSheet, View } from "react-native";
-import { spacing } from "../../design-system/spacing/spacing";
-import Text from "../../design-system/typography/Text";
-import { colors } from "../../design-system/colors/colors"
 
 interface BadgeProps {
   text: string;
@@ -14,10 +14,7 @@ const Badge = ({ text, type }: BadgeProps) => {
 
   return (
     <View style={[styles.badge, backgroundColor]}>
-      <Text
-        type="body-S-medium"
-        color={'primary-700'}
-      >
+      <Text type="body-S-medium" color={"primary-700"}>
         {text}
       </Text>
     </View>

@@ -1,9 +1,8 @@
+import { MultiSelectInput } from "@/components/base/input/select/MultiSelectInput";
+import { MULTI_SELECT_ITEM_TEST_IDS } from "@/components/base/input/select/MultiSelectItem";
+import { Item } from "@/components/base/input/select/types";
 import { render, renderHook } from "@testing-library/react-native";
-import { Item } from "../types";
-import { SelectInput } from "../SelectInput";
 import { useForm } from "react-hook-form";
-import { MULTI_SELECT_ITEM_TEST_IDS } from "../MultiSelectItem";
-import { MultiSelectInput } from "../MultiSelectInput";
 
 const options: Item<string>[] = [
   { value: "abs", displayText: "Abs", iconName: "Abs" },

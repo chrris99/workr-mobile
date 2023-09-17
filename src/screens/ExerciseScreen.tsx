@@ -1,16 +1,15 @@
+import { Header } from "@/components/base/Header";
+import { ExerciseList } from "@/components/exercise/ExerciseList";
+import { CreateExerciseModal } from "@/components/exercise/modals/CreateExerciseModal";
+import { Button } from "@/design-system/buttons/Button";
+import { FeaturedIcon } from "@/design-system/icons/FeaturedIcon";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useCallback, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Text from "../design-system/typography/Text";
-import { spacing } from "../design-system/spacing/spacing";
-import { useCallback, useRef } from "react";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { CreateExerciseModal } from "../components/exercise/modals/CreateExerciseModal";
-import { ExerciseList } from "../components/exercise/ExerciseList";
 import { useGetExercisesQuery } from "../api/api";
-import { Button } from "../design-system/buttons/Button";
-import { FeaturedIcon } from "../design-system/icons/FeaturedIcon";
-import { Header } from "../components/base/Header";
-import { Input } from "../components/base/input/Input";
 
 const ExerciseScreen = () => {
   const insets = useSafeAreaInsets();

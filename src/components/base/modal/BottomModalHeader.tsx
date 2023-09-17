@@ -1,13 +1,10 @@
-import { Keyboard, StyleSheet, View } from "react-native";
-import Text from "../../../design-system/typography/Text";
-import { Button } from "../../../design-system/buttons/Button";
+import { BottomModalHeaderProps } from "@/components/base/modal/types";
+import { Button } from "@/design-system/buttons/Button";
+import { colors } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
 import { useBottomSheetModal } from "@gorhom/bottom-sheet";
-import { spacing } from "../../../design-system/spacing/spacing";
-import { Divider } from "../../../design-system/spacing/Divider";
-import { BottomModalHeaderProps } from "./types";
-import { colors } from "../../../design-system/colors/colors";
-
-
+import { Keyboard, StyleSheet, View } from "react-native";
 
 export const BottomModalHeader = ({
   title,
@@ -45,8 +42,8 @@ export const BottomModalHeader = ({
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: colors['gray-50'],
-    paddingBottom: spacing['spacing-5']
+    backgroundColor: colors["gray-50"],
+    paddingBottom: spacing["spacing-5"],
   },
   title: {
     flexDirection: "row",
@@ -56,5 +53,4 @@ const styles = StyleSheet.create({
   subtitle: {
     paddingTop: spacing["spacing-1"],
   },
-
 });

@@ -1,10 +1,10 @@
+import ExerciseScreen from "@/screens/ExerciseScreen";
+import { ExerciseDetailScreen } from "@/screens/exercise/ExerciseDetailScreen";
+import { RouteProp } from "@react-navigation/native";
 import {
   StackNavigationProp,
   createStackNavigator,
 } from "@react-navigation/stack";
-import ExerciseScreen from "../screens/ExerciseScreen";
-import { ExerciseDetailScreen } from "../screens/exercise/ExerciseDetailScreen";
-import { RouteProp } from "@react-navigation/native";
 
 type ExerciseDetailRoutePrams = {
   id: string;
@@ -46,7 +46,7 @@ const ExerciseStackNavigator = () => {
         options={{
           headerShown: true,
           headerBackTitleVisible: true,
-          headerBackTitle: 'Exercises'
+          headerBackTitle: "Exercises",
         }}
       />
     </ExerciseStack.Navigator>

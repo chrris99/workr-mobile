@@ -1,15 +1,13 @@
 import { Control } from "react-hook-form";
 
-type WorkoutDay = {
-
-}
+type WorkoutDay = {};
 
 export type WorkoutPlanFormValues = {
   name: string;
   description?: string;
   daysPerWeek: number;
   weekCount: number;
-  workouts: WorkoutDay[]
+  workouts: WorkoutDay[];
 };
 
 export interface BaseWorkoutPlanFormProps {

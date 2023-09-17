@@ -1,17 +1,17 @@
-import { Animated, StyleSheet, View } from "react-native";
-import { Exercise } from "../../models/exercise";
-import Text from "../../design-system/typography/Text";
-import { spacing } from "../../design-system/spacing/spacing";
-import { colors } from "../../design-system/colors/colors";
-import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
-import { useDeleteExerciseMutation } from "../../api/api";
-import Badge from "../base/Badge";
-import { Button } from "../../design-system/buttons/Button";
-import { useCallback, useRef } from "react";
+import { useDeleteExerciseMutation } from "@/api/api";
+import Badge from "@/components/base/Badge";
+import { UpdateExerciseModal } from "@/components/exercise/modals/UpdateExerciseModal";
+import { Button } from "@/design-system/buttons/Button";
+import { colors } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
+import { Exercise } from "@/models/exercise";
+import { ExerciseListScreenNavigationProps } from "@/navigation/ExerciseStackNavigator";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { UpdateExerciseModal } from "./modals/UpdateExerciseModal";
 import { useNavigation } from "@react-navigation/native";
-import { ExerciseListScreenNavigationProps } from "../../navigation/ExerciseStackNavigator";
+import { useCallback, useRef } from "react";
+import { Animated, StyleSheet, View } from "react-native";
+import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
 
 interface ExerciseCardProps {
   exercise: Exercise;

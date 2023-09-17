@@ -1,12 +1,12 @@
+import { SELECT_ITEM_TEST_IDS } from "@/components/base/input/select/SelectItem";
+import { SingleSelectItem } from "@/components/base/input/select/SingleSelectItem";
+import { Item } from "@/components/base/input/select/types";
 import { fireEvent, render } from "@testing-library/react-native";
-import { SingleSelectItem } from "../SingleSelectItem";
-import { Item } from "../types";
-import { SELECT_ITEM_TEST_IDS } from "../SelectItem";
 
 const mockItem: Item<string> = {
   value: "abs",
   displayText: "Abs",
-  iconName: "Abs"
+  iconName: "Abs",
 };
 
 const mockOnChange = jest.fn();

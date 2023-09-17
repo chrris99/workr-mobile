@@ -1,9 +1,9 @@
-import { StyleSheet, View } from "react-native";
+import { SingleSelectItem } from "@/components/base/input/select/SingleSelectItem";
+import { SelectInputProps } from "@/components/base/input/select/types";
+import { spacing } from "@/design-system/spacing/spacing";
 import { useState } from "react";
-import { SelectInputProps } from "./types";
-import { spacing } from "../../../../design-system/spacing/spacing";
 import { Controller, FieldValues } from "react-hook-form";
-import { SingleSelectItem } from "./SingleSelectItem";
+import { StyleSheet, View } from "react-native";
 
 export const SelectInput = <T extends FieldValues, V>({
   control,

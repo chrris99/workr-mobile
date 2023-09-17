@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import { BaseWorkoutPlanFormProps } from "./types";
-import { BottomSheetInput } from "../../base/input/BottomSheetInput";
-import { spacing } from "../../../design-system/spacing/spacing";
+import { BottomSheetInput } from "@/components/base/input/BottomSheetInput";
+import { NumberInput } from "@/components/base/input/number/NumberInput";
+import { BottomSheetTextArea } from "@/components/base/input/text-area/BottomSheetTextArea";
+import { BaseWorkoutPlanFormProps } from "@/components/workout/forms/types";
+import { spacing } from "@/design-system/spacing/spacing";
 import { useFormState } from "react-hook-form";
-import { BottomSheetTextArea } from "../../base/input/text-area/BottomSheetTextArea";
-import { NumberInput } from "../../base/input/number/NumberInput";
+import { StyleSheet, View } from "react-native";
 
 export const WorkoutPlanDetailsForm = ({
   control,
@@ -36,11 +36,7 @@ export const WorkoutPlanDetailsForm = ({
         label="Description"
       />
       <View style={styles.inputRow}>
-        <NumberInput
-          control={control}
-          name={"weekCount"}
-          label="Weeks"
-        />
+        <NumberInput control={control} name={"weekCount"} label="Weeks" />
         <NumberInput
           control={control}
           name={"daysPerWeek"}

@@ -1,8 +1,10 @@
+import {
+  SettignsItemProps,
+  SettingsItem,
+} from "@/components/profile/SettingsItem";
+import { colors } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
 import { FlatList, View } from "react-native";
-import Text from "../../design-system/typography/Text";
-import { SettignsItemProps, SettingsItem } from "./SettingsItem";
-import { spacing } from "../../design-system/spacing/spacing";
-import { colors } from "../../design-system/colors/colors";
 
 export const SettingsList = () => {
   const settings: SettignsItemProps[] = [
@@ -27,8 +29,8 @@ export const SettingsList = () => {
 
 const styles = {
   container: {
-    backgroundColor: colors['white'],
-    borderRadius: spacing['spacing-2']
+    backgroundColor: colors["white"],
+    borderRadius: spacing["spacing-2"],
   },
   separator: {
     height: spacing["spacing-2"],

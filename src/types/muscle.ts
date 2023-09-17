@@ -1,4 +1,4 @@
-import { IconName } from "../design-system/icons/icons";
+import { IconName } from "@/design-system/icons/icons";
 
 export const muscles = [
   "abductors",
@@ -45,7 +45,7 @@ export function mapMuscle(muscle: Muscle): IconName {
     case "abs":
     case "chest":
     case "obliques":
-      return "Abs"
+      return "Abs";
     default:
       return "Arm";
   }

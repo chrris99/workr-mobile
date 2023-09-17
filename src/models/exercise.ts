@@ -1,4 +1,4 @@
-import { Muscle } from "../types/muscle";
+import { Muscle } from "@/types/muscle";
 
 export type Exercise = {
   id: string;
@@ -8,10 +8,10 @@ export type Exercise = {
   description?: string;
   forceType?: string;
   instructions?: string[];
-  secondaryMuscleGroups?: Muscle[]
+  secondaryMuscleGroups?: Muscle[];
 };
 
-export type CreateExerciseRequest = Omit<Exercise, 'id'>
-export type UpdateExerciseRequest = Exercise
+export type CreateExerciseRequest = Omit<Exercise, "id">;
+export type UpdateExerciseRequest = Exercise;
 
 export type ExerciseResponse = Exercise;

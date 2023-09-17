@@ -1,6 +1,6 @@
-import { Text as T, TextProps as TP } from 'react-native';
-import { fonts, TextType } from './fonts'
-import { Color, colors } from '../colors/colors'
+import { Color, colors } from "@/design-system/colors/colors";
+import { TextType, fonts } from "@/design-system/typography/fonts";
+import { Text as T, TextProps as TP } from "react-native";
 
 interface TextProps extends TP {
   type?: TextType;
@@ -13,9 +13,10 @@ const Text = (props: TextProps) => {
       {...props}
       style={[
         props.style,
-        fonts[props.type || 'body-S-regular'],
-        { color: colors[props.color || 'gray-900'] }
-      ]}>
+        fonts[props.type || "body-S-regular"],
+        { color: colors[props.color || "gray-900"] },
+      ]}
+    >
       {props.children}
     </T>
   );
