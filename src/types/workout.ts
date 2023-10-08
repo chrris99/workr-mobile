@@ -5,16 +5,21 @@ export type WorkoutItemType =
   | "maxRep"
   | "temp";
 
+type Set = {
+  reps: number;
+  weight: number;
+  unit: "kg";
+};
+
 type BaseWorkoutItem = {
   exerciseId: string;
   type: WorkoutItemType;
-  sets: number;
+  sets: Set[];
   comment?: string;
 };
 
 type RepeatedWorkoutItem = BaseWorkoutItem & {
   type: "repeated";
-  reps: number;
 };
 
 type TimedWorkoutItem = BaseWorkoutItem & {
@@ -35,12 +40,7 @@ type MaxRepWorkoutItem = BaseWorkoutItem & {
   type: "maxRep";
 };
 
-export type WorkoutItem =
-  | RepeatedWorkoutItem
-  | TimedWorkoutItem
-  | TempWorkoutItem
-  | MaxDurationWorkoutItem
-  | MaxRepWorkoutItem;
+export type WorkoutItem = RepeatedWorkoutItem;
 
 export type WorkoutBlock = {
   items: WorkoutItem[];

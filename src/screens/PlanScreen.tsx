@@ -1,4 +1,4 @@
-import { CreateTemplateModal } from "@/components/workout/CreateTemplateModal";
+import { CreateTemplateModal } from "@/components/workout/modals/CreateTemplateModal";
 import { Button } from "@/design-system/buttons/Button";
 import Text from "@/design-system/typography/Text";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";

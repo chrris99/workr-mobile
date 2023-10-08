@@ -1,16 +1,16 @@
 import { PaginatedBottomModal } from "@/components/base/modal/PaginatedBottomModal";
 import { BottomModalPage } from "@/components/base/modal/types";
-import { WorkoutBlock } from "@/components/workout/WorkoutBlock";
+import { WorkoutPlanDayForm } from "@/components/workout/forms/WorkoutPlanDayForm";
 import { WorkoutPlanDetailsForm } from "@/components/workout/forms/WorkoutPlanDetailsForm";
 import { WorkoutPlanFormValues } from "@/components/workout/forms/types";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { ForwardedRef, forwardRef, useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 
-interface CreateTemplateModalProps {}
+interface CreatePlanModalProps {}
 
-export const CreateTemplateModal = forwardRef(
-  (props: CreateTemplateModalProps, ref: ForwardedRef<BottomSheetModal>) => {
+export const CreatePlanModal = forwardRef(
+  (props: CreatePlanModalProps, ref: ForwardedRef<BottomSheetModal>) => {
     const defaultWorkoutDays = 3;
 
     const {
@@ -24,8 +24,12 @@ export const CreateTemplateModal = forwardRef(
         description: "",
         weekCount: 4,
         daysPerWeek: defaultWorkoutDays,
+        workouts: [{ blocks: [] }],
       },
     });
+
+    // fore each item in the workouts array a workout template entity is created (or updated?) and stored in the database (backend takes care of this?)
+    // if a day is created from an existing workout template, but it is updated during the creation of the workout plan, a new workout template is saved (?)
 
     const workoutDays = useWatch({
       control,
@@ -33,15 +37,15 @@ export const CreateTemplateModal = forwardRef(
       defaultValue: defaultWorkoutDays,
     });
 
-    const workoutPages = useMemo(() => {
-      return [
-        ...[...Array(workoutDays)].map((_, index) => ({
-          component: <WorkoutBlock />,
+    const workoutPages = useMemo(
+      () =>
+        [...Array(workoutDays)].map((_, index) => ({
+          component: <WorkoutPlanDayForm control={control} />,
           title: `Add day ${index + 1}`,
           subtitle: "Create a workout from a template for your plan",
         })),
-      ];
-    }, [workoutDays]);
+      [workoutDays]
+    );
 
     const modalPages: BottomModalPage[] = useMemo(() => {
       return [
@@ -55,6 +59,12 @@ export const CreateTemplateModal = forwardRef(
       ];
     }, [workoutPages]);
 
-    return <PaginatedBottomModal ref={ref} pages={modalPages} />;
+    return (
+      <PaginatedBottomModal
+        ref={ref}
+        pages={modalPages}
+        onSubmit={() => console.log("submit")}
+      />
+    );
   }
 );
