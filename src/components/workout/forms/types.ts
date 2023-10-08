@@ -1,6 +1,5 @@
+import { WorkoutDay } from "@/models/workout";
 import { Control } from "react-hook-form";
-
-type WorkoutDay = {};
 
 export type WorkoutPlanFormValues = {
   name: string;
