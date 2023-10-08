@@ -1,12 +1,14 @@
 import { useGetExercisesQuery } from "@/api/api";
+import { BottomSheetInput } from "@/components/base/input/BottomSheetInput";
 import { DropdownInput } from "@/components/base/input/dropdown/DropdownInput";
-import { NumberInput } from "@/components/base/input/number/NumberInput";
 import { BaseWorkoutTemplateFormProps } from "@/components/workout/forms/types";
 import { Button } from "@/design-system/buttons/Button";
+import { spacing } from "@/design-system/spacing/spacing";
+import Text from "@/design-system/typography/Text";
 import { WorkoutItem as TWorkoutItem } from "@/types/workout";
 import { useMemo } from "react";
 import { useFieldArray } from "react-hook-form";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type WorkoutItemProps = BaseWorkoutTemplateFormProps & {
   blockIndex: number;
@@ -46,23 +48,47 @@ export const WorkoutItem = ({
               }))
             : []
         }
-        label="Select exercise*"
+        placeholder="Select exercise"
       />
+      <View style={styles.setsHeader}>
+        <Text type={"body-L-semibold"}>Sets</Text>
+        <Button
+          type={"primary-link-lg"}
+          text="Add set"
+          iconName="Plus"
+          onPress={() => append({ reps: 0, weight: 0, unit: "kg" })}
+        />
+      </View>
+
       {sets.map((set, index) => (
-        <View>
-          <NumberInput
+        <View style={styles.set}>
+          <Text style={{ alignSelf: "center" }} type={"body-L-semibold"}>
+            {index + 1}
+          </Text>
+          <BottomSheetInput
             control={control}
             name={`${workoutItemField}.sets.${index}.reps`}
-            label="Reps"
+          />
+          <BottomSheetInput
+            control={control}
+            name={`${workoutItemField}.sets.${index}.weight`}
           />
         </View>
       ))}
-      <Button
-        type={"primary-icon-md"}
-        text="Add set"
-        iconName="Plus"
-        onPress={() => append({ reps: 0, weight: 0, unit: "kg" })}
-      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  setsHeader: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  set: {
+    flexDirection: "row",
+    gap: spacing["spacing-8"],
+    marginTop: spacing["spacing-3"],
+  },
+});

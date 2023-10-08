@@ -5,7 +5,7 @@ export type WorkoutItemType =
   | "maxRep"
   | "temp";
 
-type Set = {
+export type Set = {
   reps: number;
   weight: number;
   unit: "kg";

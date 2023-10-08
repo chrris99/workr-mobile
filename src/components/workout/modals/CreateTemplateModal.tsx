@@ -1,3 +1,4 @@
+import { useCreateWorkoutTemplateMutation } from "@/api/api";
 import { PaginatedBottomModal } from "@/components/base/modal/PaginatedBottomModal";
 import { BottomModalPage } from "@/components/base/modal/types";
 import { WorkoutTemplateBlocksForm } from "@/components/workout/forms/WorkoutTemplateBlocksForm";
@@ -15,6 +16,8 @@ interface CreateTemplateModalProps {}
 export const CreateTemplateModal = forwardRef(
   (props: CreateTemplateModalProps, ref: ForwardedRef<BottomSheetModal>) => {
     const { dismiss } = useBottomSheetModal();
+
+    const [createWorkoutTemplate] = useCreateWorkoutTemplateMutation();
 
     const {
       control,
@@ -46,8 +49,16 @@ export const CreateTemplateModal = forwardRef(
       reset();
     };
 
-    const onValid = (data: WorkoutTemplateFormValues) => {
+    const onValid = async (data: WorkoutTemplateFormValues) => {
       console.log("data submit", { data });
+      const body = {
+        name: data.name,
+        description: data.description,
+        blocks: data.blocks,
+      };
+      console.log("body", body);
+
+      await createWorkoutTemplate(body);
       closeModal();
     };
 

@@ -1,11 +1,15 @@
+import {
+  CreateWorkoutTemplateRequest,
+  WorkoutTemplateResponse,
+} from "@/models/workoutTemplate";
+import { Clerk } from "@clerk/clerk-expo";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Constants from "expo-constants";
 import {
   CreateExerciseRequest,
   ExerciseResponse,
   UpdateExerciseRequest,
 } from "../models/exercise";
-import { Clerk } from "@clerk/clerk-expo";
-import Constants from "expo-constants";
 
 const { manifest } = Constants;
 
@@ -22,9 +26,10 @@ export const api = createApi({
     prepareHeaders: async (headers) => {
       const token = await Clerk.session?.getToken({ template: "user_default" });
       if (token) headers.append("Authorization", `Bearer ${token}`);
+      console.log(token);
     },
   }),
-  tagTypes: ["Exercise"],
+  tagTypes: ["Exercise", "WorkoutTemplate"],
   endpoints: (builder) => ({
     getExercises: builder.query<ExerciseResponse[], void>({
       query: () => "exercise",
@@ -69,6 +74,17 @@ export const api = createApi({
       }),
       invalidatesTags: (result, error, id) => [{ type: "Exercise", id }],
     }),
+    createWorkoutTemplate: builder.mutation<
+      WorkoutTemplateResponse,
+      CreateWorkoutTemplateRequest
+    >({
+      query: (body) => ({
+        url: "template",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [{ type: "WorkoutTemplate", id: "ALL" }],
+    }),
   }),
 });
 
@@ -79,4 +95,5 @@ export const {
   useAddExerciseMutation,
   useUpdateExerciseMutation,
   useDeleteExerciseMutation,
+  useCreateWorkoutTemplateMutation,
 } = api;
