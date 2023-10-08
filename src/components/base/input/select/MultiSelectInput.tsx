@@ -17,7 +17,7 @@ export const MultiSelectInput = <T extends FieldValues, V>({
   const value = useWatch({ control, name });
 
   useEffect(() => {
-    setSelectedItems(value);
+    value && setSelectedItems(value);
   }, [value]);
 
   const renderMultiSelectOptions = (onChange: () => void) =>
