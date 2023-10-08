@@ -1,15 +1,15 @@
-import { SelectInput } from "@/components/base/input/select/SelectInput";
+import { MultiSelectInput } from "@/components/base/input/select/MultiSelectInput";
 import { BaseExerciseFormProps } from "@/components/exercise/forms/types";
 import { spacing } from "@/design-system/spacing/spacing";
 import { muscleItem, muscles } from "@/types/muscle";
 import { StyleSheet, View } from "react-native";
 
-export const TargetMuscleForm = ({ control }: BaseExerciseFormProps) => {
+export const SecondaryMuscleForm = ({ control }: BaseExerciseFormProps) => {
   return (
     <View style={styles.form}>
-      <SelectInput
+      <MultiSelectInput
         control={control}
-        name={"targetMuscleGroup"}
+        name={"secondaryMuscleGroups"}
         options={muscles.map((muscle) => muscleItem(muscle))}
       />
     </View>

@@ -1,5 +1,5 @@
-import User from "@/assets/icons/user.svg";
 import { colors } from "@/design-system/colors/colors";
+import { Icon } from "@/design-system/icons/Icon";
 import { spacing } from "@/design-system/spacing/spacing";
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
@@ -53,12 +53,7 @@ interface AvatarProps {
 export const Avatar = ({ type, size }: AvatarProps) => {
   return (
     <View style={[styles.avatar, avatarSize[size ? size : "M"]]}>
-      <User
-        width={iconSize[size ? size : "M"]}
-        height={iconSize[size ? size : "M"]}
-        strokeWidth={1.5}
-        color={colors["primary-700"]}
-      />
+      <Icon name="User" />
     </View>
   );
 };

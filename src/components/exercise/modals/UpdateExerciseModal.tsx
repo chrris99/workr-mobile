@@ -1,15 +1,10 @@
 import { useUpdateExerciseMutation } from "@/api/api";
+import { ExerciseFormValues } from "@/components/exercise/forms/types";
 import { ExerciseModal } from "@/components/exercise/modals/ExerciseModal";
 import { Exercise } from "@/models/exercise";
-import { Muscle } from "@/types/muscle";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { ForwardedRef, forwardRef } from "react";
 import { SubmitHandler } from "react-hook-form";
-
-type CreateExerciseFormValues = {
-  name: string;
-  targetMuscleGroup: Muscle;
-};
 
 interface UpdateExerciseModalProps {
   exercise: Exercise;
@@ -22,13 +17,18 @@ export const UpdateExerciseModal = forwardRef(
   ) => {
     const [updateExercise] = useUpdateExerciseMutation();
 
-    const onSubmit: SubmitHandler<CreateExerciseFormValues> = async (
-      data: CreateExerciseFormValues
+    const onSubmit: SubmitHandler<ExerciseFormValues> = async (
+      data: ExerciseFormValues
     ) => {
       await updateExercise({
         id: exercise.id,
         name: data.name,
+        description: data.description,
         targetMuscleGroup: data.targetMuscleGroup,
+        secondaryMuscleGroups: data.secondaryMuscleGroups,
+        instructions: data.instructions.map(
+          (instruction) => instruction.description
+        ),
       })
         .unwrap()
         .catch((err) => console.error(err));

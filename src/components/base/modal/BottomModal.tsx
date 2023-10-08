@@ -42,6 +42,8 @@ export const BottomModal = forwardRef(
       []
     );
 
+    // TODO: Use haptic feedback for modal snapping
+
     return (
       <BottomSheetModal
         ref={modalRef}
@@ -60,7 +62,6 @@ export const BottomModal = forwardRef(
         <BottomSheetScrollView
           style={styles.container}
           stickyHeaderIndices={[0]}
-          bounces={false}
         >
           <BottomModalHeader title={title} subtitle={subtitle} />
           {children}

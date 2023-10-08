@@ -5,6 +5,12 @@ import { spacing } from "@/design-system/spacing/spacing";
 import { muscles } from "@/types/muscle";
 import { StyleSheet, View } from "react-native";
 
+/**
+ *
+ * @deprecated Use TargetMuscleForm and SecondaryMuscleForm instead
+ * @param param0
+ * @returns
+ */
 export const ExerciseMuscleForm = ({ control }: BaseExerciseFormProps) => {
   return (
     <View style={styles.form}>

@@ -1,8 +1,8 @@
 import { MultiSelectItem } from "@/components/base/input/select/MultiSelectItem";
 import { SelectInputProps } from "@/components/base/input/select/types";
 import { spacing } from "@/design-system/spacing/spacing";
-import { useState } from "react";
-import { Controller, FieldValues } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { Controller, FieldValues, useWatch } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 
 export const MultiSelectInput = <T extends FieldValues, V>({
@@ -13,6 +13,12 @@ export const MultiSelectInput = <T extends FieldValues, V>({
   options,
 }: SelectInputProps<T, V>) => {
   const [selectedItems, setSelectedItems] = useState<V[]>([]);
+
+  const value = useWatch({ control, name });
+
+  useEffect(() => {
+    value && setSelectedItems(value);
+  }, [value]);
 
   const renderMultiSelectOptions = (onChange: () => void) =>
     options.map((item, index) => (
