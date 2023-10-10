@@ -54,6 +54,7 @@ export const ExerciseModal = forwardRef(
     });
 
     // TODO: Use translation file
+    // TODO: Use page configuration file
 
     const modalPages: BottomModalPage[] = [
       {

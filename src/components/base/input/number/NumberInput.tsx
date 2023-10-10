@@ -5,6 +5,10 @@ import Text from "@/design-system/typography/Text";
 import { Controller, FieldValues } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 
+// TODO: Make limits configurable (move this task to form valdiation)
+// TODO: Make step configurable
+// TODO: Make text editable
+
 export const NumberInput = <T extends FieldValues>({
   control,
   name,
