@@ -36,7 +36,7 @@ export const WorkoutItem = ({
   });
 
   return (
-    <View>
+    <View style={styles.workoutItem}>
       <DropdownInput
         control={control}
         name={`${workoutItemField}.exerciseId`}
@@ -50,15 +50,8 @@ export const WorkoutItem = ({
         }
         placeholder="Select exercise"
       />
-      <View style={styles.setsHeader}>
-        <Text type={"body-L-semibold"}>Sets</Text>
-        <Button
-          type={"primary-link-lg"}
-          text="Add set"
-          iconName="Plus"
-          onPress={() => append({ reps: 0, weight: 0, unit: "kg" })}
-        />
-      </View>
+
+      <Text type={"body-L-semibold"}>Sets</Text>
 
       {sets.map((set, index) => (
         <View style={styles.set}>
@@ -75,11 +68,22 @@ export const WorkoutItem = ({
           />
         </View>
       ))}
+
+      <Button
+        type={"gray-solid-md"}
+        text="Add set"
+        iconName="Plus"
+        iconPosition="leading"
+        onPress={() => append({ reps: 0, weight: 0, unit: "kg" })}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  workoutItem: {
+    gap: spacing["spacing-2"],
+  },
   setsHeader: {
     flex: 1,
     flexDirection: "row",
@@ -89,6 +93,5 @@ const styles = StyleSheet.create({
   set: {
     flexDirection: "row",
     gap: spacing["spacing-8"],
-    marginTop: spacing["spacing-3"],
   },
 });

@@ -28,7 +28,7 @@ export const CreateTemplateModal = forwardRef(
       defaultValues: {
         name: "",
         description: "",
-        blocks: [],
+        blocks: [{ items: [{ sets: [] }] }],
       },
     });
 

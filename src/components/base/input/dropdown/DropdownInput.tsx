@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing["spacing-3.5"],
     borderRadius: spacing["spacing-2"],
     borderWidth: 1,
-    backgroundColor: colors["primary-100"],
   },
   dropdownContainer: {
     borderRadius: spacing["spacing-2"],

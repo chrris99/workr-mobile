@@ -26,9 +26,10 @@ export const WorkoutBlock = ({ control, blockIndex }: WorkoutBlockProps) => {
           blockIndex={blockIndex}
         />
       ))}
+
       <Button
-        type={"primary-icon-md"}
-        text="Add exercise to block"
+        type={"primary-solid-md"}
+        text="Add exercise"
         iconName="Plus"
         iconPosition="leading"
         onPress={() => append({ exerciseId: "", sets: [{}] })}
