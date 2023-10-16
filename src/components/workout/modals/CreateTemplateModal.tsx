@@ -50,13 +50,11 @@ export const CreateTemplateModal = forwardRef(
     };
 
     const onValid = async (data: WorkoutTemplateFormValues) => {
-      console.log("data submit", { data });
       const body = {
         name: data.name,
         description: data.description,
         blocks: data.blocks,
       };
-      console.log("body", body);
 
       await createWorkoutTemplate(body);
       closeModal();

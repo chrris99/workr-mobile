@@ -1,8 +1,9 @@
+import { useGetWorkoutTemplatesQuery } from "@/api/api";
 import { CreateTemplateModal } from "@/components/workout/modals/CreateTemplateModal";
 import { Button } from "@/design-system/buttons/Button";
 import Text from "@/design-system/typography/Text";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -10,8 +11,13 @@ const PlanScreen = () => {
   const insets = useSafeAreaInsets();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
+  const { data: workoutTemplates } = useGetWorkoutTemplatesQuery();
+
+  useEffect(() => {
+    workoutTemplates?.map((template) => console.log(template));
+  }, [workoutTemplates]);
+
   const openModal = useCallback(() => {
-    console.log("hello");
     bottomSheetRef.current?.present();
   }, []);
 
