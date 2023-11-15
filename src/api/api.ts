@@ -1,5 +1,6 @@
 import {
   CreateWorkoutTemplateRequest,
+  WorkoutTemplate,
   WorkoutTemplateResponse,
 } from "@/models/workoutTemplate";
 import { Clerk } from "@clerk/clerk-expo";
@@ -85,8 +86,26 @@ export const api = createApi({
       }),
       invalidatesTags: [{ type: "WorkoutTemplate", id: "ALL" }],
     }),
-    getWorkoutTemplates: builder.query<WorkoutTemplateResponse[], void>({
+    getWorkoutTemplates: builder.query<WorkoutTemplate[], void>({
       query: () => "template",
+      transformResponse: (response: WorkoutTemplateResponse[], meta, arg) =>
+        response.map((workoutTemplate) => {
+          const { blockTemplates, ...workoutTemplateDetails } = workoutTemplate;
+          return {
+            ...workoutTemplateDetails,
+            blocks: blockTemplates.map((blockTemplate) => ({
+              items: blockTemplate.itemTemplates.map((itemTemplate) => {
+                const { exercise, sets } = itemTemplate;
+                return {
+                  type: "repeated",
+                  exerciseId: exercise.id,
+                  sets,
+                };
+              }),
+            })),
+          };
+        }),
+
       providesTags: (result) =>
         result
           ? [
