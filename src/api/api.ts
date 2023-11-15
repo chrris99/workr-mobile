@@ -26,6 +26,7 @@ export const api = createApi({
     prepareHeaders: async (headers) => {
       const token = await Clerk.session?.getToken({ template: "user_default" });
       if (token) headers.append("Authorization", `Bearer ${token}`);
+      console.log(token);
     },
   }),
   tagTypes: ["Exercise", "WorkoutTemplate"],
@@ -84,6 +85,18 @@ export const api = createApi({
       }),
       invalidatesTags: [{ type: "WorkoutTemplate", id: "ALL" }],
     }),
+    getWorkoutTemplates: builder.query<WorkoutTemplateResponse[], void>({
+      query: () => "template",
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(
+                ({ id }) => ({ type: "WorkoutTemplate", id } as const)
+              ),
+              { type: "WorkoutTemplate", id: "ALL" },
+            ]
+          : [{ type: "WorkoutTemplate", id: "ALL" }],
+    }),
   }),
 });
 
@@ -95,4 +108,5 @@ export const {
   useUpdateExerciseMutation,
   useDeleteExerciseMutation,
   useCreateWorkoutTemplateMutation,
+  useGetWorkoutTemplatesQuery,
 } = api;
