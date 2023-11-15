@@ -3,10 +3,15 @@ import { Header } from "@/components/base/Header";
 import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { ExerciseDetailScreenRouteProp } from "@/navigation/ExerciseStackNavigator";
+import { testId } from "@/utils/test/testId";
 import { useRoute } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useGetExerciseByIdQuery } from "../../api/api";
+
+export const EXERCISE_DETAIL_TEST_IDS = {
+  SCREEN: testId("exercise-detail-screen"),
+} as const;
 
 export const ExerciseDetailScreen = () => {
   const insets = useSafeAreaInsets();
@@ -25,7 +30,7 @@ export const ExerciseDetailScreen = () => {
   // TODO: Instructions section
 
   return (
-    <>
+    <View testID={EXERCISE_DETAIL_TEST_IDS.SCREEN}>
       {exercise && (
         <View style={styles.container}>
           <Header title={exercise.name} />
@@ -36,7 +41,7 @@ export const ExerciseDetailScreen = () => {
           </View>
         </View>
       )}
-    </>
+    </View>
   );
 };
 
