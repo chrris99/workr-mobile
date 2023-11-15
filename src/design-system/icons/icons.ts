@@ -3,7 +3,9 @@ import Apple from "../../../assets/icons/apple.svg";
 import Arm from "../../../assets/icons/arm.svg";
 import ArrowLeft from "../../../assets/icons/arrow-left.svg";
 import ArrowRight from "../../../assets/icons/arrow-right.svg";
+import ArrowUpRight from "../../../assets/icons/arrow-up-right.svg";
 import Butt from "../../../assets/icons/butt.svg";
+import Calendar from "../../../assets/icons/calendar.svg";
 import Check from "../../../assets/icons/check.svg";
 import ChevronDown from "../../../assets/icons/chevron-down.svg";
 import ChevronUp from "../../../assets/icons/chevron-up.svg";
@@ -27,7 +29,9 @@ export const icons = {
   Arm,
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   Butt,
+  Calendar,
   Check,
   ChevronDown,
   ChevronUp,
