@@ -26,7 +26,6 @@ export const api = createApi({
     prepareHeaders: async (headers) => {
       const token = await Clerk.session?.getToken({ template: "user_default" });
       if (token) headers.append("Authorization", `Bearer ${token}`);
-      console.log(token);
     },
   }),
   tagTypes: ["Exercise", "WorkoutTemplate"],
