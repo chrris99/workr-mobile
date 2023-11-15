@@ -1,6 +1,6 @@
 import { SelectItem } from "@/components/base/input/select/SelectItem";
 import { MultiSelectItemProps } from "@/components/base/input/select/types";
-import { testId } from "@/utils/testId";
+import { testId } from "@/utils/test/testId";
 import { View } from "react-native";
 
 export const MULTI_SELECT_ITEM_TEST_IDS = {

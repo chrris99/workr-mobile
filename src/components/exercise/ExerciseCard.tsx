@@ -7,17 +7,29 @@ import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { Exercise } from "@/models/exercise";
 import { ExerciseListScreenNavigationProps } from "@/navigation/ExerciseStackNavigator";
+import { testId } from "@/utils/test/testId";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
 import { useCallback, useRef } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
 
-interface ExerciseCardProps {
+type ExerciseCardProps = {
   exercise: Exercise;
-}
+};
 
 const AnimatedView = Animated.createAnimatedComponent(View);
+
+export const EXERCISE_CARD_TEST_IDS = {
+  CARD: testId("exercise-card"),
+  TOUCHABLE: testId("exercise-card-touchable"),
+  NAME: testId("exercise-name"),
+  DESCRIPTION: testId("exercise-description"),
+  PRIMARY_MUSCLE: testId("exercise-primary-muscle"),
+  SECONDARY_MUSCLE: testId("exercise-secondary-muscle"),
+  EDIT_BUTTON: testId("edit-exercise-button"),
+  DELETE_BUTTON: testId("delete-exercise-button"),
+} as const;
 
 export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
   const swipeableRef = useRef<Swipeable>(null);
@@ -45,6 +57,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
           <AnimatedView style={{ transform: [{ scale }] }} />
 
           <Button
+            testID={EXERCISE_CARD_TEST_IDS.EDIT_BUTTON}
             type={"secondary-icon-sm"}
             iconName="Edit"
             onPress={() => {
@@ -53,6 +66,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
             }}
           />
           <Button
+            testID={EXERCISE_CARD_TEST_IDS.DELETE_BUTTON}
             type={"secondary-icon-sm"}
             iconName="Trash"
             onPress={() => deleteExercise(exercise.id)}
@@ -65,23 +79,35 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
 
   return (
     <Swipeable
+      testID={EXERCISE_CARD_TEST_IDS.CARD}
       ref={swipeableRef}
       renderRightActions={renderRightActions}
       rightThreshold={30}
     >
       <TouchableOpacity
+        testID={EXERCISE_CARD_TEST_IDS.TOUCHABLE}
         style={styles.container}
         onPress={() =>
           navigation.navigate("ExerciseDetail", { id: exercise.id })
         }
       >
         <View style={styles.name}>
-          <Text type="body-S-semibold" color="primary-700">
+          <Text
+            testID={EXERCISE_CARD_TEST_IDS.PRIMARY_MUSCLE}
+            type="body-S-semibold"
+            color="primary-700"
+          >
             {exercise.targetMuscleGroup.toUpperCase()}
           </Text>
-          <Text type="body-L-semibold">{exercise.name}</Text>
+          <Text testID={EXERCISE_CARD_TEST_IDS.NAME} type="body-L-semibold">
+            {exercise.name}
+          </Text>
           {exercise.description && (
-            <Text type={"body-M-regular"} color={"gray-500"}>
+            <Text
+              testID={EXERCISE_CARD_TEST_IDS.DESCRIPTION}
+              type={"body-M-regular"}
+              color={"gray-500"}
+            >
               {exercise.description.length > 100
                 ? `${exercise.description.slice(0, 100)}...`
                 : exercise.description}
@@ -90,7 +116,11 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
         </View>
         <View style={styles.muscles}>
           {exercise.secondaryMuscleGroups && (
-            <Badge type="solid" text={exercise.secondaryMuscleGroups[0]} />
+            <Badge
+              testId={EXERCISE_CARD_TEST_IDS.SECONDARY_MUSCLE}
+              type="solid"
+              text={exercise.secondaryMuscleGroups[0]}
+            />
           )}
         </View>
       </TouchableOpacity>

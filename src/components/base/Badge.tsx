@@ -6,15 +6,16 @@ import { StyleSheet, View } from "react-native";
 interface BadgeProps {
   text: string;
   type?: "solid" | "outline";
+  testId?: string;
 }
 
-const Badge = ({ text, type }: BadgeProps) => {
+const Badge = ({ text, type, testId }: BadgeProps) => {
   const backgroundColor =
     type === "solid" ? { backgroundColor: colors["primary-200"] } : {};
 
   return (
     <View style={[styles.badge, backgroundColor]}>
-      <Text type="body-S-medium" color={"primary-700"}>
+      <Text testID={testId} type="body-S-medium" color={"primary-700"}>
         {text}
       </Text>
     </View>

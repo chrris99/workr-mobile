@@ -1,6 +1,6 @@
 import { SelectItem } from "@/components/base/input/select/SelectItem";
 import { SingleSelectItemProps } from "@/components/base/input/select/types";
-import { testId } from "@/utils/testId";
+import { testId } from "@/utils/test/testId";
 import { View } from "react-native";
 
 export const SINGLE_SELECT_ITEM_TEST_IDS = {

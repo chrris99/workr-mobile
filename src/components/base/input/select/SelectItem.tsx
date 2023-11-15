@@ -4,7 +4,7 @@ import { colors } from "@/design-system/colors/colors";
 import { Icon } from "@/design-system/icons/Icon";
 import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
-import { testId } from "@/utils/testId";
+import { testId } from "@/utils/test/testId";
 import { StyleSheet, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
