@@ -1,10 +1,10 @@
 import { Color, colors } from "@/design-system/colors/colors";
 import { Icon } from "@/design-system/icons/Icon";
 import { IconName } from "@/design-system/icons/icons";
+import WorkoutTemplateStackNavigator from "@/navigation/WorkoutTemplateStackNavigator";
 import HomeScreen from "@/screens/HomeScreen";
 import PlanScreen from "@/screens/PlanScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
-import { WorkoutScreen } from "@/screens/workout/WorkoutScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ExerciseStackNavigator from "./ExerciseStackNavigator";
 
@@ -50,7 +50,7 @@ const RootTabNavigator = () => {
       />
       <Tab.Screen
         name="Workout"
-        component={WorkoutScreen}
+        component={WorkoutTemplateStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => tabBarIcon("Stopwatch", focused),
         }}

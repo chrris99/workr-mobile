@@ -1,10 +1,11 @@
-import { Button } from "@/design-system/buttons/Button";
 import { colors } from "@/design-system/colors/colors";
 import { Icon } from "@/design-system/icons/Icon";
 import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { WorkoutTemplate } from "@/models/workoutTemplate";
+import { WorkoutTemplateListScreenNavigationProps } from "@/navigation/WorkoutTemplateStackNavigator";
 import { testId } from "@/utils/test/testId";
+import { useNavigation } from "@react-navigation/native";
 import { useMemo } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -20,6 +21,8 @@ type WorkoutTemplateCardProps = {
 export const WorkoutTemplateCard = ({
   workoutTemplate,
 }: WorkoutTemplateCardProps) => {
+  const navigation = useNavigation<WorkoutTemplateListScreenNavigationProps>();
+
   const exerciseCount = useMemo(
     () =>
       workoutTemplate.blocks.reduce(
@@ -34,6 +37,9 @@ export const WorkoutTemplateCard = ({
       testID={WORKOUT_TEMPLATE_CARD_TEST_IDS.CARD}
       style={styles.container}
       activeOpacity={0.8}
+      onPress={() =>
+        navigation.navigate("WorkoutTemplateDetail", { id: workoutTemplate.id })
+      }
     >
       <Image
         style={styles.thumbnail}
@@ -53,8 +59,6 @@ export const WorkoutTemplateCard = ({
             }`}</Text>
           </View>
         </View>
-
-        <Button type={"primary-solid-lg"} text="Start" iconName="Stopwatch" />
       </View>
     </TouchableOpacity>
   );
