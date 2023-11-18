@@ -18,6 +18,7 @@ import Minus from "../../../assets/icons/minus.svg";
 import Plus from "../../../assets/icons/plus.svg";
 import Search from "../../../assets/icons/search.svg";
 import Settings from "../../../assets/icons/settings.svg";
+import Stopwatch from "../../../assets/icons/stopwatch.svg";
 import Target from "../../../assets/icons/target.svg";
 import Trash from "../../../assets/icons/trash.svg";
 import User from "../../../assets/icons/user.svg";
@@ -44,6 +45,7 @@ export const icons = {
   Plus,
   Search,
   Settings,
+  Stopwatch,
   Target,
   Trash,
   User,
