@@ -3,6 +3,7 @@ import Apple from "../../../assets/icons/apple.svg";
 import Arm from "../../../assets/icons/arm.svg";
 import ArrowLeft from "../../../assets/icons/arrow-left.svg";
 import ArrowRight from "../../../assets/icons/arrow-right.svg";
+import ArrowRotateRight from "../../../assets/icons/arrow-rotate-right.svg";
 import ArrowUpRight from "../../../assets/icons/arrow-up-right.svg";
 import Butt from "../../../assets/icons/butt.svg";
 import Calendar from "../../../assets/icons/calendar.svg";
@@ -30,6 +31,7 @@ export const icons = {
   Arm,
   ArrowLeft,
   ArrowRight,
+  ArrowRotateRight,
   ArrowUpRight,
   Butt,
   Calendar,
