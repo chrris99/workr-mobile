@@ -1,5 +1,6 @@
 import { Color, colors } from "@/design-system/colors/colors";
 import { Icon } from "@/design-system/icons/Icon";
+import { IconName } from "@/design-system/icons/icons";
 import HomeScreen from "@/screens/HomeScreen";
 import PlanScreen from "@/screens/PlanScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
@@ -9,8 +10,9 @@ import ExerciseStackNavigator from "./ExerciseStackNavigator";
 type RootTabParamList = {
   Home: undefined;
   Plan: undefined;
+  Workout: undefined;
   Exercise: undefined;
-  Profile: undefined;
+  You: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -18,6 +20,10 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 const RootTabNavigator = () => {
   const ACTIVE_COLOR: Color = "primary-700";
   const INACTIVE_COLOR: Color = "gray-400";
+
+  const tabBarIcon = (iconName: IconName, focused: boolean) => (
+    <Icon name={iconName} color={focused ? ACTIVE_COLOR : INACTIVE_COLOR} />
+  );
 
   return (
     <Tab.Navigator
@@ -31,48 +37,35 @@ const RootTabNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Icon
-              name={"Home"}
-              color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
-            />
-          ),
+          tabBarIcon: ({ focused }) => tabBarIcon("Home", focused),
         }}
       />
       <Tab.Screen
         name="Plan"
         component={PlanScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Icon
-              name={"Target"}
-              color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
-            />
-          ),
+          tabBarIcon: ({ focused }) => tabBarIcon("Target", focused),
+        }}
+      />
+      <Tab.Screen
+        name="Workout"
+        component={PlanScreen}
+        options={{
+          tabBarIcon: ({ focused }) => tabBarIcon("Stopwatch", focused),
         }}
       />
       <Tab.Screen
         name="Exercise"
         component={ExerciseStackNavigator}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Icon
-              name={"Weight"}
-              color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
-            />
-          ),
+          tabBarIcon: ({ focused }) => tabBarIcon("Weight", focused),
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="You"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Icon
-              name={"User"}
-              color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
-            />
-          ),
+          tabBarIcon: ({ focused }) => tabBarIcon("User", focused),
         }}
       />
     </Tab.Navigator>
