@@ -48,7 +48,12 @@ export const WorkoutTemplateCard = ({
 
       <View style={styles.content}>
         <View style={styles.header}>
-          <Text type={"body-L-semibold"}>{workoutTemplate.name}</Text>
+          <Text
+            type={"body-L-semibold"}
+            testID={WORKOUT_TEMPLATE_CARD_TEST_IDS.NAME}
+          >
+            {workoutTemplate.name}
+          </Text>
         </View>
 
         <View style={styles.details}>
