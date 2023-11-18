@@ -1,6 +1,6 @@
 import { Header } from "@/components/base/Header";
 import { WorkoutTemplateList } from "@/components/workout/WorkoutTemplate/WorkoutTemplateList";
-import { spacing } from "@/design-system/spacing/spacing";
+import { BASE_HORIZONTAL_GUTTER } from "@/design-system/spacing/spacing";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -22,6 +22,6 @@ export const WorkoutScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: spacing["spacing-4"],
+    paddingHorizontal: BASE_HORIZONTAL_GUTTER,
   },
 });

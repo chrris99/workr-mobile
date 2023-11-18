@@ -3,7 +3,10 @@ import { ExerciseList } from "@/components/exercise/ExerciseList";
 import { CreateExerciseModal } from "@/components/exercise/modals/CreateExerciseModal";
 import { Button } from "@/design-system/buttons/Button";
 import { FeaturedIcon } from "@/design-system/icons/FeaturedIcon";
-import { spacing } from "@/design-system/spacing/spacing";
+import {
+  BASE_HORIZONTAL_GUTTER,
+  spacing,
+} from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useCallback, useRef } from "react";
@@ -78,7 +81,7 @@ const ExerciseScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: spacing["spacing-4"],
+    paddingHorizontal: BASE_HORIZONTAL_GUTTER,
   },
   emptyStateContainer: {
     display: "flex",
