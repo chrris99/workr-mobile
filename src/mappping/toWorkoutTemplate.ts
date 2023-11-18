@@ -6,7 +6,7 @@ import {
 import { WorkoutBlock, WorkoutItem, WorkoutTemplate } from "@/types/workout";
 
 const toWorkoutItem = (dto: WorkoutItemTemplateResponse): WorkoutItem => ({
-  exerciseId: dto.exercise.id,
+  exercise: dto.exercise,
   sets: dto.sets,
   type: "repeated",
 });
