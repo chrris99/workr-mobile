@@ -28,14 +28,14 @@ export const CreateTemplateModal = forwardRef(
       defaultValues: {
         name: "",
         description: "",
-        blocks: [{ items: [{ sets: [] }] }],
+        blocks: [{ items: [{ sets: [{ reps: 0, weight: 0, unit: "kg" }] }] }],
       },
     });
 
     const modalPages: BottomModalPage[] = [
       {
         component: <WorkoutTemplateDetailsForm control={control} />,
-        title: "Input workout template details",
+        title: "Create workout template",
       },
       {
         component: <WorkoutTemplateBlocksForm control={control} />,

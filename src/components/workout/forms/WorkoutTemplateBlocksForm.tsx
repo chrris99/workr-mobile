@@ -1,4 +1,4 @@
-import { WorkoutBlock } from "@/components/workout/WorkoutBlock";
+import { WorkoutBlockForm } from "@/components/workout/WorkoutBlockForm";
 import { BaseWorkoutTemplateFormProps } from "@/components/workout/forms/types";
 import { Button } from "@/design-system/buttons/Button";
 import { spacing } from "@/design-system/spacing/spacing";
@@ -16,11 +16,18 @@ export const WorkoutTemplateBlocksForm = ({
 
   return (
     <View style={styles.form}>
-      {blocks.map((block, index) => (
-        <WorkoutBlock key={block.id} control={control} blockIndex={index} />
-      ))}
+      <View style={styles.blocks}>
+        {blocks.map((block, index) => (
+          <WorkoutBlockForm
+            key={block.id}
+            control={control}
+            blockIndex={index}
+          />
+        ))}
+      </View>
+
       <Button
-        type={"primary-icon-md"}
+        type={"gray-solid-md"}
         iconName="Plus"
         onPress={() =>
           append({ items: [{ sets: [{ reps: 0, weight: 0, unit: "kg" }] }] })
@@ -32,8 +39,12 @@ export const WorkoutTemplateBlocksForm = ({
 
 const styles = StyleSheet.create({
   form: {
-    gap: spacing["spacing-4"],
+    gap: spacing["spacing-8"],
     paddingBottom: spacing["spacing-7"],
+  },
+  blocks: {
+    flexDirection: "column",
+    gap: spacing["spacing-12"],
   },
   inputRow: {
     flex: 1,
