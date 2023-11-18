@@ -1,3 +1,5 @@
+import { Icon } from "@/design-system/icons/Icon";
+import { BASE_HORIZONTAL_GUTTER } from "@/design-system/spacing/spacing";
 import ExerciseScreen from "@/screens/ExerciseScreen";
 import { ExerciseDetailScreen } from "@/screens/exercise/ExerciseDetailScreen";
 import { RouteProp } from "@react-navigation/native";
@@ -45,8 +47,12 @@ const ExerciseStackNavigator = () => {
         component={ExerciseDetailScreen}
         options={{
           headerShown: true,
-          headerBackTitleVisible: true,
-          headerBackTitle: "Exercises",
+          headerTitle: "",
+          headerTransparent: true,
+          headerBackImage: () => (
+            <Icon name="ArrowLeft" strokeWidth={2.5} color={"white"} />
+          ),
+          headerLeftContainerStyle: { paddingLeft: BASE_HORIZONTAL_GUTTER },
         }}
       />
     </ExerciseStack.Navigator>
