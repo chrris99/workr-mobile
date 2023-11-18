@@ -116,6 +116,13 @@ export const api = createApi({
             ]
           : [{ type: "WorkoutTemplate", id: "ALL" }],
     }),
+    getWorkoutTemplateById: builder.query<WorkoutTemplate, string>({
+      query: (id) => ({
+        url: `template/${id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, id) => [{ type: "WorkoutTemplate", id }],
+    }),
   }),
 });
 
@@ -128,4 +135,5 @@ export const {
   useDeleteExerciseMutation,
   useCreateWorkoutTemplateMutation,
   useGetWorkoutTemplatesQuery,
+  useGetWorkoutTemplateByIdQuery,
 } = api;
