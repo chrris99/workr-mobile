@@ -3,7 +3,10 @@ import Apple from "../../../assets/icons/apple.svg";
 import Arm from "../../../assets/icons/arm.svg";
 import ArrowLeft from "../../../assets/icons/arrow-left.svg";
 import ArrowRight from "../../../assets/icons/arrow-right.svg";
+import ArrowRotateRight from "../../../assets/icons/arrow-rotate-right.svg";
+import ArrowUpRight from "../../../assets/icons/arrow-up-right.svg";
 import Butt from "../../../assets/icons/butt.svg";
+import Calendar from "../../../assets/icons/calendar.svg";
 import Check from "../../../assets/icons/check.svg";
 import ChevronDown from "../../../assets/icons/chevron-down.svg";
 import ChevronUp from "../../../assets/icons/chevron-up.svg";
@@ -16,6 +19,7 @@ import Minus from "../../../assets/icons/minus.svg";
 import Plus from "../../../assets/icons/plus.svg";
 import Search from "../../../assets/icons/search.svg";
 import Settings from "../../../assets/icons/settings.svg";
+import Stopwatch from "../../../assets/icons/stopwatch.svg";
 import Target from "../../../assets/icons/target.svg";
 import Trash from "../../../assets/icons/trash.svg";
 import User from "../../../assets/icons/user.svg";
@@ -27,7 +31,10 @@ export const icons = {
   Arm,
   ArrowLeft,
   ArrowRight,
+  ArrowRotateRight,
+  ArrowUpRight,
   Butt,
+  Calendar,
   Check,
   ChevronDown,
   ChevronUp,
@@ -40,6 +47,7 @@ export const icons = {
   Plus,
   Search,
   Settings,
+  Stopwatch,
   Target,
   Trash,
   User,

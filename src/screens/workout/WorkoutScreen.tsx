@@ -1,15 +1,20 @@
-import { Avatar } from "@/components/base/Avatar";
 import { Header } from "@/components/base/Header";
+import { WorkoutTemplateList } from "@/components/workout/WorkoutTemplate/WorkoutTemplateList";
 import { BASE_HORIZONTAL_GUTTER } from "@/design-system/spacing/spacing";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const HomeScreen = () => {
+export const WorkoutScreen = () => {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Header title="Home" rightComponent={<Avatar size="S" />} />
+    <View style={[styles.container, { marginTop: insets.top }]}>
+      <Header
+        title="Workouts"
+        subtitle="See your workout templates and active workouts all in one place"
+      />
+
+      <WorkoutTemplateList />
     </View>
   );
 };
@@ -20,5 +25,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: BASE_HORIZONTAL_GUTTER,
   },
 });
-
-export default HomeScreen;

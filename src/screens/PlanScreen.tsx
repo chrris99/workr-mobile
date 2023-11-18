@@ -1,6 +1,8 @@
+import { Header } from "@/components/base/Header";
+import { WorkoutTemplateList } from "@/components/workout/WorkoutTemplate/WorkoutTemplateList";
 import { CreateTemplateModal } from "@/components/workout/modals/CreateTemplateModal";
 import { Button } from "@/design-system/buttons/Button";
-import Text from "@/design-system/typography/Text";
+import { BASE_HORIZONTAL_GUTTER } from "@/design-system/spacing/spacing";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useCallback, useRef } from "react";
 import { StyleSheet, View } from "react-native";
@@ -16,10 +18,15 @@ const PlanScreen = () => {
   }, []);
 
   return (
-    <View style={{ paddingTop: insets.top }}>
-      <Text>Plan screen</Text>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <Header
+        title="Plan"
+        subtitle="Your current personalised workout plan created by your trainer"
+      />
+
+      <WorkoutTemplateList />
       <Button
-        text="Add Workout Template"
+        text="Create Plan"
         type={"primary-solid-md"}
         onPress={openModal}
       />
@@ -28,6 +35,11 @@ const PlanScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: BASE_HORIZONTAL_GUTTER,
+  },
+});
 
 export default PlanScreen;

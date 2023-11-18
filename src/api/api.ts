@@ -1,5 +1,6 @@
 import {
   CreateWorkoutTemplateRequest,
+  WorkoutTemplate,
   WorkoutTemplateResponse,
 } from "@/models/workoutTemplate";
 import { Clerk } from "@clerk/clerk-expo";
@@ -85,6 +86,43 @@ export const api = createApi({
       }),
       invalidatesTags: [{ type: "WorkoutTemplate", id: "ALL" }],
     }),
+    getWorkoutTemplates: builder.query<WorkoutTemplate[], void>({
+      query: () => "template",
+      transformResponse: (response: WorkoutTemplateResponse[], meta, arg) =>
+        response.map((workoutTemplate) => {
+          const { blockTemplates, ...workoutTemplateDetails } = workoutTemplate;
+          return {
+            ...workoutTemplateDetails,
+            blocks: blockTemplates.map((blockTemplate) => ({
+              items: blockTemplate.itemTemplates.map((itemTemplate) => {
+                const { exercise, sets } = itemTemplate;
+                return {
+                  type: "repeated",
+                  exerciseId: exercise.id,
+                  sets,
+                };
+              }),
+            })),
+          };
+        }),
+
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(
+                ({ id }) => ({ type: "WorkoutTemplate", id } as const)
+              ),
+              { type: "WorkoutTemplate", id: "ALL" },
+            ]
+          : [{ type: "WorkoutTemplate", id: "ALL" }],
+    }),
+    getWorkoutTemplateById: builder.query<WorkoutTemplate, string>({
+      query: (id) => ({
+        url: `template/${id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, id) => [{ type: "WorkoutTemplate", id }],
+    }),
   }),
 });
 
@@ -96,4 +134,6 @@ export const {
   useUpdateExerciseMutation,
   useDeleteExerciseMutation,
   useCreateWorkoutTemplateMutation,
+  useGetWorkoutTemplatesQuery,
+  useGetWorkoutTemplateByIdQuery,
 } = api;
