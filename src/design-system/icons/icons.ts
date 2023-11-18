@@ -7,12 +7,14 @@ import ArrowRotateRight from "../../../assets/icons/arrow-rotate-right.svg";
 import ArrowUpRight from "../../../assets/icons/arrow-up-right.svg";
 import Butt from "../../../assets/icons/butt.svg";
 import Calendar from "../../../assets/icons/calendar.svg";
+import Chart from "../../../assets/icons/chart.svg";
 import Check from "../../../assets/icons/check.svg";
 import ChevronDown from "../../../assets/icons/chevron-down.svg";
 import ChevronUp from "../../../assets/icons/chevron-up.svg";
 import Close from "../../../assets/icons/close.svg";
 import Edit from "../../../assets/icons/edit.svg";
 import Error from "../../../assets/icons/error.svg";
+import ExerciseOverview from "../../../assets/icons/exercise-overview.svg";
 import Home from "../../../assets/icons/home.svg";
 import Leg from "../../../assets/icons/leg.svg";
 import Minus from "../../../assets/icons/minus.svg";
@@ -35,12 +37,14 @@ export const icons = {
   ArrowUpRight,
   Butt,
   Calendar,
+  Chart,
   Check,
   ChevronDown,
   ChevronUp,
   Close,
   Edit,
   Error,
+  ExerciseOverview,
   Home,
   Leg,
   Minus,
