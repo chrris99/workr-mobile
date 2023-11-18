@@ -46,6 +46,13 @@ export type WorkoutBlock = {
   items: WorkoutItem[];
 };
 
+export type WorkoutTemplate = {
+  id: string;
+  name: string;
+  description?: string;
+  blocks: WorkoutBlock[];
+};
+
 export type WorkoutDay = {
   blocks: WorkoutBlock[];
 };
