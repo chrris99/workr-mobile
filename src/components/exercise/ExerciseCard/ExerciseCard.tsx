@@ -38,7 +38,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
         />
 
         <View style={styles.content}>
-          <View>
+          <View style={styles.header}>
             <View style={styles.primaryMuscle}>
               <Icon name={muscleToIcon(exercise.targetMuscleGroup)} size="S" />
               <Text
@@ -94,6 +94,9 @@ const styles = StyleSheet.create({
     gap: spacing["spacing-1"],
     flex: 3,
     justifyContent: "space-between",
+  },
+  header: {
+    gap: spacing["spacing-0.5"],
   },
   primaryMuscle: {
     flexDirection: "row",
