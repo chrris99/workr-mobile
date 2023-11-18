@@ -15,6 +15,7 @@
     "@expo-google-fonts/poppins": "^0.2.3",
     "@gorhom/bottom-sheet": "^4.4.8",
     "@react-navigation/bottom-tabs": "^6.5.7",
+    "@react-navigation/material-top-tabs": "^6.6.5",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/stack": "^6.3.16",
     "@reduxjs/toolkit": "^1.9.5",
@@ -40,9 +41,11 @@
     "react-native-screens": "~3.20.0",
     "react-native-svg": "13.4.0",
     "react-native-svg-transformer": "^1.0.0",
+    "react-native-tab-view": "^3.5.2",
     "react-query": "^3.39.3",
     "react-redux": "^8.1.2",
-    "react-search-autocomplete": "^8.5.2"
+    "react-search-autocomplete": "^8.5.2",
+    "react-native-pager-view": "6.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
