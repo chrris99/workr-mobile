@@ -57,11 +57,10 @@ export const WorkoutOverview = ({ workoutTemplate }: WorkoutOverviewProps) => {
     );
   };
 
-  const data = useMemo(() => {
-    const res = getTopMusclePercentage(getTotalVolumeByMuscle());
-    console.log(res);
-    return res;
-  }, [workoutTemplate]);
+  const data = useMemo(
+    () => getTopMusclePercentage(getTotalVolumeByMuscle()),
+    [workoutTemplate]
+  );
 
   return (
     <View style={styles.container}>
