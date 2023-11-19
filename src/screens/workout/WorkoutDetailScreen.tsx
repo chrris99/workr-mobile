@@ -2,6 +2,7 @@ import { useGetWorkoutTemplateByIdQuery } from "@/api/api";
 import { Error } from "@/components/base/Error";
 import { Loading } from "@/components/base/Loading";
 import { WorkoutBlock } from "@/components/workout/WorkoutBlock/WorkoutBlock";
+import { WorkoutOverview } from "@/components/workout/WorkoutOverview/WorkoutOverview";
 import { Button } from "@/design-system/buttons/Button";
 import {
   BASE_HORIZONTAL_GUTTER,
@@ -50,19 +51,18 @@ export const WorkoutDetailScreen = () => {
         </View>
 
         <View style={styles.content}>
+          <View style={styles.overview}>
+            <Text type={"body-L-semibold"}>Overview</Text>
+            {workoutTemplate && (
+              <WorkoutOverview workoutTemplate={workoutTemplate} />
+            )}
+          </View>
+
           <Button
             type={"primary-solid-lg"}
             text="Start Workout"
             iconName="ArrowRight"
           />
-          {/** TODO: Add workout overview card, muslce distribution chart 
-             *           <View style={styles.overview}>
-             *             <Text type={"body-L-semibold"}>Overview</Text>
-            {workoutTemplate && (
-              <WorkoutOverview workoutTemplate={workoutTemplate} />
-            )}
-                      </View>
-            */}
 
           <Text type={"body-L-semibold"}>What you'll do</Text>
           <View style={styles.blocks}>
@@ -93,7 +93,9 @@ const styles = StyleSheet.create({
     marginVertical: spacing["spacing-6"],
     gap: spacing["spacing-4"],
   },
-  overview: {},
+  overview: {
+    gap: spacing["spacing-4"],
+  },
   blocks: {
     gap: spacing["spacing-8"],
   },

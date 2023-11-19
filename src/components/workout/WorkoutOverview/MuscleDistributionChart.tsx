@@ -1,19 +1,32 @@
-import { Dimensions, View } from "react-native";
+import { MuscleDistributionLegend } from "@/components/workout/WorkoutOverview/MuscleDistribution/MuscleDistributionLegend";
+import { VolumeByMuscle } from "@/components/workout/WorkoutOverview/WorkoutOverview";
+import { colors } from "@/design-system/colors/colors";
+import { spacing } from "@/design-system/spacing/spacing";
+import { Muscle } from "@/types/muscle";
+import { useMemo } from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
 import Svg, { G, Path } from "react-native-svg";
 
-type MuscleDistributionChartProps = {};
+export type MuscleDistributionChartData = {
+  percent: number;
+  color: string;
+  value: Muscle;
+};
+type MuscleDistributionChartProps = {
+  data: VolumeByMuscle;
+};
 
-const data = [
-  { percent: 0.4, color: "red" },
-  { percent: 0.5, color: "blue" },
-  { percent: 0.1, color: "green" },
+const chartColors = [
+  colors["primary-800"],
+  colors["primary-600"],
+  colors["primary-400"],
+  colors["primary-200"],
 ];
 
 const { width } = Dimensions.get("window");
-const size = width - 60; // Adjust the size of the chart
-const strokeWidth = 40; // Width of the ring segments
+const size = width / 3; // Adjust the size of the chart
+const strokeWidth = spacing["spacing-8"]; // Width of the ring segments
 const radius = size / 2 - strokeWidth / 2;
-const circumference = radius * 2 * Math.PI;
 
 // Function to calculate the stroke dasharray for each segment
 const getCoordinatesForPercent = (percent: number) => {
@@ -22,14 +35,26 @@ const getCoordinatesForPercent = (percent: number) => {
   return [x, y];
 };
 
-export const MuscleDistributionChart = () => {
+export const MuscleDistributionChart = ({
+  data,
+}: MuscleDistributionChartProps) => {
   let cumulativePercent = 0;
 
+  const chartData: MuscleDistributionChartData[] = useMemo(
+    () =>
+      Object.entries(data).map(([muscle, percentage], index) => ({
+        value: muscle as Muscle,
+        percent: percentage,
+        color: chartColors[index],
+      })),
+    []
+  );
+
   return (
-    <View style={{ alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
       <Svg width={size} height={size}>
         <G rotation="-90" origin={`${size / 2}, ${size / 2}`}>
-          {data.map((slice, index) => {
+          {chartData.map((slice, index) => {
             const [startX, startY] =
               getCoordinatesForPercent(cumulativePercent);
             cumulativePercent += slice.percent;
@@ -57,6 +82,15 @@ export const MuscleDistributionChart = () => {
           })}
         </G>
       </Svg>
+      <MuscleDistributionLegend data={chartData} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    gap: spacing["spacing-10"],
+    alignItems: "center",
+  },
+});
