@@ -10,10 +10,7 @@ type WorkoutBlockProps = {
 
 export const WorkoutBlock = ({ workoutBlock }: WorkoutBlockProps) => {
   const renderItem = (workoutItem: WorkoutItem) => (
-    <>
-      <ExerciseCard exercise={workoutItem.exercise} />
-      <ExerciseCard exercise={workoutItem.exercise} />
-    </>
+    <ExerciseCard exercise={workoutItem.exercise} sets={workoutItem.sets} />
   );
 
   return (
@@ -25,8 +22,9 @@ export const WorkoutBlock = ({ workoutBlock }: WorkoutBlockProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderLeftColor: colors["primary-700"],
+    borderLeftColor: colors["gray-400"],
     borderLeftWidth: spacing["spacing-1"],
-    paddingLeft: spacing["spacing-1"],
+    paddingLeft: spacing["spacing-2"],
+    gap: spacing["spacing-4"],
   },
 });

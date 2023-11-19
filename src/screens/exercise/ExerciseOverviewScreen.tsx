@@ -3,12 +3,20 @@ import {
   spacing,
 } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
+import { Exercise } from "@/models/exercise";
 import { StyleSheet, View } from "react-native";
 
-export const ExerciseOverviewScreen = () => {
+type ExerciseOverviewScreenProps = {
+  exercise: Exercise;
+};
+
+export const ExerciseOverviewScreen = ({
+  exercise,
+}: ExerciseOverviewScreenProps) => {
   return (
     <View style={styles.container}>
       <Text type={"body-L-semibold"}>Overview</Text>
+      <Text>{exercise.name}</Text>
     </View>
   );
 };
