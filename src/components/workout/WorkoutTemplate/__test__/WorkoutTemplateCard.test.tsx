@@ -2,7 +2,7 @@ import {
   WORKOUT_TEMPLATE_CARD_TEST_IDS,
   WorkoutTemplateCard,
 } from "@/components/workout/WorkoutTemplate/WorkoutTemplateCard";
-import { WorkoutTemplate } from "@/models/workoutTemplate";
+import { WorkoutTemplate } from "@/types/workout";
 import { render } from "@/utils/test/customRender";
 
 const mockWorkoutTemplate: WorkoutTemplate = {

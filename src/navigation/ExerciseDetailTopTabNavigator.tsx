@@ -33,7 +33,9 @@ export type ExerciseHistoryScreenNavigationProps = MaterialTopTabNavigationProp<
 const ExerciseDetailTopTab =
   createMaterialTopTabNavigator<ExerciseDetailTopTabParamList>();
 
-const ExerciseDetailTopTabNavigator = () => {
+const ExerciseDetailTopTabNavigator = ({
+  exercise,
+}: ExerciseDetailRouteParams) => {
   const ACTIVE_COLOR: Color = "primary-700";
   const INACTIVE_COLOR: Color = "gray-400";
 
@@ -54,7 +56,6 @@ const ExerciseDetailTopTabNavigator = () => {
     >
       <ExerciseDetailTopTab.Screen
         name="ExerciseOverview"
-        component={ExerciseOverviewScreen}
         options={{
           title: "Overview",
           tabBarLabel: ({ focused }) => (
@@ -75,7 +76,9 @@ const ExerciseDetailTopTabNavigator = () => {
             </View>
           ),
         }}
-      />
+      >
+        {(props) => <ExerciseOverviewScreen {...props} exercise={exercise} />}
+      </ExerciseDetailTopTab.Screen>
       <ExerciseDetailTopTab.Screen
         name="ExerciseHistory"
         component={ExerciseHistoryScreen}

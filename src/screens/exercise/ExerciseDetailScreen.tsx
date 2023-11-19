@@ -7,8 +7,10 @@ import {
 import Text from "@/design-system/typography/Text";
 import ExerciseDetailTopTabNavigator from "@/navigation/ExerciseDetailTopTabNavigator";
 import { ExerciseDetailScreenRouteProp } from "@/navigation/ExerciseStackNavigator";
+import { requireImage } from "@/utils/requireImage";
 import { testId } from "@/utils/test/testId";
 import { useRoute } from "@react-navigation/native";
+import { useMemo } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -28,9 +30,11 @@ export const ExerciseDetailScreen = () => {
     refetch,
   } = useGetExerciseByIdQuery(params.id);
 
-  console.log(params.id);
-
   const thumbnailHeight = Dimensions.get("window").height * 0.5;
+  const thumbnailImage = useMemo(
+    () => requireImage(exercise?.imageUrl),
+    [exercise?.imageUrl]
+  );
 
   if (isLoading) return <Loading />;
   if (isError) return <Error refetch={refetch} />;
@@ -46,10 +50,7 @@ export const ExerciseDetailScreen = () => {
       contentContainerStyle={{ flexGrow: 1 }}
     >
       <View style={[styles.thumbnailContainer, { height: thumbnailHeight }]}>
-        <Image
-          style={styles.thumbnail}
-          source={require("../../../assets/images/bench-press-2.png")}
-        />
+        <Image style={styles.thumbnail} source={thumbnailImage} />
         <View style={styles.title}>
           <Text type={"heading-XS-semibold"} color="white">
             {exercise?.name}
@@ -65,7 +66,7 @@ export const ExerciseDetailScreen = () => {
         </View>
       </View>
       <View style={styles.content}>
-        <ExerciseDetailTopTabNavigator />
+        <ExerciseDetailTopTabNavigator exercise={exercise} />
       </View>
     </ScrollView>
   );

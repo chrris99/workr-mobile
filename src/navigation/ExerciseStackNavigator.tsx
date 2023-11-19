@@ -8,7 +8,7 @@ import {
   createStackNavigator,
 } from "@react-navigation/stack";
 
-type ExerciseDetailRoutePrams = {
+export type ExerciseDetailRoutePrams = {
   id: string;
 };
 
