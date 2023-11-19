@@ -56,5 +56,5 @@ export const muscleToIcon = (muscle: Muscle): IconName => {
   }
 };
 
-const capitalize = (muscle: Muscle) =>
+export const capitalize = (muscle: Muscle) =>
   muscle.charAt(0).toUpperCase() + muscle.slice(1);
