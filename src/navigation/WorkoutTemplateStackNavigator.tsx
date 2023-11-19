@@ -53,7 +53,9 @@ const WorkoutTemplateStackNavigator = () => {
           headerShown: true,
           headerTitle: "",
           headerTransparent: true,
-          headerBackImage: () => <Icon name="ArrowLeft" strokeWidth={2.5} />,
+          headerBackImage: () => (
+            <Icon name="ArrowLeft" strokeWidth={2.5} color={"white"} />
+          ),
           headerLeftContainerStyle: { paddingLeft: BASE_HORIZONTAL_GUTTER },
         }}
       />

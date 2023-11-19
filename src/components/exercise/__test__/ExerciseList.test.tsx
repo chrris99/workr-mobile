@@ -1,4 +1,4 @@
-import { EXERCISE_CARD_TEST_IDS } from "@/components/exercise/ExerciseCard";
+import { EXERCISE_CARD_TEST_IDS } from "@/components/exercise/ExerciseCard/ExerciseCard";
 import {
   EXERCISE_LIST_TEST_IDS,
   ExerciseList,

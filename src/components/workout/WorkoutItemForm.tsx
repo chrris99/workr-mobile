@@ -5,6 +5,7 @@ import { BaseWorkoutTemplateFormProps } from "@/components/workout/forms/types";
 import { Button } from "@/design-system/buttons/Button";
 import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
+import { muscleToIcon } from "@/types/muscle";
 import { WorkoutItem as TWorkoutItem } from "@/types/workout";
 import { useMemo } from "react";
 import { useFieldArray } from "react-hook-form";
@@ -16,7 +17,7 @@ type WorkoutItemProps = BaseWorkoutTemplateFormProps & {
   itemIndex: number;
 };
 
-export const WorkoutItem = ({
+export const WorkoutItemForm = ({
   control,
   blockIndex,
   item,
@@ -45,37 +46,41 @@ export const WorkoutItem = ({
             ? exercises.map((exercise) => ({
                 value: exercise.id,
                 label: exercise.name,
+                icon: muscleToIcon(exercise.targetMuscleGroup),
               }))
             : []
         }
         placeholder="Select exercise"
       />
 
-      <Text type={"body-L-semibold"}>Sets</Text>
+      <View style={styles.sets}>
+        <View style={styles.setsHeader}>
+          <Text type={"body-L-semibold"}>Sets</Text>
 
-      {sets.map((set, index) => (
-        <View style={styles.set}>
-          <Text style={{ alignSelf: "center" }} type={"body-L-semibold"}>
-            {index + 1}
-          </Text>
-          <BottomSheetInput
-            control={control}
-            name={`${workoutItemField}.sets.${index}.reps`}
-          />
-          <BottomSheetInput
-            control={control}
-            name={`${workoutItemField}.sets.${index}.weight`}
+          <Button
+            type={"primary-link-lg"}
+            text="Add set"
+            iconName="Plus"
+            onPress={() => append({ reps: 0, weight: 0, unit: "kg" })}
           />
         </View>
-      ))}
 
-      <Button
-        type={"gray-solid-md"}
-        text="Add set"
-        iconName="Plus"
-        iconPosition="leading"
-        onPress={() => append({ reps: 0, weight: 0, unit: "kg" })}
-      />
+        {sets.map((set, index) => (
+          <View style={styles.set}>
+            <Text style={{ alignSelf: "center" }} type={"body-L-semibold"}>
+              {index + 1}
+            </Text>
+            <BottomSheetInput
+              control={control}
+              name={`${workoutItemField}.sets.${index}.reps`}
+            />
+            <BottomSheetInput
+              control={control}
+              name={`${workoutItemField}.sets.${index}.weight`}
+            />
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
@@ -84,6 +89,7 @@ const styles = StyleSheet.create({
   workoutItem: {
     gap: spacing["spacing-2"],
   },
+  sets: {},
   setsHeader: {
     flex: 1,
     flexDirection: "row",

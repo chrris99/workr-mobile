@@ -1,3 +1,5 @@
+import { Exercise } from "@/models/exercise";
+
 export type WorkoutItemType =
   | "repeated"
   | "timed"
@@ -12,7 +14,7 @@ export type Set = {
 };
 
 type BaseWorkoutItem = {
-  exerciseId: string;
+  exercise: Exercise;
   type: WorkoutItemType;
   sets: Set[];
   comment?: string;
@@ -44,6 +46,13 @@ export type WorkoutItem = RepeatedWorkoutItem;
 
 export type WorkoutBlock = {
   items: WorkoutItem[];
+};
+
+export type WorkoutTemplate = {
+  id: string;
+  name: string;
+  description?: string;
+  blocks: WorkoutBlock[];
 };
 
 export type WorkoutDay = {

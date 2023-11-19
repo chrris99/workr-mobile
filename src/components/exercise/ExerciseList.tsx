@@ -1,4 +1,4 @@
-import { ExerciseCard } from "@/components/exercise/ExerciseCard";
+import { ExerciseCard } from "@/components/exercise/ExerciseCard/ExerciseCard";
 import { spacing } from "@/design-system/spacing/spacing";
 import { Exercise } from "@/models/exercise";
 import { testId } from "@/utils/test/testId";

@@ -1,26 +1,19 @@
 import { Exercise } from "@/models/exercise";
-import { Set, WorkoutBlock } from "@/types/workout";
+import { Set, WorkoutTemplate } from "@/types/workout";
 
-type WorkoutItemTemplateResponse = {
+export type WorkoutItemTemplateResponse = {
   exercise: Exercise;
   sets: Set[];
   comment: string;
 };
 
-type WorkoutBlockTemplateResponse = {
+export type WorkoutBlockTemplateResponse = {
   itemTemplates: WorkoutItemTemplateResponse[];
 };
-
-export type WorkoutTemplate = {
-  id: string;
-  name: string;
-  description?: string;
-  blocks: WorkoutBlock[];
-};
-
-export type CreateWorkoutTemplateRequest = Omit<WorkoutTemplate, "id">;
-export type UpdateWorkoutTemplateRequest = WorkoutTemplate;
 
 export type WorkoutTemplateResponse = Omit<WorkoutTemplate, "blocks"> & {
   blockTemplates: WorkoutBlockTemplateResponse[];
 };
+
+export type CreateWorkoutTemplateRequest = Omit<WorkoutTemplate, "id">;
+export type UpdateWorkoutTemplateRequest = WorkoutTemplate;

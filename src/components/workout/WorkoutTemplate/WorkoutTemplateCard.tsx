@@ -2,8 +2,8 @@ import { colors } from "@/design-system/colors/colors";
 import { Icon } from "@/design-system/icons/Icon";
 import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
-import { WorkoutTemplate } from "@/models/workoutTemplate";
 import { WorkoutTemplateListScreenNavigationProps } from "@/navigation/WorkoutTemplateStackNavigator";
+import { WorkoutTemplate } from "@/types/workout";
 import { testId } from "@/utils/test/testId";
 import { useNavigation } from "@react-navigation/native";
 import { useMemo } from "react";
@@ -43,7 +43,7 @@ export const WorkoutTemplateCard = ({
     >
       <Image
         style={styles.thumbnail}
-        source={require("../../../../assets/images/trainer-woman-thumbnail-2.png")}
+        source={require("../../../../assets/images/push-up.png")}
       />
 
       <View style={styles.content}>
