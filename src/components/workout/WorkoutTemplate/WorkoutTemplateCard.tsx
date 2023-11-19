@@ -34,8 +34,8 @@ export const WorkoutTemplateCard = ({
   );
 
   const thumbnailImage = useMemo(
-    () => requireImage(workoutTemplate.blocks[0].items[0].exercise.imageUrl),
-    [workoutTemplate.blocks[0].items[0].exercise.imageUrl]
+    () => requireImage(workoutTemplate.blocks[0]?.items[0]?.exercise.imageUrl),
+    [workoutTemplate]
   );
 
   return (

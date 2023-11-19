@@ -25,7 +25,7 @@ export const WorkoutDetailScreen = () => {
   } = useGetWorkoutTemplateByIdQuery(params.id);
 
   const thumbnailImage = useMemo(
-    () => requireImage(workoutTemplate?.blocks[0].items[0].exercise.imageUrl),
+    () => requireImage(workoutTemplate?.blocks[0]?.items[0]?.exercise.imageUrl),
     [workoutTemplate]
   );
 

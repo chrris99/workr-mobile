@@ -70,7 +70,7 @@ export const ExerciseCard = ({ exercise, sets }: ExerciseCardProps) => {
           ) : (
             <Text
               testID={EXERCISE_CARD_TEST_IDS.DESCRIPTION}
-              numberOfLines={2}
+              numberOfLines={1}
               ellipsizeMode={"tail"}
               type={"body-XS-regular"}
               color={"gray-500"}
