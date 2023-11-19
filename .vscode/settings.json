@@ -5,5 +5,11 @@
     "source.organizeImports": true,
     "source.sortMembers": true
   },
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "material-icon-theme.folders.associations": {
+    "customFolderName": "src",
+    "navigation": "routes",
+    "icons": "svg",
+    "design-system": "theme"
+  }
 }
