@@ -1,5 +1,7 @@
 import { Icon } from "@/design-system/icons/Icon";
 import { BASE_HORIZONTAL_GUTTER } from "@/design-system/spacing/spacing";
+import { ExerciseDetailRoutePrams } from "@/navigation/ExerciseStackNavigator";
+import { ExerciseDetailScreen } from "@/screens/exercise/ExerciseDetailScreen";
 import { WorkoutDetailScreen } from "@/screens/workout/WorkoutDetailScreen";
 import { WorkoutScreen } from "@/screens/workout/WorkoutScreen";
 import { RouteProp } from "@react-navigation/native";
@@ -15,6 +17,7 @@ type WorkoutTemplateDetailRoutePrams = {
 type WorkoutTemplateStackParamList = {
   WorkoutTemplateList: undefined;
   WorkoutTemplateDetail: WorkoutTemplateDetailRoutePrams;
+  ExerciseDetail: ExerciseDetailRoutePrams;
 };
 
 export type WorkoutTemplateListScreenNavigationProps = StackNavigationProp<
@@ -49,6 +52,19 @@ const WorkoutTemplateStackNavigator = () => {
       <WorkoutTemplateStack.Screen
         name="WorkoutTemplateDetail"
         component={WorkoutDetailScreen}
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerTransparent: true,
+          headerBackImage: () => (
+            <Icon name="ArrowLeft" strokeWidth={2.5} color={"white"} />
+          ),
+          headerLeftContainerStyle: { paddingLeft: BASE_HORIZONTAL_GUTTER },
+        }}
+      />
+      <WorkoutTemplateStack.Screen
+        name="ExerciseDetail"
+        component={ExerciseDetailScreen}
         options={{
           headerShown: true,
           headerTitle: "",

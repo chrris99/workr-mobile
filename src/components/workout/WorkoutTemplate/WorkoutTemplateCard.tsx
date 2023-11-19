@@ -4,6 +4,7 @@ import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { WorkoutTemplateListScreenNavigationProps } from "@/navigation/WorkoutTemplateStackNavigator";
 import { WorkoutTemplate } from "@/types/workout";
+import { requireImage } from "@/utils/requireImage";
 import { testId } from "@/utils/test/testId";
 import { useNavigation } from "@react-navigation/native";
 import { useMemo } from "react";
@@ -32,6 +33,11 @@ export const WorkoutTemplateCard = ({
     [workoutTemplate]
   );
 
+  const thumbnailImage = useMemo(
+    () => requireImage(workoutTemplate.blocks[0].items[0].exercise.imageUrl),
+    [workoutTemplate.blocks[0].items[0].exercise.imageUrl]
+  );
+
   return (
     <TouchableOpacity
       testID={WORKOUT_TEMPLATE_CARD_TEST_IDS.CARD}
@@ -41,10 +47,7 @@ export const WorkoutTemplateCard = ({
         navigation.navigate("WorkoutTemplateDetail", { id: workoutTemplate.id })
       }
     >
-      <Image
-        style={styles.thumbnail}
-        source={require("../../../../assets/images/push-up.png")}
-      />
+      <Image style={styles.thumbnail} source={thumbnailImage} />
 
       <View style={styles.content}>
         <View style={styles.header}>

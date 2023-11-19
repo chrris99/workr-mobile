@@ -5,8 +5,11 @@ import Text from "@/design-system/typography/Text";
 import { Exercise } from "@/models/exercise";
 import { ExerciseListScreenNavigationProps } from "@/navigation/ExerciseStackNavigator";
 import { muscleToIcon } from "@/types/muscle";
+import { Set } from "@/types/workout";
+import { requireImage } from "@/utils/requireImage";
 import { testId } from "@/utils/test/testId";
 import { useNavigation } from "@react-navigation/native";
+import { useMemo } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -14,16 +17,23 @@ export const EXERCISE_CARD_TEST_IDS = {
   CARD: testId("exercise-card"),
   NAME: testId("exercise-name"),
   DESCRIPTION: testId("exercise-description"),
+  SETS: testId("exercise-sets"),
   PRIMARY_MUSCLE: testId("exercise-primary-muscle"),
   SECONDARY_MUSCLE: testId("exercise-secondary-muscle"),
 } as const;
 
 type ExerciseCardProps = {
   exercise: Exercise;
+  sets?: Set[];
 };
 
-export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
+export const ExerciseCard = ({ exercise, sets }: ExerciseCardProps) => {
   const navigation = useNavigation<ExerciseListScreenNavigationProps>();
+
+  const thumbnailImage = useMemo(
+    () => requireImage(exercise.imageUrl),
+    [exercise.imageUrl]
+  );
 
   return (
     <TouchableOpacity
@@ -32,10 +42,7 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
       onPress={() => navigation.navigate("ExerciseDetail", { id: exercise.id })}
     >
       <View style={styles.container}>
-        <Image
-          source={require("../../../../assets/images/kettlebell.png")}
-          style={styles.image}
-        />
+        <Image source={thumbnailImage} style={styles.image} />
 
         <View style={styles.content}>
           <View style={styles.header}>
@@ -54,8 +61,13 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
               {exercise.name}
             </Text>
           </View>
-
-          {exercise.description && (
+          {sets ? (
+            <Text
+              testID={EXERCISE_CARD_TEST_IDS.SETS}
+              type={"body-XS-regular"}
+              color={"gray-500"}
+            >{`${sets.length} ${sets.length > 1 ? "sets" : "set"}`}</Text>
+          ) : (
             <Text
               testID={EXERCISE_CARD_TEST_IDS.DESCRIPTION}
               numberOfLines={2}

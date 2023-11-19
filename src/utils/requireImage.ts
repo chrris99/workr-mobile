@@ -11,6 +11,8 @@ export const requireImage = (name: string | undefined) => {
       return require("../../assets/images/push-up.png");
     case "cable-machine-tricep-extension-1.png":
       return require("../../assets/images/cabel-machine-tricep-extension-1.png");
+    case "dumbbell-bicep-curl-1.png":
+      return require("../../assets/images/dumbbell-bicep-curl-1.png");
     default:
       return DEFAULT_IMAGE;
   }

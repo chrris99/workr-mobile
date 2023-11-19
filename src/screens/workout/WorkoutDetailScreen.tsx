@@ -2,7 +2,6 @@ import { useGetWorkoutTemplateByIdQuery } from "@/api/api";
 import { Error } from "@/components/base/Error";
 import { Loading } from "@/components/base/Loading";
 import { WorkoutBlock } from "@/components/workout/WorkoutBlock/WorkoutBlock";
-import { WorkoutOverview } from "@/components/workout/WorkoutOverview/WorkoutOverview";
 import { Button } from "@/design-system/buttons/Button";
 import {
   BASE_HORIZONTAL_GUTTER,
@@ -10,8 +9,9 @@ import {
 } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { WorkoutTemplateDetailScreenRouteProp } from "@/navigation/WorkoutTemplateStackNavigator";
+import { requireImage } from "@/utils/requireImage";
 import { useRoute } from "@react-navigation/native";
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -24,16 +24,10 @@ export const WorkoutDetailScreen = () => {
     refetch,
   } = useGetWorkoutTemplateByIdQuery(params.id);
 
-  useEffect(() => {
-    if (workoutTemplate) {
-      const res = workoutTemplate.blocks
-        .map((block) => block.items)
-        .flat()
-        .filter((item) => !("items" in item));
-
-      console.log(res);
-    }
-  }, [workoutTemplate]);
+  const thumbnailImage = useMemo(
+    () => requireImage(workoutTemplate?.blocks[0].items[0].exercise.imageUrl),
+    [workoutTemplate]
+  );
 
   if (isLoading) return <Loading message="Loading workout template" />;
   if (isError) return <Error refetch={refetch} />;
@@ -42,12 +36,9 @@ export const WorkoutDetailScreen = () => {
 
   return (
     <>
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={[styles.thumbnailContainer, { height: thumbnailHeight }]}>
-          <Image
-            style={styles.thumbnail}
-            source={require("../../../assets/images/push-up.png")}
-          />
+          <Image style={styles.thumbnail} source={thumbnailImage} />
           <View style={styles.title}>
             <Text type={"heading-XS-semibold"} color="white">
               {workoutTemplate?.name}
@@ -59,26 +50,28 @@ export const WorkoutDetailScreen = () => {
         </View>
 
         <View style={styles.content}>
-          <View style={styles.overview}>
-            <Text type={"body-L-semibold"}>Overview</Text>
-
-            {/** TODO: Add workout overview card, muslce distribution chart */}
+          <Button
+            type={"primary-solid-lg"}
+            text="Start Workout"
+            iconName="ArrowRight"
+          />
+          {/** TODO: Add workout overview card, muslce distribution chart 
+             *           <View style={styles.overview}>
+             *             <Text type={"body-L-semibold"}>Overview</Text>
             {workoutTemplate && (
               <WorkoutOverview workoutTemplate={workoutTemplate} />
             )}
-          </View>
+                      </View>
+            */}
 
           <Text type={"body-L-semibold"}>What you'll do</Text>
-          {workoutTemplate?.blocks.map((workoutBlock, index) => (
-            <WorkoutBlock key={index} workoutBlock={workoutBlock} />
-          ))}
+          <View style={styles.blocks}>
+            {workoutTemplate?.blocks.map((workoutBlock, index) => (
+              <WorkoutBlock key={index} workoutBlock={workoutBlock} />
+            ))}
+          </View>
         </View>
       </ScrollView>
-      <Button
-        type={"primary-solid-lg"}
-        text="Start Workout"
-        iconName="ArrowRight"
-      />
     </>
   );
 };
@@ -97,10 +90,12 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: BASE_HORIZONTAL_GUTTER,
-    marginTop: spacing["spacing-6"],
+    marginVertical: spacing["spacing-6"],
     gap: spacing["spacing-4"],
   },
   overview: {},
-  blocks: {},
+  blocks: {
+    gap: spacing["spacing-8"],
+  },
   cta: {},
 });
