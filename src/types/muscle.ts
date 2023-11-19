@@ -33,7 +33,7 @@ export const muscleItem = (muscle: Muscle): Item<string> => ({
   iconName: muscleToIcon(muscle),
 });
 
-const muscleToIcon = (muscle: Muscle): IconName => {
+export const muscleToIcon = (muscle: Muscle): IconName => {
   switch (muscle) {
     case "abductors":
     case "glutes ":

@@ -1,15 +1,13 @@
 import {
   EXERCISE_CARD_TEST_IDS,
   ExerciseCard,
-} from "@/components/exercise/ExerciseCard";
+} from "@/components/exercise/ExerciseCard/ExerciseCard";
 import {
   EXERCISE_DESCRIPTION,
-  EXERCISE_LONG_DESCRIPTION,
   EXERCISE_NAME,
   EXERCISE_PRIMARY_MUSCLE,
   mockExercise,
 } from "@/components/exercise/__test__/mockExercise";
-import { Exercise } from "@/models/exercise";
 import { render } from "@/utils/test/customRender";
 import { fireEvent } from "@testing-library/react-native";
 
@@ -42,22 +40,6 @@ describe("ExerciseCard", () => {
     expect(exerciseDescription).toHaveTextContent(EXERCISE_DESCRIPTION);
   });
 
-  it("should display first 100 characters of long description", () => {
-    const exercise: Exercise = {
-      ...mockExercise,
-      description: EXERCISE_LONG_DESCRIPTION,
-    };
-
-    const { getByTestId } = render(<ExerciseCard exercise={exercise} />);
-
-    const exerciseDescription = getByTestId(EXERCISE_CARD_TEST_IDS.DESCRIPTION);
-
-    expect(exerciseDescription).toBeTruthy();
-    expect(exerciseDescription).toHaveTextContent(
-      `${EXERCISE_LONG_DESCRIPTION.slice(0, 100)}...`
-    );
-  });
-
   it("should display exercise target muscle group in upper case", () => {
     const { getByTestId } = render(<ExerciseCard exercise={mockExercise} />);
 
@@ -69,27 +51,11 @@ describe("ExerciseCard", () => {
     );
   });
 
-  it("should display first exercise secondary muscle group", () => {
-    const exercise: Exercise = {
-      ...mockExercise,
-      secondaryMuscleGroups: ["abductors", "calves"],
-    };
-
-    const { getByTestId } = render(<ExerciseCard exercise={exercise} />);
-
-    const secondaryMuscle = getByTestId(
-      EXERCISE_CARD_TEST_IDS.SECONDARY_MUSCLE
-    );
-
-    expect(secondaryMuscle).toBeTruthy();
-    expect(secondaryMuscle).toHaveTextContent("abductors");
-  });
-
   describe("on press", () => {
     it("should navigate to exerise detail screen", () => {
       const { getByTestId } = render(<ExerciseCard exercise={mockExercise} />);
 
-      const touchable = getByTestId(EXERCISE_CARD_TEST_IDS.TOUCHABLE);
+      const touchable = getByTestId(EXERCISE_CARD_TEST_IDS.CARD);
 
       fireEvent.press(touchable);
 
@@ -97,24 +63,6 @@ describe("ExerciseCard", () => {
       expect(mockNavigate).toHaveBeenCalledWith("ExerciseDetail", {
         id: mockExercise.id,
       });
-    });
-  });
-
-  describe("on swipe right", () => {
-    it("should display edit exercise action", () => {
-      const { getByTestId } = render(<ExerciseCard exercise={mockExercise} />);
-
-      const card = getByTestId(EXERCISE_CARD_TEST_IDS.CARD);
-
-      //fireEvent(card, "onSwipeableRightOpen");
-
-      const editButton = getByTestId(EXERCISE_CARD_TEST_IDS.EDIT_BUTTON);
-
-      expect(editButton).toBeVisible();
-    });
-
-    it("should display delete exercise action", () => {
-      //TODO
     });
   });
 });

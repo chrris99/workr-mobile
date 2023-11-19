@@ -1,8 +1,9 @@
+import { toWorkoutTemplate } from "@/mappping/toWorkoutTemplate";
 import {
   CreateWorkoutTemplateRequest,
-  WorkoutTemplate,
   WorkoutTemplateResponse,
 } from "@/models/workoutTemplate";
+import { WorkoutTemplate } from "@/types/workout";
 import { Clerk } from "@clerk/clerk-expo";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Constants from "expo-constants";
@@ -27,7 +28,6 @@ export const api = createApi({
     prepareHeaders: async (headers) => {
       const token = await Clerk.session?.getToken({ template: "user_default" });
       if (token) headers.append("Authorization", `Bearer ${token}`);
-      console.log(token);
     },
   }),
   tagTypes: ["Exercise", "WorkoutTemplate"],
@@ -89,23 +89,7 @@ export const api = createApi({
     getWorkoutTemplates: builder.query<WorkoutTemplate[], void>({
       query: () => "template",
       transformResponse: (response: WorkoutTemplateResponse[], meta, arg) =>
-        response.map((workoutTemplate) => {
-          const { blockTemplates, ...workoutTemplateDetails } = workoutTemplate;
-          return {
-            ...workoutTemplateDetails,
-            blocks: blockTemplates.map((blockTemplate) => ({
-              items: blockTemplate.itemTemplates.map((itemTemplate) => {
-                const { exercise, sets } = itemTemplate;
-                return {
-                  type: "repeated",
-                  exerciseId: exercise.id,
-                  sets,
-                };
-              }),
-            })),
-          };
-        }),
-
+        response.map((response) => toWorkoutTemplate(response)),
       providesTags: (result) =>
         result
           ? [
@@ -121,6 +105,8 @@ export const api = createApi({
         url: `template/${id}`,
         method: "GET",
       }),
+      transformResponse: (response: WorkoutTemplateResponse) =>
+        toWorkoutTemplate(response),
       providesTags: (result, error, id) => [{ type: "WorkoutTemplate", id }],
     }),
   }),

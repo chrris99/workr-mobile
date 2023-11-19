@@ -1,10 +1,10 @@
 import { useGetWorkoutTemplatesQuery } from "@/api/api";
 import { Error } from "@/components/base/Error";
 import { Loading } from "@/components/base/Loading";
+import { Carousel } from "@/components/base/carousel/Carousel";
 import { WorkoutTemplateCard } from "@/components/workout/WorkoutTemplate/WorkoutTemplateCard";
-import { spacing } from "@/design-system/spacing/spacing";
 import { testId } from "@/utils/test/testId";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 
 export const WORKOUT_TEMPLATE_LIST_TEST_IDS = {
   LIST: testId("workout-template-list"),
@@ -17,17 +17,14 @@ export const WorkoutTemplateList = () => {
   if (isError) return <Error refetch={refetch} />;
 
   return (
-    <FlatList
+    <Carousel
       testID={WORKOUT_TEMPLATE_LIST_TEST_IDS.LIST}
       data={data}
-      horizontal
-      showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => (
         <View style={styles.cardContainer}>
           <WorkoutTemplateCard workoutTemplate={item} />
         </View>
       )}
-      ItemSeparatorComponent={() => <View style={styles.separator} />}
     />
   );
 };
@@ -35,8 +32,5 @@ export const WorkoutTemplateList = () => {
 const styles = StyleSheet.create({
   cardContainer: {
     width: Dimensions.get("window").width * 0.8,
-  },
-  separator: {
-    width: spacing["spacing-4"],
   },
 });
