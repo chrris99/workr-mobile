@@ -15,6 +15,7 @@ import Close from "../../../assets/icons/close.svg";
 import Edit from "../../../assets/icons/edit.svg";
 import Error from "../../../assets/icons/error.svg";
 import ExerciseOverview from "../../../assets/icons/exercise-overview.svg";
+import Gym from "../../../assets/icons/gym.svg";
 import Home from "../../../assets/icons/home.svg";
 import Leg from "../../../assets/icons/leg.svg";
 import Minus from "../../../assets/icons/minus.svg";
@@ -45,6 +46,7 @@ export const icons = {
   Edit,
   Error,
   ExerciseOverview,
+  Gym,
   Home,
   Leg,
   Minus,
