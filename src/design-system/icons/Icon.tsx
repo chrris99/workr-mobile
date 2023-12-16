@@ -11,7 +11,7 @@ interface IconProps {
 }
 
 const iconSize: Record<IconSize, number> = {
-  XS: 10,
+  XS: 16,
   S: 20,
   M: 24,
 };

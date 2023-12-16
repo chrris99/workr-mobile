@@ -2,6 +2,7 @@ import { useDeleteExerciseMutation } from "@/api/api";
 import { ExerciseCard } from "@/components/exercise/ExerciseCard/ExerciseCard";
 import { UpdateExerciseModal } from "@/components/exercise/modals/UpdateExerciseModal";
 import { Button } from "@/design-system/buttons/Button";
+import { colors } from "@/design-system/colors/colors";
 import { spacing } from "@/design-system/spacing/spacing";
 import { Exercise } from "@/models/exercise";
 import { testId } from "@/utils/test/testId";
@@ -48,8 +49,9 @@ export const SwipeableExerciseCard = ({ exercise }: ExerciseCardProps) => {
 
           <Button
             testID={SWIPEABLE_EXERCISE_CARD_TEST_IDS.EDIT_BUTTON}
-            type={"secondary-icon-sm"}
+            type={"gray-icon-sm"}
             iconName="Edit"
+            style={[styles.button, styles.editButton]}
             onPress={() => {
               openModal();
               swipeableRef.current?.close();
@@ -57,8 +59,9 @@ export const SwipeableExerciseCard = ({ exercise }: ExerciseCardProps) => {
           />
           <Button
             testID={SWIPEABLE_EXERCISE_CARD_TEST_IDS.DELETE_BUTTON}
-            type={"secondary-icon-sm"}
+            type={"gray-icon-md"}
             iconName="Trash"
+            style={[styles.button, styles.deleteButton]}
             onPress={() => deleteExercise(exercise.id)}
           />
         </View>
@@ -81,10 +84,22 @@ export const SwipeableExerciseCard = ({ exercise }: ExerciseCardProps) => {
 
 const styles = StyleSheet.create({
   actionContainer: {
-    flex: 1,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing["spacing-5"],
+    gap: spacing["spacing-3"],
+    paddingLeft: spacing["spacing-6"],
+  },
+  button: {
+    height: "100%",
+    justifyContent: "center",
+    paddingHorizontal: spacing["spacing-4"],
+    borderRadius: spacing["spacing-4"],
+  },
+  deleteButton: {
+    backgroundColor: colors["error-200"],
+  },
+  editButton: {
+    backgroundColor: colors["primary-200"],
   },
 });

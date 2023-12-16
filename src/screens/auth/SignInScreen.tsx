@@ -1,16 +1,17 @@
+import { AppleOAuthButton } from "@/components/auth/AppleOAuthButton";
+import { GoogleOAuthButton } from "@/components/auth/GoogleAuthButton";
 import { Header } from "@/components/base/Header";
 import { Input } from "@/components/base/input/Input";
 import { Button } from "@/design-system/buttons/Button";
-import { Divider } from "@/design-system/spacing/Divider";
 import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { ClerkError } from "@/models/clerkError";
 import { SignInScreenNavigationProps } from "@/navigation/RootStackNavigator";
-import { useSignIn } from "@clerk/clerk-expo";
+import { useOAuth, useSignIn } from "@clerk/clerk-expo";
 import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type SignInFormValues = {
@@ -23,6 +24,9 @@ const SignInScreen = () => {
   const navigation = useNavigation<SignInScreenNavigationProps>();
 
   const { isLoaded, signIn, setActive } = useSignIn();
+  const { startOAuthFlow: startAppleOAuthFlow } = useOAuth({
+    strategy: "oauth_apple",
+  });
 
   const {
     control,
@@ -70,15 +74,22 @@ const SignInScreen = () => {
   };
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Header
-        title="Log in to your account"
-        subtitle="Welcome back! Please enter your details."
-      />
-      <View style={styles.signUpContainer}>
-        <View style={styles.inputContainer}>
+    <View
+      style={[
+        styles.container,
+        { marginTop: insets.top, marginBottom: insets.bottom },
+      ]}
+    >
+      <View style={styles.formContainer}>
+        <Header
+          title="Sign in to your account"
+          subtitle="Welcome back! Please enter your details."
+        />
+
+        <View style={styles.form}>
           <Input
             control={control}
+            rules={{ required: true }}
             name="email"
             label="Email"
             autoComplete="email"
@@ -95,25 +106,23 @@ const SignInScreen = () => {
             secureTextEntry={true}
           />
         </View>
-        <View style={styles.forgotPasswordContainer}>
-          <Button text="Forgot password?" type={"primary-solid-lg"} />
-        </View>
 
-        <View style={styles.buttonGroup}>
-          <Button
-            text="Sign in"
-            type={"primary-solid-lg"}
-            onPress={handleSubmit(onSubmit)}
-          />
-          <Divider text="or" />
-          <Button
-            text="Sign in with Apple"
-            type={"gray-solid-lg"}
-            iconName="Apple"
-          />
+        <View style={styles.forgotPasswordContainer}>
+          <Button text="Forgot password?" type={"primary-link-lg"} />
         </View>
       </View>
-      <View style={{ flexDirection: "row", gap: spacing["spacing-1"] }}>
+
+      <View style={styles.buttons}>
+        <Button
+          text="Sign in"
+          type={"primary-solid-lg"}
+          onPress={handleSubmit(onSubmit)}
+        />
+        {Platform.OS === "ios" && <AppleOAuthButton />}
+        {Platform.OS === "android" && <GoogleOAuthButton />}
+      </View>
+
+      <View style={styles.signUpLink}>
         <Text>Don't have an account yet?</Text>
         <Button
           text="Sign Up"
@@ -127,23 +136,25 @@ const SignInScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingHorizontal: spacing["spacing-4"],
-    flex: 1,
   },
-  signUpContainer: {
-    paddingVertical: spacing["spacing-8"],
-    flex: 1,
-  },
-  inputContainer: {
-    gap: spacing["spacing-5"],
-    flex: 1,
+  formContainer: {},
+  form: {
+    gap: spacing["spacing-6"],
   },
   forgotPasswordContainer: {
     paddingVertical: spacing["spacing-6"],
     flexDirection: "row-reverse",
   },
-  buttonGroup: {
+  buttons: {
     gap: spacing["spacing-4"],
+  },
+  signUpLink: {
+    marginTop: spacing["spacing-8"],
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: spacing["spacing-1"],
   },
 });
 

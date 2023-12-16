@@ -1,4 +1,4 @@
-import { ExerciseCard } from "@/components/exercise/ExerciseCard/ExerciseCard";
+import { SwipeableExerciseCard } from "@/components/exercise/ExerciseCard/SwipeableExerciseCard";
 import { spacing } from "@/design-system/spacing/spacing";
 import { Exercise } from "@/models/exercise";
 import { testId } from "@/utils/test/testId";
@@ -18,7 +18,7 @@ export const ExerciseList = ({ exercises }: ExerciseListProps) => {
     <FlatList
       testID={EXERCISE_LIST_TEST_IDS.LIST}
       data={exercises}
-      renderItem={({ item }) => <ExerciseCard exercise={item} />}
+      renderItem={({ item }) => <SwipeableExerciseCard exercise={item} />}
       ItemSeparatorComponent={() => (
         <View
           testID={EXERCISE_LIST_TEST_IDS.SEPARATOR}

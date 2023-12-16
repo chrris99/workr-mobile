@@ -15,6 +15,7 @@ import Close from "../../../assets/icons/close.svg";
 import Edit from "../../../assets/icons/edit.svg";
 import Error from "../../../assets/icons/error.svg";
 import ExerciseOverview from "../../../assets/icons/exercise-overview.svg";
+import Google from "../../../assets/icons/google.svg";
 import Gym from "../../../assets/icons/gym.svg";
 import Home from "../../../assets/icons/home.svg";
 import Leg from "../../../assets/icons/leg.svg";
@@ -24,6 +25,7 @@ import Search from "../../../assets/icons/search.svg";
 import Settings from "../../../assets/icons/settings.svg";
 import Stopwatch from "../../../assets/icons/stopwatch.svg";
 import Target from "../../../assets/icons/target.svg";
+import Trainer from "../../../assets/icons/trainer.svg";
 import Trash from "../../../assets/icons/trash.svg";
 import User from "../../../assets/icons/user.svg";
 import Weight from "../../../assets/icons/weight.svg";
@@ -46,6 +48,7 @@ export const icons = {
   Edit,
   Error,
   ExerciseOverview,
+  Google,
   Gym,
   Home,
   Leg,
@@ -55,6 +58,7 @@ export const icons = {
   Settings,
   Stopwatch,
   Target,
+  Trainer,
   Trash,
   User,
   Weight,
