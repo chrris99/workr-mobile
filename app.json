@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "workr-mobile",
+    "scheme": "workr",
     "slug": "workr-mobile",
     "version": "1.0.0",
     "orientation": "portrait",

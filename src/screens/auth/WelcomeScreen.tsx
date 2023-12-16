@@ -11,8 +11,8 @@ const WelcomeScreen = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<WelcomeScreenNavigationProps>();
 
-  const onSignUp = () => {
-    navigation.navigate("SignUp");
+  const onStartJourney = () => {
+    navigation.navigate("Name");
   };
 
   const onSignIn = () => {
@@ -36,7 +36,7 @@ const WelcomeScreen = () => {
             <Button
               text="Start your journey"
               type={"primary-solid-lg"}
-              onPress={onSignUp}
+              onPress={onStartJourney}
             />
           </View>
           <View style={styles.signInContainer}>

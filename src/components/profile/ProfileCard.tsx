@@ -1,5 +1,4 @@
 import { colors } from "@/design-system/colors/colors";
-import { Icon } from "@/design-system/icons/Icon";
 import { spacing } from "@/design-system/spacing/spacing";
 import Text from "@/design-system/typography/Text";
 import { useUser } from "@clerk/clerk-expo";
@@ -9,19 +8,13 @@ export const ProfileCard = () => {
   const { user } = useUser();
 
   return (
-    <View style={styles.profileHeaderContainer}>
-      <View style={styles.profileImageContainer}>
-        <Image style={styles.profileImage} source={{ uri: user?.imageUrl }} />
-        <View style={styles.editProfileImage}>
-          <Icon name="Edit" color="white" size="XS" />
-        </View>
-      </View>
+    <View style={styles.container}>
+      <Image style={styles.profileImage} source={{ uri: user?.imageUrl }} />
 
       <View style={styles.details}>
-        {user?.firstName && (
-          <Text type="heading-S-semibold">{user.firstName}</Text>
+        {user?.firstName && user.lastName && (
+          <Text type="heading-S-semibold">{`${user.firstName} ${user.lastName}`}</Text>
         )}
-        <Text type="body-XL-semibold">John Doe</Text>
         <Text>{user?.primaryEmailAddress?.emailAddress}</Text>
       </View>
     </View>
@@ -29,10 +22,12 @@ export const ProfileCard = () => {
 };
 
 const styles = StyleSheet.create({
-  profileHeaderContainer: {
+  container: {
     alignItems: "center",
     gap: spacing["spacing-5"],
-    paddingVertical: spacing["spacing-12"],
+    paddingVertical: spacing["spacing-8"],
+    backgroundColor: colors["white"],
+    borderRadius: spacing["spacing-4"],
   },
   details: {
     alignItems: "center",

@@ -4,6 +4,7 @@ import Text from "@/design-system/typography/Text";
 import { ProfileScreenNavigationProps } from "@/navigation/ProfileStackNavigator";
 import { useOrganization } from "@clerk/clerk-expo";
 import { useNavigation } from "@react-navigation/native";
+import { format } from "date-fns";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export const GymCard = () => {
@@ -12,7 +13,7 @@ export const GymCard = () => {
 
   return (
     <TouchableOpacity
-      activeOpacity={0.7}
+      activeOpacity={0.8}
       style={styles.container}
       onPress={() => navigation.navigate("Gym")}
     >
@@ -20,7 +21,17 @@ export const GymCard = () => {
         <Image style={styles.image} source={{ uri: organization?.imageUrl }} />
         <View style={styles.gymDetails}>
           <Text type={"body-L-semibold"}>{organization?.name}</Text>
-          <Text>{`${organization?.membersCount} member`}</Text>
+          {organization?.createdAt && (
+            <Text>{`Active since ${format(
+              organization?.createdAt,
+              "yyyy MMM dd"
+            )}`}</Text>
+          )}
+          <Text>
+            {organization?.membersCount && organization.membersCount > 1
+              ? `${organization?.membersCount} members`
+              : `${organization?.membersCount} member`}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
